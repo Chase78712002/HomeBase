@@ -46,7 +46,6 @@
 | Request | Path                        | Action   | Description                         |
 | ------- | --------------------------- | -------- | ----------------------------------- |
 | GET     | /milestones                 | #index   | display list of milestones          |
-<!-- | GET     | /milestones/:id             | #show    | view individual milestone           | -->
 | GET     | /milestones/new             | #new     | form to add new milestone           |
 | POST    | /milestones                 | #create  | add new milestone                   |
 | GET     | /milestones/:id/edit        | #edit    | form to edit milestone              |
