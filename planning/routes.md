@@ -19,12 +19,11 @@
 | GET     | /projects/                  | #index   | display project dashboard           |
 | GET     | /projects/:id               | #show    | display project dashboard           |
 
-### Change orders
+## Change orders
 
 | Request | Path                        | Action   | Description                         |
 | ------- | --------------------------- | -------- | ----------------------------------- |
 | GET     | /change_orders              | #index   | display list of change orders       |
-<!-- | GET     | /change_orders/:id          | #show    | view individual change order        | -->
 | GET     | /change_orders/new          | #new     | form to add new change order        |
 | POST    | /change_orders              | #create  | add new change order                |
 | GET     | /change_orders/:id/edit     | #edit    | form to edit change order           |
@@ -36,7 +35,6 @@
 | Request | Path                        | Action   | Description                         |
 | ------- | --------------------------- | -------- | ----------------------------------- |
 | GET     | /documents                  | #index   | display list of documents           |
-<!-- | GET     | /documents/:id              | #show    | view individual document            | -->
 | GET     | /documents/new              | #new     | form to add new document            |
 | POST    | /documents                  | #create  | add new document                    |
 | GET     | /documents/:id/edit         | #edit    | form to edit document               |
@@ -78,8 +76,3 @@
 | GET     | /transactions/:id/edit      | #edit    | form to edit transaction            |
 | POST    | /transactions/:id           | #update  | edit transaction                    |
 | DELETE  | /transactions/:id           | #destroy | delete transaction                  |
-
-
-/projects/1/documents/26
-/projects/1/change_orders/1
-/projects/1/transactions/56
