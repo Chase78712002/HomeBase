@@ -4,8 +4,11 @@ Rails.application.routes.draw do
   namespace :test do # /api/data
 
     get '/data', to: 'tests#index'
-    
-    resources :dogs
+
+    resources :projects #, only: [:index]
+    resources :documents #, only: [:index, :show, :new, :create, :destroy] Everything
+    resources :change_orders #, only: [:index, :show, :new, :create, :destroy] Everything]
+    resources :transactions #, excepr: [:destory] ?
 
   end
 
