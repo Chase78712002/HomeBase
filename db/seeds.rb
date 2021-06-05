@@ -5,3 +5,11 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+puts 'Creating project Seed data ...'
+
+project = Project.create(
+  name: 'Project 1',
+  start_date: Time.now,
+  end_date: Time.now + 30
+)
