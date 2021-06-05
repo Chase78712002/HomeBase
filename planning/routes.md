@@ -10,8 +10,8 @@
 
 | Request | Path                        | Action   | Description                         |
 | ------- | --------------------------- | -------- | ----------------------------------- |
-| GET     | /projects/                  | #index   | display project dashboard           |
-| GET     | /projects/:id               | #show    | display project dashboard           |
+| GET     | /projects/                  | #index   | display builder's dashboard         |
+| GET     | /projects/:id               | #show    | display client's project dashboard  |
 
 ## Change orders
 
