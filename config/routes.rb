@@ -1,14 +1,14 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-  namespace :test do # /api/data
+  namespace :api do # /api/data
 
     get '/data', to: 'tests#index'
 
-    resources :projects #, only: [:index]
-    resources :documents #, only: [:index, :show, :new, :create, :destroy] Everything
-    resources :change_orders #, only: [:index, :show, :new, :create, :destroy] Everything]
-    resources :transactions #, excepr: [:destory] ?
+    # resources :projects #, only: [:index]
+    # resources :documents #, only: [:index, :show, :new, :create, :destroy] Everything
+    # resources :change_orders #, only: [:index, :show, :new, :create, :destroy] Everything]
+    # resources :transactions #, excepr: [:destory] ?
 
   end
 
