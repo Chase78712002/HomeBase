@@ -3,12 +3,14 @@ Rails.application.routes.draw do
 
   namespace :api do # /api/data
 
-    get '/data', to: 'tests#index'
+    root to: 'landingpage#index'
 
-    # resources :projects #, only: [:index]
-    # resources :documents #, only: [:index, :show, :new, :create, :destroy] Everything
-    # resources :change_orders #, only: [:index, :show, :new, :create, :destroy] Everything]
-    # resources :transactions #, excepr: [:destory] ?
+    # get '/data', to: 'tests#index' <--- from boilerplate
+
+    resources :projects #, only: [:index]
+    resources :documents #, only: [:index, :show, :new, :create, :destroy] Everything
+    resources :change_orders #, only: [:index, :show, :new, :create, :destroy] Everything]
+    resources :transactions #, excepr: [:destory] ?
 
   end
 
