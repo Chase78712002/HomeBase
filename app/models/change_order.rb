@@ -1,0 +1,2 @@
+class ChangeOrder < ApplicationRecord
+end
