@@ -13,7 +13,7 @@ HomeBase is a platform where builders and clients can connect, collaborate and t
 
 ## Tech stack
 
-- **Front-end:** ReactJS v16.8.6
+- **Front-end:** ReactJS v17.0.2
 - **Back-end:** Ruby v2.7.3, Rails v6.0.3.7
 - **Database:** PostgreSQL
 
