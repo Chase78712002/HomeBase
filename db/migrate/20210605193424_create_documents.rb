@@ -4,7 +4,7 @@ class CreateDocuments < ActiveRecord::Migration[6.0]
       t.string :title
       t.string :category_type
       t.string :path
-
+      t.references :project, index: true, foreign_key: true
       t.timestamps
     end
   end
