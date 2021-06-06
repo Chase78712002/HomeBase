@@ -141,3 +141,30 @@ trans3 = Transaction.create(
 )
 
 puts "--Done Seeding Budget_Categoies--"
+puts 'Creating MILESTONE Seed data ...'
+
+mile1 = Milestone.create(
+  description: 'Ground Break',
+  start_date: Date.today,
+  end_date: Date.today + 1.day,
+  status: 'Active',
+  reminder: true
+)
+
+mile2 = Milestone.create(
+  description: 'First Floor Done',
+  start_date: Date.today + 2.month,
+  end_date: Date.today + 3.months,
+  status: 'Upcoming',
+  reminder: true
+)
+
+mile3 = Milestone.create(
+  description: 'House Done',
+  start_date: Date.today + 1.month,
+  end_date: Date.today + 6.months + 2.weeks + 3.days,
+  status: 'Upcoming',
+  reminder: true
+)
+
+puts "--Done Seeding Milestone--"
