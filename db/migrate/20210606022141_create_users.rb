@@ -8,5 +8,9 @@ class CreateUsers < ActiveRecord::Migration[6.0]
 
       t.timestamps
     end
+
+    def change_table :users do |t|
+      t.column :value, :integer
+    end
   end
 end

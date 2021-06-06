@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
     # root to: 'landingpage#index' is same as path to '/'
 
-    # get '/data', to: 'tests#index' <--- from boilerplate
+    get '/data', to: 'tests#index' #<--- from boilerplate
 
     resources :projects, only: [:index, :show]
     resources :documents, only: [:index, :create, :update, :destroy]
