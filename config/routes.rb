@@ -1,14 +1,22 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  
+  root to: 'landingpage#index'
 
   namespace :api do # /api/data
 
-    get '/data', to: 'tests#index'
+    # root to: 'landingpage#index' is same as path to '/'
 
-    # resources :projects #, only: [:index]
-    # resources :documents #, only: [:index, :show, :new, :create, :destroy] Everything
-    # resources :change_orders #, only: [:index, :show, :new, :create, :destroy] Everything]
-    # resources :transactions #, excepr: [:destory] ?
+    get '/data', to: 'tests#index' #<--- from boilerplate
+
+    resources :projects, only: [:index, :show]
+    resources :documents, only: [:index, :create, :update, :destroy]
+    resources :change_orders, only: [:index, :create, :update, :destroy]
+    resources :milestones, only: [:index, :create, :update, :destroy]
+
+    resources :transactions, except: [:new, :edit]
+    resources :budget_categories, except: [:new, :edit]
+
 
   end
 

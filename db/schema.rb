@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_05_193936) do
+ActiveRecord::Schema.define(version: 2021_06_06_185853) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,10 +18,8 @@ ActiveRecord::Schema.define(version: 2021_06_05_193936) do
   create_table "budget_categories", force: :cascade do |t|
     t.string "description"
     t.integer "estimate_amount"
-    t.bigint "project_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["project_id"], name: "index_budget_categories_on_project_id"
   end
 
   create_table "change_orders", force: :cascade do |t|
@@ -31,6 +29,8 @@ ActiveRecord::Schema.define(version: 2021_06_05_193936) do
     t.string "path"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "project_id"
+    t.index ["project_id"], name: "index_change_orders_on_project_id"
   end
 
   create_table "documents", force: :cascade do |t|
@@ -39,6 +39,8 @@ ActiveRecord::Schema.define(version: 2021_06_05_193936) do
     t.string "path"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "project_id"
+    t.index ["project_id"], name: "index_documents_on_project_id"
   end
 
   create_table "milestones", force: :cascade do |t|
@@ -49,15 +51,18 @@ ActiveRecord::Schema.define(version: 2021_06_05_193936) do
     t.boolean "reminder", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "project_id"
+    t.index ["project_id"], name: "index_milestones_on_project_id"
   end
 
   create_table "projects", force: :cascade do |t|
     t.string "name"
     t.date "start_date"
     t.date "end_date"
-    t.string "image"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_projects_on_user_id"
   end
 
   create_table "transactions", force: :cascade do |t|
@@ -79,12 +84,15 @@ ActiveRecord::Schema.define(version: 2021_06_05_193936) do
     t.string "last_name"
     t.string "email"
     t.string "password"
-    t.bigint "user_type_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_type_id"
     t.index ["user_type_id"], name: "index_users_on_user_type_id"
   end
 
-  add_foreign_key "budget_categories", "projects"
+  add_foreign_key "change_orders", "projects"
+  add_foreign_key "documents", "projects"
+  add_foreign_key "milestones", "projects"
+  add_foreign_key "projects", "users"
   add_foreign_key "users", "user_types"
 end

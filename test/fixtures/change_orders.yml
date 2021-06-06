@@ -2,12 +2,12 @@
 
 one:
   description: MyString
-  cost: 
+  cost: 1
   approval: false
-  path: 
+  path: MyString
 
 two:
   description: MyString
-  cost: 
+  cost: 1
   approval: false
-  path: 
+  path: MyString
