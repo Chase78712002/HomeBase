@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_06_063849) do
+ActiveRecord::Schema.define(version: 2021_06_06_185034) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,8 @@ ActiveRecord::Schema.define(version: 2021_06_06_063849) do
     t.string "path"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "project_id"
+    t.index ["project_id"], name: "index_change_orders_on_project_id"
   end
 
   create_table "documents", force: :cascade do |t|
@@ -57,6 +59,8 @@ ActiveRecord::Schema.define(version: 2021_06_06_063849) do
     t.date "end_date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_projects_on_user_id"
   end
 
   create_table "transactions", force: :cascade do |t|
@@ -84,6 +88,8 @@ ActiveRecord::Schema.define(version: 2021_06_06_063849) do
     t.index ["user_type_id"], name: "index_users_on_user_type_id"
   end
 
+  add_foreign_key "change_orders", "projects"
   add_foreign_key "documents", "projects"
+  add_foreign_key "projects", "users"
   add_foreign_key "users", "user_types"
 end
