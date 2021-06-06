@@ -40,21 +40,24 @@ user1 = User.create(
   first_name: 'Bob',
   last_name: 'The Builder',
   email: 'BobbyBuilds@gmail.com',
-  password: '1234'
+  password: '1234',
+  user_types_id: 1
 )
 
 user2 = User.create(
   first_name: 'Sally',
   last_name: 'Silly',
   email: 'SillySally@hotmail.com',
-  password: 'qwer'
+  password: 'qwer',
+  user_types_id: 2
 )
 
 user3 = User.create(
   first_name: 'Third',
   last_name: 'User_Person',
   email: 'email@hotmail.com',
-  password: 'asdf123'
+  password: 'asdf123',
+  user_types_id: 2
 )
 
 puts "--Done Seeding Users--"
