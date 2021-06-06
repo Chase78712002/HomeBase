@@ -13,6 +13,7 @@ Document.destroy_all
 ChangeOrder.destroy_all
 BudgetCategory.destroy_all
 Transaction.destroy_all
+UserType.destroy_all
 
 puts 'Creating PROJECT Seed data ...'
 
@@ -52,7 +53,7 @@ user1 = User.create(
   last_name: 'The Builder',
   email: 'BobbyBuilds@gmail.com',
   password: '1234',
-  user_types_id: builder.id
+  user_types_id: 1
 )
 
 user2 = User.create(
@@ -60,7 +61,7 @@ user2 = User.create(
   last_name: 'Silly',
   email: 'SillySally@hotmail.com',
   password: 'qwer',
-  user_types_id: client.id
+  user_types_id: 2
 )
 
 user3 = User.create(
@@ -68,7 +69,7 @@ user3 = User.create(
   last_name: 'User_Person',
   email: 'email@hotmail.com',
   password: 'asdf123',
-  user_types_id: client.id
+  user_types_id: 2
 )
 
 puts "--Done Seeding Users--"
