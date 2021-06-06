@@ -46,33 +46,6 @@ client = UserType.create(
 )
 
 puts "--Done Seeding User_Type--"
-puts 'Creating USER Seed data ...'
-
-user1 = User.create(
-  first_name: 'Bob',
-  last_name: 'The Builder',
-  email: 'BobbyBuilds@gmail.com',
-  password: '1234',
-  user_types_id: 1
-)
-
-user2 = User.create(
-  first_name: 'Sally',
-  last_name: 'Silly',
-  email: 'SillySally@hotmail.com',
-  password: 'qwer',
-  user_types_id: 2
-)
-
-user3 = User.create(
-  first_name: 'Third',
-  last_name: 'User_Person',
-  email: 'email@hotmail.com',
-  password: 'asdf123',
-  user_types_id: 2
-)
-
-puts "--Done Seeding Users--"
 puts 'Creating DOCUMENT Seed data ...'
 
 document1 = Document.create(
@@ -138,6 +111,33 @@ budget3 = BudgetCategory.create(
 )
 
 puts "--Done Seeding Budget_Categoies--"
+puts 'Creating USER Seed data ...'
+
+user1 = User.create(
+  first_name: 'Bob',
+  last_name: 'The Builder',
+  email: 'BobbyBuilds@gmail.com',
+  password: '1234',
+  user_type_id: 1
+)
+
+user2 = User.create(
+  first_name: 'Sally',
+  last_name: 'Silly',
+  email: 'SillySally@hotmail.com',
+  password: 'qwer',
+  user_type_id: 2
+)
+
+user3 = User.create(
+  first_name: 'Third',
+  last_name: 'User_Person',
+  email: 'email@hotmail.com',
+  password: 'asdf123',
+  user_type_id: 2
+)
+
+puts "--Done Seeding Users--"
 puts 'Creating TRANSACTION Seed data ...'
 
 trans1 = Transaction.create(
