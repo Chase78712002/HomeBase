@@ -1,5 +1,7 @@
 import "./App.scss";
 
+import Nav from './Nav';
+
 export default function App() {
 
   return (
@@ -10,7 +12,7 @@ export default function App() {
         </div>
         <hr className="sidebar__separator sidebar--centered" />
         <nav className="sidebar__menu sidebar--centered">
-          Menu component
+          <Nav />
         </nav>
       </section>
       <section className="content">
