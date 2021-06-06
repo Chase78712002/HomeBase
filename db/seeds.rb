@@ -94,3 +94,21 @@ co3 = ChangeOrder.create(
 )
 
 puts "--Done Seeding Change_orders--"
+puts 'Creating BUDGET_CATEGORIES Seed data ...'
+
+budget1 = BudgetCategory.create(
+description: 'Floors',
+  estimate_amount: 1234
+)
+
+budget2 = BudgetCategory.create(
+  description: 'Heating',
+  estimate_amount: 42069
+)
+
+budget3 = BudgetCategory.create(
+  description: 'Walls',
+  estimate_amount: 666
+)
+
+puts "--Done Seeding Budget_Categoies--"
