@@ -162,7 +162,7 @@ mile2 = Milestone.create(
 mile3 = Milestone.create(
   description: 'House Done',
   start_date: Date.today + 1.month,
-  end_date: Date.today + 6.months + 2.weeks + 3.days,
+  end_date: Date.today + 6.months,
   status: 'Upcoming',
   reminder: true
 )
