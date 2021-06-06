@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_06_185853) do
+ActiveRecord::Schema.define(version: 2021_06_06_190601) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,8 @@ ActiveRecord::Schema.define(version: 2021_06_06_185853) do
     t.integer "estimate_amount"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "project_id"
+    t.index ["project_id"], name: "index_budget_categories_on_project_id"
   end
 
   create_table "change_orders", force: :cascade do |t|
@@ -71,6 +73,12 @@ ActiveRecord::Schema.define(version: 2021_06_06_185853) do
     t.date "date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "change_order_id"
+    t.bigint "budget_category_id"
+    t.bigint "milestone_id"
+    t.index ["budget_category_id"], name: "index_transactions_on_budget_category_id"
+    t.index ["change_order_id"], name: "index_transactions_on_change_order_id"
+    t.index ["milestone_id"], name: "index_transactions_on_milestone_id"
   end
 
   create_table "user_types", force: :cascade do |t|
@@ -90,9 +98,13 @@ ActiveRecord::Schema.define(version: 2021_06_06_185853) do
     t.index ["user_type_id"], name: "index_users_on_user_type_id"
   end
 
+  add_foreign_key "budget_categories", "projects"
   add_foreign_key "change_orders", "projects"
   add_foreign_key "documents", "projects"
   add_foreign_key "milestones", "projects"
   add_foreign_key "projects", "users"
+  add_foreign_key "transactions", "budget_categories"
+  add_foreign_key "transactions", "change_orders"
+  add_foreign_key "transactions", "milestones"
   add_foreign_key "users", "user_types"
 end
