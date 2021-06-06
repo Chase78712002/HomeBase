@@ -66,19 +66,22 @@ puts 'Creating DOCUMENT Seed data ...'
 document1 = Document.create(
   title: 'Big Contract',
   category_type: 'Contract',
-  path: 'user/dmar/documents'
+  path: 'user/dmar/documents',
+  projects_id: project1.id
 )
 
 document2 = Document.create(
   title: 'Floor Plan Option #2',
   category_type: 'Floor Plan',
-  path: 'user/dmar/documents/floorplans'
+  path: 'user/dmar/documents/floorplans',
+  projects_id: project1.id
 )
 
 document3 = Document.create(
   title: 'Window Options',
   category_type: 'Supplementary',
-  path: 'user/dmar/documents/windows'
+  path: 'user/dmar/documents/windows',
+  projects_id: project2.id
 )
 
 puts "--Done Seeding Documents--"
