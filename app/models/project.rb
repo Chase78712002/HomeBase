@@ -4,4 +4,5 @@ class Project < ApplicationRecord
   
   has_many :documents, dependent: :destroy
   has_many :change_orders, dependent: :destroy
+  has_many :milestones, dependent: :destroy
 end

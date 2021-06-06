@@ -75,21 +75,24 @@ puts 'Creating CHANGE_ORDER Seed data ...'
 co1 = ChangeOrder.create(
   description: 'Lorem Ipsum a bunch',
   cost: 100,
-  path: 'user/dmar/change_orders/co1'
+  path: 'user/dmar/change_orders/co1',
+  project_id: 1
 )
 
 co2 = ChangeOrder.create(
   description: 'Change to bathroom paint',
   cost: 2100,
   approval: true,
-  path: 'user/dmar/change_orders/co2'
+  path: 'user/dmar/change_orders/co2',
+  project_id: 2
 )
 
 co3 = ChangeOrder.create(
   description: 'Builders are generous!',
   cost: -1000,
   approval: true,
-  path: 'user/dmar/change_orders/co3'
+  path: 'user/dmar/change_orders/co3',
+  project_id: 2
 )
 
 puts "--Done Seeding Change_orders--"

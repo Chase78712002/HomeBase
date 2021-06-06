@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_06_185034) do
+ActiveRecord::Schema.define(version: 2021_06_06_185853) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,6 +51,8 @@ ActiveRecord::Schema.define(version: 2021_06_06_185034) do
     t.boolean "reminder", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "project_id"
+    t.index ["project_id"], name: "index_milestones_on_project_id"
   end
 
   create_table "projects", force: :cascade do |t|
@@ -90,6 +92,7 @@ ActiveRecord::Schema.define(version: 2021_06_06_185034) do
 
   add_foreign_key "change_orders", "projects"
   add_foreign_key "documents", "projects"
+  add_foreign_key "milestones", "projects"
   add_foreign_key "projects", "users"
   add_foreign_key "users", "user_types"
 end
