@@ -6,7 +6,7 @@ class CreateMilestones < ActiveRecord::Migration[6.0]
       t.date :end_date
       t.string :status
       t.boolean :reminder, default: false
-      t.references :project, index: true, foreign_key: true
+      # t.references :project, index: true, foreign_key: true
       t.timestamps
     end
   end
