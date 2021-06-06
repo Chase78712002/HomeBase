@@ -1,37 +1,22 @@
-import React, { Component } from "react";
-import axios from "axios";
 import "./App.scss";
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      message: "Click the button to load data!",
-    };
-  }
+export default function App() {
 
-  fetchData = () => {
-    axios
-      .get("/api/data") // You can simply make your requests to "/api/whatever you want"
-      .then((response) => {
-        // handle success
-        console.log(response.data); // The entire response from the Rails API
-
-        console.log(response.data.message); // Just the message
-        this.setState({
-          message: response.data.message,
-        });
-      });
-  };
-
-  render() {
-    return (
-      <div className="App">
-        <h1>{this.state.message}</h1>
-        <button onClick={this.fetchData}>Fetch Data</button>
-      </div>
-    );
-  }
+  return (
+    <main className="layout">
+      <section className="sidebar">
+        <div className="sidebar__logo sidebar--centered">
+          Insert logo
+        </div>
+        <hr className="sidebar__separator sidebar--centered" />
+        <nav className="sidebar__menu sidebar--centered">
+          Menu component
+        </nav>
+      </section>
+      <section className="content">
+        <h1>Title of Component</h1>
+        <p>This is where the content will go.</p>
+      </section>
+    </main>
+  );
 }
-
-export default App;
