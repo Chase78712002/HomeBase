@@ -8,8 +8,20 @@
 
 puts 'Creating project Seed data ...'
 
-project = Project.create(
+project1 = Project.create(
   name: 'Project 1',
   start_date: Time.now,
-  end_date: Time.now + 30
+  end_date: Time.now + 30 #days
+)
+
+project2 = Project.create(
+  name: 'Project 1',
+  start_date: Time.now,
+  end_date: Time.now + 60
+)
+
+project3 = Project.create(
+  name: 'Project 1',
+  start_date: Time.now,
+  end_date: Time.now + 90
 )
