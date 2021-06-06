@@ -21,6 +21,7 @@ project1 = Project.create(
   name: 'Project 1 - Kolumbeya',
   start_date: Date.today,
   end_date: Date.today + 30 #days
+
 )
 
 project2 = Project.create(
@@ -72,14 +73,14 @@ document3 = Document.create(
 puts "--Done Seeding Documents--"
 puts 'Creating CHANGE_ORDER Seed data ...'
 
-co1 = ChangeOrder.create(
+co1 = ChangeOrder.create!(
   description: 'Lorem Ipsum a bunch',
   cost: 100,
   path: 'user/dmar/change_orders/co1',
   project_id: 1
 )
 
-co2 = ChangeOrder.create(
+co2 = ChangeOrder.create!(
   description: 'Change to bathroom paint',
   cost: 2100,
   approval: true,
@@ -87,7 +88,7 @@ co2 = ChangeOrder.create(
   project_id: 2
 )
 
-co3 = ChangeOrder.create(
+co3 = ChangeOrder.create!(
   description: 'Builders are generous!',
   cost: -1000,
   approval: true,
@@ -100,44 +101,44 @@ puts 'Creating BUDGET_CATEGORIES Seed data ...'
 
 budget1 = BudgetCategory.create(
 description: 'Floors',
-  estimate_amount: 1234
+  estimate_amount: 1234,
+  project_id: 1
 )
 
 budget2 = BudgetCategory.create(
   description: 'Heating',
-  estimate_amount: 42069
+  estimate_amount: 42069,
+  project_id: 1
 )
 
 budget3 = BudgetCategory.create(
   description: 'Walls',
-  estimate_amount: 666
+  estimate_amount: 666,
+  project_id: 1
 )
 
 puts "--Done Seeding Budget_Categoies--"
 puts 'Creating USER Seed data ...'
 
-user1 = User.create(
+user1 = Builder.create(
   first_name: 'Bob',
   last_name: 'The Builder',
   email: 'BobbyBuilds@gmail.com',
-  password: '1234',
-  user_type_id: 1
+  password: '1234'
 )
 
-user2 = User.create(
+user2 = Client.create(
   first_name: 'Sally',
   last_name: 'Silly',
   email: 'SillySally@hotmail.com',
-  password: 'qwer',
-  user_type_id: 2
+  password: 'qwer'
 )
 
-user3 = User.create(
+user3 = Client.create(
   first_name: 'Third',
   last_name: 'User_Person',
   email: 'email@hotmail.com',
-  password: 'asdf123',
-  user_type_id: 2
+  password: 'asdf123'
 )
 
 puts "--Done Seeding Users--"
@@ -146,19 +147,28 @@ puts 'Creating TRANSACTION Seed data ...'
 trans1 = Transaction.create(
   description: 'Red Paint',
   amount: 33,
-  date: Date.today
+  date: Date.today,
+  change_order_id: 1, 
+  budget_category_id: 1,
+  milestone_id: 1
 )
 
 trans2 = Transaction.create(
   description: 'Stainless Steel Faucet',
   amount: 222,
-  date: Date.today - 2.days
+  date: Date.today - 2.days,
+  change_order_id: 1, 
+  budget_category_id: 1,
+  milestone_id: 1
 )
 
 trans3 = Transaction.create(
   description: 'Lava Gas',
   amount: 2020,
-  date: Date.today - 3.days
+  date: Date.today - 3.days,
+  change_order_id: 1, 
+  budget_category_id: 1,
+  milestone_id: 1
 )
 
 puts "--Done Seeding Budget_Categoies--"

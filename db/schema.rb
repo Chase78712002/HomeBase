@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_06_190601) do
+ActiveRecord::Schema.define(version: 2021_06_06_204319) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,15 @@ ActiveRecord::Schema.define(version: 2021_06_06_190601) do
     t.index ["project_id"], name: "index_budget_categories_on_project_id"
   end
 
+  create_table "builders", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.string "email"
+    t.string "password"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "change_orders", force: :cascade do |t|
     t.string "description"
     t.integer "cost"
@@ -33,6 +42,15 @@ ActiveRecord::Schema.define(version: 2021_06_06_190601) do
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "project_id"
     t.index ["project_id"], name: "index_change_orders_on_project_id"
+  end
+
+  create_table "clients", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.string "email"
+    t.string "password"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "documents", force: :cascade do |t|
@@ -61,10 +79,9 @@ ActiveRecord::Schema.define(version: 2021_06_06_190601) do
     t.string "name"
     t.date "start_date"
     t.date "end_date"
+    t.string "image"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "user_id"
-    t.index ["user_id"], name: "index_projects_on_user_id"
   end
 
   create_table "transactions", force: :cascade do |t|
@@ -102,7 +119,6 @@ ActiveRecord::Schema.define(version: 2021_06_06_190601) do
   add_foreign_key "change_orders", "projects"
   add_foreign_key "documents", "projects"
   add_foreign_key "milestones", "projects"
-  add_foreign_key "projects", "users"
   add_foreign_key "transactions", "budget_categories"
   add_foreign_key "transactions", "change_orders"
   add_foreign_key "transactions", "milestones"

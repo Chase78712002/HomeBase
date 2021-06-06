@@ -4,6 +4,7 @@ class Project < ActiveRecord::Migration[6.0]
       t.string :name
       t.date :start_date
       t.date :end_date
+      t.string :image
       
       t.timestamps
     end
