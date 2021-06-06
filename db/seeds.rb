@@ -168,3 +168,14 @@ mile3 = Milestone.create(
 )
 
 puts "--Done Seeding Milestone--"
+puts 'Creating USER_TYPE Seed data ...'
+
+builder = UserType.create(
+  description: 'Builder'
+)
+
+client = UserType.create(
+  description: 'Client'
+)
+
+puts "--Done Seeding User_Type--"
