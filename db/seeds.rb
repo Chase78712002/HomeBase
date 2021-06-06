@@ -6,24 +6,32 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+puts 'Destroying previously seeded data ...'
+Project.destroy_all
+User.destroy_all
+Document.destroy_all
+ChangeOrder.destroy_all
+BudgetCategory.destroy_all
+Transaction.destroy_all
+
 puts 'Creating PROJECT Seed data ...'
 
 project1 = Project.create(
   name: 'Project 1 - Kolumbeya',
-  start_date: Time.now,
-  end_date: Time.now + 30 #days
+  start_date: Date.today,
+  end_date: Date.today + 30 #days
 )
 
 project2 = Project.create(
   name: 'Project 2 - Toronto',
-  start_date: Time.now,
-  end_date: Time.now + 60
+  start_date: Date.today,
+  end_date: Date.today + 60
 )
 
 project3 = Project.create(
   name: 'Project 3 - Mumbai',
-  start_date: Time.now,
-  end_date: Time.now + 90
+  start_date: Date.today,
+  end_date: Date.today + 90
 )
 puts "--Done Seeding Projects--"
 puts 'Creating USER Seed data ...'
@@ -109,6 +117,27 @@ budget2 = BudgetCategory.create(
 budget3 = BudgetCategory.create(
   description: 'Walls',
   estimate_amount: 666
+)
+
+puts "--Done Seeding Budget_Categoies--"
+puts 'Creating TRANSACTION Seed data ...'
+
+trans1 = Transaction.create(
+  description: 'Red Paint',
+  amount: 33,
+  date: Date.today
+)
+
+trans2 = Transaction.create(
+  description: 'Stainless Steel Faucet',
+  amount: 222,
+  date: Date.today - 2.days
+)
+
+trans3 = Transaction.create(
+  description: 'Lava Gas',
+  amount: 2020,
+  date: Date.today - 3.days
 )
 
 puts "--Done Seeding Budget_Categoies--"
