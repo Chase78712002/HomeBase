@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  description: MyString
+  cost: 1
+  approval: false
+  path: MyString
+
+two:
+  description: MyString
+  cost: 1
+  approval: false
+  path: MyString

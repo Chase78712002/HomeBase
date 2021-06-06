@@ -50,3 +50,47 @@ user3 = User.create(
 )
 
 puts "--Done Seeding Users--"
+puts 'Creating DOCUMENT Seed data ...'
+
+document1 = Document.create(
+  title: 'Big Contract',
+  category_type: 'Contract',
+  path: 'user/dmar/documents'
+)
+
+document2 = Document.create(
+  title: 'Floor Plan Option #2',
+  category_type: 'Floor Plan',
+  path: 'user/dmar/documents/floorplans'
+)
+
+document3 = Document.create(
+  title: 'Window Options',
+  category_type: 'Supplementary',
+  path: 'user/dmar/documents/windows'
+)
+
+puts "--Done Seeding Documents--"
+puts 'Creating CHANGE_ORDER Seed data ...'
+
+co1 = ChangeOrder.create(
+  description: 'Lorem Ipsum a bunch',
+  cost: 100,
+  path: 'user/dmar/change_orders/co1'
+)
+
+co2 = ChangeOrder.create(
+  description: 'Change to bathroom paint',
+  cost: 2100,
+  approval: true,
+  path: 'user/dmar/change_orders/co2'
+)
+
+co3 = ChangeOrder.create(
+  description: 'Builders are generous!',
+  cost: -1000,
+  approval: true,
+  path: 'user/dmar/change_orders/co3'
+)
+
+puts "--Done Seeding Change_orders--"
