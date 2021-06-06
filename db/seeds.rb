@@ -34,6 +34,17 @@ project3 = Project.create(
   end_date: Date.today + 90
 )
 puts "--Done Seeding Projects--"
+puts 'Creating USER_TYPE Seed data ...'
+
+builder = UserType.create(
+  description: 'Builder'
+)
+
+client = UserType.create(
+  description: 'Client'
+)
+
+puts "--Done Seeding User_Type--"
 puts 'Creating USER Seed data ...'
 
 user1 = User.create(
@@ -41,7 +52,7 @@ user1 = User.create(
   last_name: 'The Builder',
   email: 'BobbyBuilds@gmail.com',
   password: '1234',
-  user_types_id: 1
+  user_types_id: builder.id
 )
 
 user2 = User.create(
@@ -49,7 +60,7 @@ user2 = User.create(
   last_name: 'Silly',
   email: 'SillySally@hotmail.com',
   password: 'qwer',
-  user_types_id: 2
+  user_types_id: client.id
 )
 
 user3 = User.create(
@@ -57,7 +68,7 @@ user3 = User.create(
   last_name: 'User_Person',
   email: 'email@hotmail.com',
   password: 'asdf123',
-  user_types_id: 2
+  user_types_id: client.id
 )
 
 puts "--Done Seeding Users--"
@@ -67,21 +78,21 @@ document1 = Document.create(
   title: 'Big Contract',
   category_type: 'Contract',
   path: 'user/dmar/documents',
-  projects_id: project1.id
+  project_id: project1.id
 )
 
 document2 = Document.create(
   title: 'Floor Plan Option #2',
   category_type: 'Floor Plan',
   path: 'user/dmar/documents/floorplans',
-  projects_id: project1.id
+  project_id: project1.id
 )
 
 document3 = Document.create(
   title: 'Window Options',
   category_type: 'Supplementary',
   path: 'user/dmar/documents/windows',
-  projects_id: project2.id
+  project_id: project1.id
 )
 
 puts "--Done Seeding Documents--"
@@ -174,14 +185,4 @@ mile3 = Milestone.create(
 )
 
 puts "--Done Seeding Milestone--"
-puts 'Creating USER_TYPE Seed data ...'
 
-builder = UserType.create(
-  description: 'Builder'
-)
-
-client = UserType.create(
-  description: 'Client'
-)
-
-puts "--Done Seeding User_Type--"
