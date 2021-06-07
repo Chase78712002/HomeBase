@@ -4,7 +4,7 @@ class CreateBudgetCategories < ActiveRecord::Migration[6.0]
       t.string :description
       t.integer :estimate_amount
 
-      t.belongs_to :projects, null: false, foreign_key: true
+      t.belongs_to :project, null: false, foreign_key: true
 
       t.timestamps
     end

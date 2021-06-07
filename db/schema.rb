@@ -18,10 +18,10 @@ ActiveRecord::Schema.define(version: 2021_06_07_210221) do
   create_table "budget_categories", force: :cascade do |t|
     t.string "description"
     t.integer "estimate_amount"
-    t.bigint "projects_id", null: false
+    t.bigint "project_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["projects_id"], name: "index_budget_categories_on_projects_id"
+    t.index ["project_id"], name: "index_budget_categories_on_project_id"
   end
 
   create_table "builders", force: :cascade do |t|
@@ -88,7 +88,7 @@ ActiveRecord::Schema.define(version: 2021_06_07_210221) do
     t.index ["client_id"], name: "index_projects_on_client_id"
   end
 
-  create_table "transactions", force: :cascade do |t|
+  create_table "transaction_bills", force: :cascade do |t|
     t.string "description"
     t.integer "amount"
     t.date "date"
@@ -97,18 +97,18 @@ ActiveRecord::Schema.define(version: 2021_06_07_210221) do
     t.bigint "budget_category_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["budget_category_id"], name: "index_transactions_on_budget_category_id"
-    t.index ["change_order_id"], name: "index_transactions_on_change_order_id"
-    t.index ["milestone_id"], name: "index_transactions_on_milestone_id"
+    t.index ["budget_category_id"], name: "index_transaction_bills_on_budget_category_id"
+    t.index ["change_order_id"], name: "index_transaction_bills_on_change_order_id"
+    t.index ["milestone_id"], name: "index_transaction_bills_on_milestone_id"
   end
 
-  add_foreign_key "budget_categories", "projects", column: "projects_id"
+  add_foreign_key "budget_categories", "projects"
   add_foreign_key "change_orders", "projects"
   add_foreign_key "documents", "projects"
   add_foreign_key "milestones", "projects"
   add_foreign_key "projects", "builders"
   add_foreign_key "projects", "clients"
-  add_foreign_key "transactions", "budget_categories"
-  add_foreign_key "transactions", "change_orders"
-  add_foreign_key "transactions", "milestones"
+  add_foreign_key "transaction_bills", "budget_categories"
+  add_foreign_key "transaction_bills", "change_orders"
+  add_foreign_key "transaction_bills", "milestones"
 end

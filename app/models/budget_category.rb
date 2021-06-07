@@ -1,5 +1,5 @@
 class BudgetCategory < ApplicationRecord
-  has_many :transactions
+  has_many :transaction_bills
   
   belongs_to :project
 end
