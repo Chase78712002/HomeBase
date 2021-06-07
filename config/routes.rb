@@ -1,9 +1,4 @@
 Rails.application.routes.draw do
-  get 'budget_categories/index'
-  get 'budget_categories/create'
-  get 'budget_categories/show'
-  get 'budget_categories/update'
-  get 'budget_categories/destroy'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   
   root to: 'landingpage#index'
