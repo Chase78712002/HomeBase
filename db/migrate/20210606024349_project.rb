@@ -4,7 +4,8 @@ class Project < ActiveRecord::Migration[6.0]
       t.string :name
       t.date :start_date
       t.date :end_date
-      
+      t.references :builder
+      t.references :client
       t.timestamps
     end
   end

@@ -20,7 +20,9 @@ puts 'Creating PROJECT Seed data ...'
 project1 = Project.create(
   name: 'Project 1 - Kolumbeya',
   start_date: Date.today,
-  end_date: Date.today + 30 #days
+  end_date: Date.today + 30, #days
+  builder_id: 1,
+  client_id: 1
 )
 
 project2 = Project.create(
@@ -35,17 +37,17 @@ project3 = Project.create(
   end_date: Date.today + 90
 )
 puts "--Done Seeding Projects--"
-puts 'Creating USER_TYPE Seed data ...'
+# puts 'Creating USER_TYPE Seed data ...'
 
-builder = UserType.create(
-  description: 'Builder'
-)
+# builder = UserType.create(
+#   description: 'Builder'
+# )
 
-client = UserType.create(
-  description: 'Client'
-)
+# client = UserType.create(
+#   description: 'Client'
+# )
 
-puts "--Done Seeding User_Type--"
+# puts "--Done Seeding User_Type--"
 puts 'Creating DOCUMENT Seed data ...'
 
 document1 = Document.create(
@@ -121,7 +123,7 @@ user1 = User.create(
   last_name: 'The Builder',
   email: 'BobbyBuilds@gmail.com',
   password: '1234',
-  user_type_id: 1
+  # user_type_id: 1
 )
 
 user2 = User.create(
@@ -129,7 +131,7 @@ user2 = User.create(
   last_name: 'Silly',
   email: 'SillySally@hotmail.com',
   password: 'qwer',
-  user_type_id: 2
+  # user_type_id: 2
 )
 
 user3 = User.create(
@@ -137,7 +139,7 @@ user3 = User.create(
   last_name: 'User_Person',
   email: 'email@hotmail.com',
   password: 'asdf123',
-  user_type_id: 2
+  # user_type_id: 2
 )
 
 puts "--Done Seeding Users--"
@@ -146,7 +148,10 @@ puts 'Creating TRANSACTION Seed data ...'
 trans1 = Transaction.create(
   description: 'Red Paint',
   amount: 33,
-  date: Date.today
+  date: Date.today,
+  change_order_id: 1,
+  budget_category_id: 1,
+  milestone_id: 1
 )
 
 trans2 = Transaction.create(

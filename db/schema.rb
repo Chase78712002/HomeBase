@@ -61,10 +61,12 @@ ActiveRecord::Schema.define(version: 2021_06_06_190601) do
     t.string "name"
     t.date "start_date"
     t.date "end_date"
+    t.bigint "builder_id"
+    t.bigint "client_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "user_id"
-    t.index ["user_id"], name: "index_projects_on_user_id"
+    t.index ["builder_id"], name: "index_projects_on_builder_id"
+    t.index ["client_id"], name: "index_projects_on_client_id"
   end
 
   create_table "transactions", force: :cascade do |t|
@@ -94,17 +96,13 @@ ActiveRecord::Schema.define(version: 2021_06_06_190601) do
     t.string "password"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "user_type_id"
-    t.index ["user_type_id"], name: "index_users_on_user_type_id"
   end
 
   add_foreign_key "budget_categories", "projects"
   add_foreign_key "change_orders", "projects"
   add_foreign_key "documents", "projects"
   add_foreign_key "milestones", "projects"
-  add_foreign_key "projects", "users"
   add_foreign_key "transactions", "budget_categories"
   add_foreign_key "transactions", "change_orders"
   add_foreign_key "transactions", "milestones"
-  add_foreign_key "users", "user_types"
 end
