@@ -2,8 +2,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
 import { makeStyles } from '@material-ui/core/styles';
 import { 
-  Drawer, List, ListItem, ListItemIcon, ListItemText,
-  Container, Typography
+  Drawer, List, ListItem, ListItemIcon, ListItemText
 } from '@material-ui/core';
 
 import DashboardTwoToneIcon from '@material-ui/icons/DashboardTwoTone';
@@ -11,6 +10,12 @@ import ScheduleTwoToneIcon from '@material-ui/icons/ScheduleTwoTone';
 import LocalAtmTwoToneIcon from '@material-ui/icons/LocalAtmTwoTone';
 import LoopTwoToneIcon from '@material-ui/icons/LoopTwoTone';
 import DescriptionTwoToneIcon from '@material-ui/icons/DescriptionTwoTone';
+
+import Dashboard from './Dashboard';
+import Schedule from './Schedule';
+import Budget from './Budget';
+import ChangeOrders from './ChangeOrders';
+import Documents from './Documents';
 
 import "./App.scss";
 
@@ -25,28 +30,33 @@ const useStyles = makeStyles((theme) => ({
 const menuItems = [
   {
     text: 'Dashboard',
-    icon: <DashboardTwoToneIcon color="primary"/>,
-    path: '/'
+    icon: <DashboardTwoToneIcon />,
+    path: '/',
+    component: Dashboard
   },
   {
     text: 'Schedule',
-    icon: <ScheduleTwoToneIcon color="primary" />,
-    path: '/schedule'
+    icon: <ScheduleTwoToneIcon />,
+    path: '/schedule',
+    component: Schedule
   },
   {
     text: 'Budget',
-    icon: <LocalAtmTwoToneIcon color= "primary" />,
-    path: '/budget'
+    icon: <LocalAtmTwoToneIcon />,
+    path: '/budget',
+    component: Budget
   },
   {
     text: 'Change orders',
-    icon: <LoopTwoToneIcon color="primary" />,
-    path: '/change_orders'
+    icon: <LoopTwoToneIcon />,
+    path: '/change_orders',
+    component: ChangeOrders
   },
   {
     text: 'Documents',
-    icon: <DescriptionTwoToneIcon color="primary" />,
-    path: '/documents'
+    icon: <DescriptionTwoToneIcon />,
+    path: '/documents',
+    component: Documents
   },
 ]
 
@@ -77,16 +87,7 @@ export default function App() {
 
         <Switch>
           {menuItems.map((item) => (
-            <Route exact path={item.path}>
-              <Container>
-                <Typography variant="h3" gutterBottom>
-                  {item.text}
-                </Typography>
-                <Typography variant="body1" gutterBottom>
-                  This is where the component's content will go.
-                </Typography>
-              </Container>
-            </Route>
+            <Route exact path={item.path} component={item.component} />
           ))}
         </Switch>
       </div>
