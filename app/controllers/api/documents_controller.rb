@@ -6,12 +6,13 @@ class Api::DocumentsController < ApplicationController
   end
 
   def create
-    @document = Document.find_or_create_by(
-      title: params[:title],
-      category_type: params[:category_type],
-      path: params[:path],
-      project_id: params[:project_id]
-    )
+    # @document = Document.find_or_create_by(
+    #   title: params[:title],
+    #   category_type: params[:category_type],
+    #   path: params[:path],
+    #   project_id: params[:project_id]
+    # )
+    @document = Document.new document_params
     if @document.save
       render json: @document
     else
@@ -21,7 +22,7 @@ class Api::DocumentsController < ApplicationController
 
   def update
     @document = Document.find params[:id]
-
+    @document.update_attributes document_params # setup which attributes we want to be read only etc
     render json: @document
   end
 
