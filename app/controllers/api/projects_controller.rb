@@ -1,19 +1,15 @@
-module Api
-  class ProjectsController < ApplicationController
-    
-    def index
-      @projects = Project.all
+class Api::ProjectsController < ApplicationController
+  def index
+    @projects = Project.all
 
-      #render all projects as json
-      render json: @projects
-    end
+    #render all projects as json
+    render json: @projects
+  end
 
-    def show
-      @project = Project.find params[:id]
+  def show
+    @project = Project.find params[:id]
 
-      #render single project as json
-      render json: @project
-    end
-
+    #render single project as json
+    render json: @project
   end
 end
