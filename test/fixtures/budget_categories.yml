@@ -2,8 +2,8 @@
 
 one:
   description: MyString
-  estimate_amount: 1
+  estimate_amount: MyString
 
 two:
   description: MyString
-  estimate_amount: 1
+  estimate_amount: MyString
