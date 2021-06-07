@@ -29,30 +29,35 @@ const useStyles = makeStyles((theme) => ({
 
 const menuItems = [
   {
+    id: 1,
     text: 'Dashboard',
     icon: <DashboardTwoToneIcon />,
     path: '/dashboard',
     component: Dashboard
   },
   {
+    id: 2,
     text: 'Schedule',
     icon: <ScheduleTwoToneIcon />,
     path: '/schedule',
     component: Schedule
   },
   {
+    id: 3,
     text: 'Budget',
     icon: <LocalAtmTwoToneIcon />,
     path: '/budget',
     component: Budget
   },
   {
+    id: 4,
     text: 'Change orders',
     icon: <LoopTwoToneIcon />,
     path: '/change_orders',
     component: ChangeOrders
   },
   {
+    id: 5,
     text: 'Documents',
     icon: <DescriptionTwoToneIcon />,
     path: '/documents',
@@ -75,7 +80,7 @@ export default function App() {
         >
           <List>
             {menuItems.map((item) => (
-              <Link to={item.path} className={classes.link}>
+              <Link to={item.path} className={classes.link} key={item.id}>
                 <ListItem button>
                   <ListItemIcon>{item.icon}</ListItemIcon>
                   <ListItemText primary={item.text}/>
@@ -87,7 +92,7 @@ export default function App() {
 
         <Switch>
           {menuItems.map((item) => (
-            <Route path={item.path} component={item.component} />
+            <Route path={item.path} component={item.component} key={item.id}/>
           ))}
         </Switch>
       </div>
