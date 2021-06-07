@@ -16,8 +16,11 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
+import LibraryBooksSharpIcon from '@material-ui/icons/LibraryBooksSharp';
+import DashboardTwoToneIcon from '@material-ui/icons/DashboardTwoTone';
+import ScheduleTwoToneIcon from '@material-ui/icons/ScheduleTwoTone';
+import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
+import GavelRoundedIcon from '@material-ui/icons/GavelRounded';
 
 const drawerWidth = 240;
 
@@ -96,6 +99,34 @@ export default function MiniDrawer() {
     setOpen(false);
   };
 
+  const menuItems = [
+    {
+      text: 'Dashboard',
+      icon: <DashboardTwoToneIcon color="primary"/>,
+      path: '/'
+    },
+    {
+      text: 'Schedule',
+      icon: <ScheduleTwoToneIcon color="secondary" />,
+      path: '/milestones'
+    },
+    {
+      text: 'Budget',
+      icon: <MonetizationOnIcon color= "primary" />,
+      path: '/budget_categories'
+    },
+    {
+      text: 'Change orders',
+      icon: <GavelRoundedIcon color="primary" />,
+      path: '/milestones'
+    },
+    {
+      text: 'Documents',
+      icon: <LibraryBooksSharpIcon color="primary" />,
+      path: '/milestones'
+    },
+  ]
+
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -142,22 +173,14 @@ export default function MiniDrawer() {
         </div>
         <Divider />
         <List>
-          {['Dashboard', 'Schedule', 'Budget'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
+          {menuItems.map((item) => (
+            <ListItem button key={item.text}>
+              <ListItemIcon>{item.icon}</ListItemIcon>
+              <ListItemText primary={item.text} />
             </ListItem>
           ))}
         </List>
-        <Divider />
-        <List>
-          {['Change orders', 'Documents'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
+        
       </Drawer>
       <main className={classes.content}>
         <div className={classes.toolbar} />
