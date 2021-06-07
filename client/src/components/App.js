@@ -1,22 +1,96 @@
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+
+import { makeStyles } from '@material-ui/core/styles';
+import { 
+  Drawer, List, ListItem, ListItemIcon, ListItemText
+} from '@material-ui/core';
+
+import DashboardTwoToneIcon from '@material-ui/icons/DashboardTwoTone';
+import ScheduleTwoToneIcon from '@material-ui/icons/ScheduleTwoTone';
+import LocalAtmTwoToneIcon from '@material-ui/icons/LocalAtmTwoTone';
+import LoopTwoToneIcon from '@material-ui/icons/LoopTwoTone';
+import DescriptionTwoToneIcon from '@material-ui/icons/DescriptionTwoTone';
+
+import Dashboard from './Dashboard';
+import Schedule from './Schedule';
+import Budget from './Budget';
+import ChangeOrders from './ChangeOrders';
+import Documents from './Documents';
+
 import "./App.scss";
 
+const useStyles = makeStyles((theme) => ({
+  drawerPaper: { width: 'inherit' },
+  link: {
+    textDecoration: 'none', 
+    color: theme.palette.text.primary
+  }
+}));
+
+const menuItems = [
+  {
+    text: 'Dashboard',
+    icon: <DashboardTwoToneIcon />,
+    path: '/dashboard',
+    component: Dashboard
+  },
+  {
+    text: 'Schedule',
+    icon: <ScheduleTwoToneIcon />,
+    path: '/schedule',
+    component: Schedule
+  },
+  {
+    text: 'Budget',
+    icon: <LocalAtmTwoToneIcon />,
+    path: '/budget',
+    component: Budget
+  },
+  {
+    text: 'Change orders',
+    icon: <LoopTwoToneIcon />,
+    path: '/change_orders',
+    component: ChangeOrders
+  },
+  {
+    text: 'Documents',
+    icon: <DescriptionTwoToneIcon />,
+    path: '/documents',
+    component: Documents
+  },
+]
+
 export default function App() {
+  const classes = useStyles();
 
   return (
-    <main className="layout">
-      <section className="sidebar">
-        <div className="sidebar__logo sidebar--centered">
-          Insert logo
-        </div>
-        <hr className="sidebar__separator sidebar--centered" />
-        <nav className="sidebar__menu sidebar--centered">
-          Menu component
-        </nav>
-      </section>
-      <section className="content">
-        <h1>Title of Component</h1>
-        <p>This is where the content will go.</p>
-      </section>
-    </main>
+    <Router>
+      <div style={{ display: 'flex' }}>
+        <Drawer
+          style={{ width: '220px' }}
+          variant="persistent"
+          anchor="left"
+          open={true}
+          classes={{ paper: classes.drawerPaper }}
+        >
+          <List>
+            {menuItems.map((item) => (
+              <Link to={item.path} className={classes.link}>
+                <ListItem button>
+                  <ListItemIcon>{item.icon}</ListItemIcon>
+                  <ListItemText primary={item.text}/>
+                </ListItem>
+              </Link>
+            ))}
+          </List>  
+        </Drawer>
+
+        <Switch>
+          {menuItems.map((item) => (
+            <Route path={item.path} component={item.component} />
+          ))}
+        </Switch>
+      </div>
+    </Router>
   );
 }
