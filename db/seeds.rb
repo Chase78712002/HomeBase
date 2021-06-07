@@ -1,33 +1,47 @@
 puts 'Destroying previously seeded data ...'
-Project.destroy_all
-Document.destroy_all
-ChangeOrder.destroy_all
-BudgetCategory.destroy_all
-TransactionBill.destroy_all
-Builder.destroy_all
-Client.destroy_all
+# Project.destroy_all
+# Document.destroy_all
+# ChangeOrder.destroy_all
+# BudgetCategory.destroy_all
+# TransactionBill.destroy_all
+# UserType.destroy_all
+# User.destroy_all
 
+puts 'Creating USER_TYPE Seed data ...'
+
+builder = UserType.create(
+  description: 'Builder'
+)
+
+client = UserType.create(
+  description: 'Client'
+)
+
+puts "--Done Seeding UserTypes--"
 puts 'Creating USER Seed data ...'
 
-user1 = Builder.create(
+user1 = User.create(
   first_name: 'Bob',
   last_name: 'The Builder',
   email: 'BobbyBuilds@gmail.com',
-  password: '1234'
+  password: '1234',
+  user_type_id: 1
 )
 
-user2 = Client.create(
+user2 = User.create(
   first_name: 'Sally',
   last_name: 'Silly',
   email: 'SillySally@hotmail.com',
-  password: 'qwer'
+  password: 'qwer',
+  user_type_id: 2
 )
 
-user3 = Client.create(
+user3 = User.create(
   first_name: 'Third',
   last_name: 'User_Person',
   email: 'email@hotmail.com',
-  password: 'asdf123'
+  password: 'asdf123',
+  user_type_id: 2
 )
 
 puts "--Done Seeding Users--"
