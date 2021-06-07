@@ -1,4 +1,4 @@
-class ChangeOrdersController < ApplicationController
+class Api::ChangeOrdersController < ApplicationController
   def index
     @change_orders = ChangeOrder.all
 

@@ -1,4 +1,4 @@
-class MilestoneController < ApplicationController
+class Api::MilestoneController < ApplicationController
   def index
     @milestones = Milestones.all
 

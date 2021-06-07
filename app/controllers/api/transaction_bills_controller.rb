@@ -1,4 +1,4 @@
-class TransactionBillsController < ApplicationController
+class Api::TransactionBillsController < ApplicationController
   def index
     @transaction_bills = TransactionBill.all
 
