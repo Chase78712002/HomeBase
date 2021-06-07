@@ -31,7 +31,7 @@ const menuItems = [
   {
     text: 'Dashboard',
     icon: <DashboardTwoToneIcon />,
-    path: '/',
+    path: '/dashboard',
     component: Dashboard
   },
   {
@@ -87,7 +87,7 @@ export default function App() {
 
         <Switch>
           {menuItems.map((item) => (
-            <Route exact path={item.path} component={item.component} />
+            <Route path={item.path} component={item.component} />
           ))}
         </Switch>
       </div>
