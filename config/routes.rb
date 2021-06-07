@@ -14,7 +14,7 @@ Rails.application.routes.draw do
     resources :change_orders, only: [:index, :create, :update, :destroy]
     resources :milestones, only: [:index, :create, :update, :destroy]
 
-    resources :transactions, except: [:new, :edit]
+    resources :transaction_bills, except: [:new, :edit]
     resources :budget_categories, except: [:new, :edit]
 
 
