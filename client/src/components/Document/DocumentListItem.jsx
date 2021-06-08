@@ -26,10 +26,11 @@ export default function DocumentListItem(prop) {
     <>
       <Grid item md={12}>
         <ListItem alignItems="flex-start">
-          <ListItemIcon>
-            <FolderIcon />
-          </ListItemIcon>
+
+          <ListItemIcon><FolderIcon /></ListItemIcon>
+
           <ListItemText primary={`File # ${prop.number}`} />
+          
           <DeleteButton />
         </ListItem>
       </Grid>
