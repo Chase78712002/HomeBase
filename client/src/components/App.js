@@ -1,73 +1,83 @@
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
-import { makeStyles } from '@material-ui/core/styles';
-import { 
-  Drawer, List, ListItem, ListItemIcon, ListItemText
-} from '@material-ui/core';
+import { makeStyles } from "@material-ui/core/styles";
+import {
+  Drawer,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+} from "@material-ui/core";
 
-import DashboardTwoToneIcon from '@material-ui/icons/DashboardTwoTone';
-import ScheduleTwoToneIcon from '@material-ui/icons/ScheduleTwoTone';
-import LocalAtmTwoToneIcon from '@material-ui/icons/LocalAtmTwoTone';
-import LoopTwoToneIcon from '@material-ui/icons/LoopTwoTone';
-import DescriptionTwoToneIcon from '@material-ui/icons/DescriptionTwoTone';
+import DashboardTwoToneIcon from "@material-ui/icons/DashboardTwoTone";
+import ScheduleTwoToneIcon from "@material-ui/icons/ScheduleTwoTone";
+import LocalAtmTwoToneIcon from "@material-ui/icons/LocalAtmTwoTone";
+import LoopTwoToneIcon from "@material-ui/icons/LoopTwoTone";
+import DescriptionTwoToneIcon from "@material-ui/icons/DescriptionTwoTone";
 
-import Dashboard from './Dashboard';
-import Schedule from './Schedule';
-import Budget from './Budget';
-import ChangeOrders from './ChangeOrders';
-import Documents from './Documents';
+import Dashboard from "./Dashboard";
+import Schedule from "./Schedule";
+import Budget from "./Budget";
+import ChangeOrders from "./ChangeOrders";
+import Documents from "./Documents";
+import axios from "axios";
 
 import "./App.scss";
 
 const useStyles = makeStyles((theme) => ({
-  drawerPaper: { width: 'inherit' },
+  drawerPaper: { width: "inherit" },
   link: {
-    textDecoration: 'none', 
-    color: theme.palette.text.primary
-  }
+    textDecoration: "none",
+    color: theme.palette.text.primary,
+  },
 }));
 
 const menuItems = [
   {
-    text: 'Dashboard',
+    id: 1,
+    text: "Dashboard",
     icon: <DashboardTwoToneIcon />,
-    path: '/dashboard',
-    component: Dashboard
+    path: "/dashboard",
+    component: Dashboard,
   },
   {
-    text: 'Schedule',
+    id: 2,
+    text: "Schedule",
     icon: <ScheduleTwoToneIcon />,
-    path: '/schedule',
-    component: Schedule
+    path: "/schedule",
+    component: Schedule,
   },
   {
-    text: 'Budget',
+    id: 3,
+    text: "Budget",
     icon: <LocalAtmTwoToneIcon />,
-    path: '/budget',
-    component: Budget
+    path: "/budget",
+    component: Budget,
   },
   {
-    text: 'Change orders',
+    id: 4,
+    text: "Change orders",
     icon: <LoopTwoToneIcon />,
-    path: '/change_orders',
-    component: ChangeOrders
+    path: "/change_orders",
+    component: ChangeOrders,
   },
   {
-    text: 'Documents',
+    id: 5,
+    text: "Documents",
     icon: <DescriptionTwoToneIcon />,
-    path: '/documents',
-    component: Documents
+    path: "/documents",
+    component: Documents,
   },
-]
+];
 
 export default function App() {
   const classes = useStyles();
 
   return (
     <Router>
-      <div style={{ display: 'flex' }}>
+      <div style={{ display: "flex" }}>
         <Drawer
-          style={{ width: '220px' }}
+          style={{ width: "220px" }}
           variant="persistent"
           anchor="left"
           open={true}
@@ -75,19 +85,19 @@ export default function App() {
         >
           <List>
             {menuItems.map((item) => (
-              <Link to={item.path} className={classes.link}>
+              <Link key={item.id} to={item.path} className={classes.link}>
                 <ListItem button>
                   <ListItemIcon>{item.icon}</ListItemIcon>
-                  <ListItemText primary={item.text}/>
+                  <ListItemText primary={item.text} />
                 </ListItem>
               </Link>
             ))}
-          </List>  
+          </List>
         </Drawer>
 
         <Switch>
           {menuItems.map((item) => (
-            <Route path={item.path} component={item.component} />
+            <Route key={item.id} path={item.path} component={item.component} />
           ))}
         </Switch>
       </div>
