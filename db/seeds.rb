@@ -147,7 +147,7 @@ mile2 = Milestone.create(
   description: 'First Floor Done',
   start_date: Date.today + 2.month,
   end_date: Date.today + 3.months,
-  status: 'Upcoming',
+  status: 'Complete',
   reminder: true,
   project_id: 1
 )
@@ -156,9 +156,9 @@ mile3 = Milestone.create(
   description: 'House Done',
   start_date: Date.today + 1.month,
   end_date: Date.today + 6.months,
-  status: 'Upcoming',
+  status: 'Canceled',
   reminder: true,
-  project_id: 2
+  project_id: 1
 )
 
 puts "--Done Seeding Milestone--"
