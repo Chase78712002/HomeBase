@@ -4,33 +4,33 @@ Document.destroy_all
 ChangeOrder.destroy_all
 BudgetCategory.destroy_all
 TransactionBill.destroy_all
-Builder.destroy_all
-Client.destroy_all
+# Builder.destroy_all
+# Client.destroy_all
 
-puts 'Creating USER Seed data ...'
+# puts 'Creating USER Seed data ...'
 
-user1 = Builder.create(
-  first_name: 'Bob',
-  last_name: 'The Builder',
-  email: 'BobbyBuilds@gmail.com',
-  password: '1234'
-)
+# user1 = Builder.create(
+#   first_name: 'Bob',
+#   last_name: 'The Builder',
+#   email: 'BobbyBuilds@gmail.com',
+#   password_digest: '1234'
+# )
 
-user2 = Client.create(
-  first_name: 'Sally',
-  last_name: 'Silly',
-  email: 'SillySally@hotmail.com',
-  password: 'qwer'
-)
+# user2 = Client.create(
+#   first_name: 'Sally',
+#   last_name: 'Silly',
+#   email: 'SillySally@hotmail.com',
+#   password: 'qwer'
+# )
 
-user3 = Client.create(
-  first_name: 'Third',
-  last_name: 'User_Person',
-  email: 'email@hotmail.com',
-  password: 'asdf123'
-)
+# user3 = Client.create(
+#   first_name: 'Third',
+#   last_name: 'User_Person',
+#   email: 'email@hotmail.com',
+#   password: 'asdf123'
+# )
 
-puts "--Done Seeding Users--"
+# puts "--Done Seeding Users--"
 puts 'Creating PROJECT Seed data ...'
 
 project1 = Project.create(

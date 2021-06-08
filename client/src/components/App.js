@@ -20,6 +20,7 @@ import Schedule from "./Schedule";
 import Budget from "./Budget";
 import ChangeOrders from "./ChangeOrders";
 import Documents from "./Documents";
+import Signup from "./Signup";
 
 import "./App.scss";
 
@@ -66,6 +67,13 @@ const menuItems = [
     icon: <DescriptionTwoToneIcon />,
     path: "/documents",
     component: Documents,
+  },
+  {
+    id: 6,
+    text: "Signup",
+    icon: <DescriptionTwoToneIcon />,
+    path: "/signup",
+    component: Signup,
   },
 ];
 
