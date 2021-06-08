@@ -1,7 +1,9 @@
+import { useState } from 'react';
 import { makeStyles, Typography } from '@material-ui/core';
 
 import BudgetTable from './Budget/BudgetTable';
 import TransactionsList from './Budget/TransactionsList';
+import NewTransaction from './Budget/NewTransaction';
 
 import './App.scss';
 
@@ -20,7 +22,7 @@ const useStyle = makeStyles({
 const categories = [
   {
     id: 1,
-    description: 'Base square feet',
+    description: 'Construction costs',
     estimate_amount: 350000
   },
   {
@@ -30,42 +32,51 @@ const categories = [
   },
   {
     id: 3,
-    description: 'Window coverings',
+    description: 'Appliances',
     estimate_amount: 3000
   },
   {
     id: 4,
     description: 'Landscaping',
     estimate_amount: 10000
-  }
-];
-
-const transactions = [
-  {
-    id: 1,
-    description: 'Payment',
-    amount: 150000,
-    date: 'April 25, 2021',
-    budget_category_id: 1
   },
   {
-    id: 2,
-    description: 'Stainless steel faucet',
-    amount: 500,
-    date: 'May 15, 2021',
-    budget_category_id: 2
-  },
-  {
-    id: 3,
-    description: 'Landscaping consultation',
-    amount: 2000,
-    date: 'June 4, 2021',
-    budget_category_id: 4
+    id: 5,
+    description: 'Misc',
+    estimate_amount: 10000
   }
 ];
 
 export default function Budget() {
   const classes = useStyle();
+
+  const [transactions, setTransaction] = useState([
+    {
+      id: 1,
+      description: 'Excavation and backfill',
+      amount: 6250,
+      date: '2021-04-25',
+      budget_category_id: 1
+    },
+    {
+      id: 2,
+      description: 'Stainless steel faucet',
+      amount: 500,
+      date: '2021-05-15',
+      budget_category_id: 2
+    },
+    {
+      id: 3,
+      description: 'Landscaping consultation',
+      amount: 2000,
+      date: '2021-06-04',
+      budget_category_id: 4
+    }
+  ]);
+
+  const addTransaction = transaction => {
+    setTransaction(transactions => [...transactions, transaction]);
+  };
 
   return (
     <section className="content">
@@ -76,6 +87,9 @@ export default function Budget() {
 
       <Typography className={classes.heading} variant="h5">Transaction history</Typography>
       <TransactionsList transactions={transactions} />
+
+      <Typography className={classes.heading} variant="h5">Add a new transaction</Typography>
+      <NewTransaction categories={categories} addTransaction={addTransaction}/>
     </section>
   )
 }
