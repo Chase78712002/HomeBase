@@ -140,8 +140,6 @@ mile1 = Milestone.create(
   end_date: Date.today + 1.day,
   status: 'Active',
   reminder: true,
-  color: "#d80000",
-  status_color: "#7cd992",
   project_id: 1
 )
 
@@ -151,8 +149,6 @@ mile2 = Milestone.create(
   end_date: Date.today + 3.months,
   status: 'Complete',
   reminder: true,
-  color: "#d80000",
-  status_color: "#eb6060",
   project_id: 1
 )
 
@@ -162,9 +158,7 @@ mile3 = Milestone.create(
   end_date: Date.today + 6.months,
   status: 'Canceled',
   reminder: true,
-  color: "#d80000",
-  status_color: "#a8a8a8",
-  project_id: 2
+  project_id: 1
 )
 
 puts "--Done Seeding Milestone--"
