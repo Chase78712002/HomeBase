@@ -8,7 +8,6 @@ import ListItemText from "@material-ui/core/ListItemText";
 import DeleteButton from "./Delete";
 import Edit from "./Edit";
 import SaveButton from "./Save";
-import { Link } from "react-router-dom";
 import { Input } from "@material-ui/core";
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -26,7 +25,9 @@ const useStyles = makeStyles((theme) => ({
 export default function DocumentListItem(prop) {
   const classes = useStyles();
   const [editMode, setEditMode] = useState(false)
-  const [fileName, setFileName] = useState(prop.fileName) 
+  const [title, setFileName] = useState(prop.title) 
+  const [category, setCategory] = useState(prop.category)
+
 
   return (
     <>
@@ -37,13 +38,13 @@ export default function DocumentListItem(prop) {
 
           {!editMode && (
             <> 
-              <ListItemText primary={fileName} />
+              <ListItemText primary={title} secondary={category} />
               <Edit onClick={() => setEditMode(true)} />  
             </>
           )}
           {editMode && (
             <>
-              <Input value={fileName} onChange={event => setFileName(event.target.value)} className={classes.root} />
+              <Input value={title} onChange={event => setFileName(event.target.value)} className={classes.root} />
               <SaveButton onClick={() => setEditMode(false)} /> 
               <DeleteButton />
             </>
