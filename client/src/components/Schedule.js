@@ -17,7 +17,7 @@ import Typography from "@material-ui/core/Typography";
 
 import timelineData from "./dataDM";
 import "./App.scss";
-import "./Schedule.scss";
+// import "./Schedule.scss";
 import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
