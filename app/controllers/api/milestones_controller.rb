@@ -1,6 +1,6 @@
-class Api::MilestoneController < ApplicationController
+class Api::MilestonesController < ApplicationController
   def index
-    @milestones = Milestones.all
+    @milestones = Milestone.all
 
     render json: @milestones
   end
