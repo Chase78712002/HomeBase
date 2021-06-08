@@ -1,6 +1,5 @@
 import { React, useEffect, useState } from "react";
 
-import TimelineDm from "./TimelineDM";
 import TimelineItemDM from "./TimelineItemDM";
 
 import "./App.scss";
@@ -26,11 +25,7 @@ export default function CustomizedTimeline() {
   }, []);
 
   const timeline = schedule.map((data, idx) => (
-    <TimelineItemDM
-      data={data}
-      key={idx}
-      statusColor={{ statusColor: "#eb6060" }}
-    />
+    <TimelineItemDM data={data} key={idx} />
   ));
 
   return (

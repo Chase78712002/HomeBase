@@ -8,7 +8,7 @@ const TimelineItemDM = ({ data }) => (
       </span>
       <p>Start date: {data.start_date}</p>
       <p>End date: {data.end_date}</p>
-      <p className="status" style={{ background: data.statusColor }}>
+      <p className="status" style={{ background: data.status_color }}>
         {data.status}
       </p>
       <span className="circle"></span>
