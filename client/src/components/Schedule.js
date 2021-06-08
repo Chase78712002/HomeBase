@@ -1,10 +1,36 @@
-import "./App.scss";
+import { React, useEffect, useState } from "react";
 
-export default function Schedule() {
+import TimelineItem from "./TimelineItem";
+
+import "./App.scss";
+import "./Schedule.scss";
+import axios from "axios";
+
+export default function CustomizedTimeline() {
+  const [schedule, setSchedule] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get(`/api/milestones`)
+      .then((response) => {
+        console.log("The response:", response.data);
+        setSchedule(response.data);
+
+        console.log("schedule sate:", schedule);
+      })
+      .catch((error) => {
+        const errorMessage = error;
+        return errorMessage;
+      });
+  }, []);
+
+  const timeline = schedule.map((data, idx) => (
+    <TimelineItem data={data} key={idx} />
+  ));
+
   return (
-    <section className="content">
-      <h1>Schedule</h1>
-      <p>This is where the project milestones timeline will go.</p>
-    </section>
-  )
+    <>
+      <div className="timeline-container">{timeline}</div>
+    </>
+  );
 }
