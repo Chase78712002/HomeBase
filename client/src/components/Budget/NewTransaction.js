@@ -35,7 +35,7 @@ export default function NewTransaction({ categories, addTransaction }) {
       date: date,
       budget_category_id: category
     }
-    console.log(transaction);
+
     addTransaction(transaction);
   }
   
@@ -58,7 +58,7 @@ export default function NewTransaction({ categories, addTransaction }) {
           <TextField label="Amount" onChange={(e) => setAmount(e.target.value)}/>
         </FormControl>
         <FormControl className={classes.formControl}>
-          <InputLabel id="demo-simple-select-label">Category</InputLabel>
+          <InputLabel id="budget_category">Category</InputLabel>
           <Select
             labelId="budget_category"
             id="budget_category"
