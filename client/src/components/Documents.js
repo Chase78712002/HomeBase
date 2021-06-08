@@ -32,9 +32,9 @@ export default function Documents() {
         </Container>
       </ThemeProvider>
 
-      <DocumentListItem number={1} />
-      <DocumentListItem number={2}/>
-      <DocumentListItem number={3} />
+      <DocumentListItem fileName="File #1" />
+      <DocumentListItem fileName="File #2"/>
+      <DocumentListItem fileName="File #3" />
     </section>
   )
 }
