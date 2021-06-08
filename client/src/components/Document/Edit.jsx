@@ -14,11 +14,11 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function DeleteButton() {
+export default function EditButton(prop) {
   const classes = useStyles();
 
   return (
-    <IconButton className={classes.icon}>
+    <IconButton onClick={prop.onClick} className={classes.icon}>
       <EditIcon />
     </IconButton>
   );
