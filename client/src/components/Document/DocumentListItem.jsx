@@ -6,6 +6,7 @@ import Grid from "@material-ui/core/Grid";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import DeleteButton from "./Delete";
+import Edit from "./Edit";
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -25,12 +26,12 @@ export default function DocumentListItem(prop) {
   return (
     <>
       <Grid item md={12}>
-        <ListItem alignItems="flex-start">
+        <ListItem alignItems="center">
 
           <ListItemIcon><FolderIcon /></ListItemIcon>
 
           <ListItemText primary={`File # ${prop.number}`} />
-          
+          <Edit />
           <DeleteButton />
         </ListItem>
       </Grid>
