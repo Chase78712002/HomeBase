@@ -3,6 +3,7 @@ import { makeStyles, Typography } from '@material-ui/core';
 
 import BudgetTable from './Budget/BudgetTable';
 import TransactionsList from './Budget/TransactionsList';
+import NewCategory from './Budget/NewCategory';
 import NewTransaction from './Budget/NewTransaction';
 
 import './App.scss';
@@ -19,7 +20,7 @@ const useStyle = makeStyles({
   }
 });
 
-const categories = [
+const categoryData = [
   {
     id: 1,
     description: 'Construction costs',
@@ -47,35 +48,42 @@ const categories = [
   }
 ];
 
+const transactionData = [
+  {
+    id: 1,
+    description: 'Excavation and backfill',
+    amount: 6250,
+    date: '2021-04-25',
+    budget_category_id: 1
+  },
+  {
+    id: 2,
+    description: 'Stainless steel faucet',
+    amount: 500,
+    date: '2021-05-15',
+    budget_category_id: 2
+  },
+  {
+    id: 3,
+    description: 'Landscaping consultation',
+    amount: 2000,
+    date: '2021-06-04',
+    budget_category_id: 4
+  }
+]
+
 export default function Budget() {
   const classes = useStyle();
 
-  const [transactions, setTransaction] = useState([
-    {
-      id: 1,
-      description: 'Excavation and backfill',
-      amount: 6250,
-      date: '2021-04-25',
-      budget_category_id: 1
-    },
-    {
-      id: 2,
-      description: 'Stainless steel faucet',
-      amount: 500,
-      date: '2021-05-15',
-      budget_category_id: 2
-    },
-    {
-      id: 3,
-      description: 'Landscaping consultation',
-      amount: 2000,
-      date: '2021-06-04',
-      budget_category_id: 4
-    }
-  ]);
+  const [categories, setCategory] = useState(categoryData);
+  const [transactions, setTransaction] = useState(transactionData);
+
+  const addCategory = category => {
+    setCategory(prev => [...prev, category]);
+  };
 
   const addTransaction = transaction => {
-    setTransaction(transactions => [...transactions, transaction]);
+    setTransaction(prev => [...prev, transaction]);
   };
 
   return (
@@ -88,8 +96,11 @@ export default function Budget() {
       <Typography className={classes.heading} variant="h5">Transaction history</Typography>
       <TransactionsList transactions={transactions} />
 
+      <Typography className={classes.heading} variant="h5">Add a new budget category</Typography>
+      <NewCategory addCategory={addCategory}/>
+
       <Typography className={classes.heading} variant="h5">Add a new transaction</Typography>
-      <NewTransaction categories={categories} addTransaction={addTransaction}/>
+      <NewTransaction categories={categoryData} addTransaction={addTransaction}/>
     </section>
   )
 }
