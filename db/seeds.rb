@@ -149,7 +149,7 @@ mile2 = Milestone.create(
   description: 'First Floor Done',
   start_date: Date.today + 2.month,
   end_date: Date.today + 3.months,
-  status: 'Upcoming',
+  status: 'Complete',
   reminder: true,
   color: "#d80000",
   status_color: "#eb6060",

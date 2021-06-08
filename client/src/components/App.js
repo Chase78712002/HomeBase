@@ -17,7 +17,6 @@ import DescriptionTwoToneIcon from "@material-ui/icons/DescriptionTwoTone";
 
 import Dashboard from "./Dashboard";
 import Schedule from "./Schedule";
-import ScheduleDM from "./ScheduleDM";
 import Budget from "./Budget";
 import ChangeOrders from "./ChangeOrders";
 import Documents from "./Documents";
@@ -46,7 +45,7 @@ const menuItems = [
     text: "Schedule",
     icon: <ScheduleTwoToneIcon />,
     path: "/schedule",
-    component: ScheduleDM,
+    component: Schedule,
   },
   {
     id: 3,
