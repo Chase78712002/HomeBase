@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
-import { makeStyles, Typography } from '@material-ui/core';
+import { makeStyles, Typography, Box, Divider, Card, CardHeader, CardContent } from '@material-ui/core';
 
 import BudgetTable from './Budget/BudgetTable';
 import TransactionsList from './Budget/TransactionsList';
@@ -11,6 +11,13 @@ import NewTransaction from './Budget/NewTransaction';
 import './App.scss';
 
 const useStyle = makeStyles({
+  container: {
+    display: 'flex',
+    '& > *': {
+      padding: 10,
+      flex: 1
+    }
+  },
   header: {
     color: '#05668d',
     fontSize: 30,
@@ -19,6 +26,20 @@ const useStyle = makeStyles({
   heading: {
     marginTop: 25,
     color: '#679436'
+  },
+  grid: {
+    '& > *': {
+      margin: '10px',
+    },
+  },
+  divider: {
+    margin: '20px 0',
+  },
+  root: {
+    flexGrow: 1,
+  },
+  card: {
+    margin: 0,
   }
 });
 
@@ -81,6 +102,7 @@ export default function Budget() {
     transactions: []
   });
 
+  // fetch data from database
   useEffect(() => {
     Promise
     .all([
@@ -97,6 +119,7 @@ export default function Budget() {
     .catch(error => console.log(error));
   }, []);
 
+  // add a new budget category
   const addCategory = category => {
     return axios.post('/api/budget_categories', category)
     .then(() => {
@@ -109,6 +132,7 @@ export default function Budget() {
     .catch(error => console.log(error));
   };
 
+  // add a new transaction
   const addTransaction = transaction => {
     return axios.post('/api/transaction_bills', transaction)
     .then(() => { 
@@ -131,11 +155,22 @@ export default function Budget() {
       <Typography className={classes.heading} variant="h5">Transaction history</Typography>
       <TransactionsList transactions={state.transactions} />
 
-      <Typography className={classes.heading} variant="h5">Add a new budget category</Typography>
-      <NewCategory addCategory={addCategory}/>
+      <Divider />
 
-      <Typography className={classes.heading} variant="h5">Add a new transaction</Typography>
-      <NewTransaction categories={state.categories} addTransaction={addTransaction}/>
+      <Box className={classes.container}>
+        <Card className={classes.root}>
+          <CardHeader className={classes.heading} title="Add new budget category" />
+          <CardContent className="card">
+            <NewCategory addCategory={addCategory}/>
+          </CardContent>
+        </Card>
+        <Card>
+            <CardHeader className={classes.heading} title="Add new transaction" />
+            <CardContent>
+              <NewTransaction categories={state.categories} addTransaction={addTransaction}/>
+            </CardContent>
+          </Card>
+      </Box>
     </section>
   )
 }
