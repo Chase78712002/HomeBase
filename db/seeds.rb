@@ -60,12 +60,30 @@ project3 = Project.create(
   client_id: 3
 )
 puts "--Done Seeding Projects--"
+puts 'Creating DOCUMENT_CATEGORIES Seed data ...'
+
+docCat1 = DocumentCategory.create(
+  description: 'Floor plan'
+)
+
+docCat2 = DocumentCategory.create(
+  description: 'Email'
+
+)
+
+docCat3 = DocumentCategory.create(
+  description: 'Contract'
+
+)
+
+puts "--Done Seeding TransactionBill--"
 puts 'Creating DOCUMENT Seed data ...'
 
 document1 = Document.create(
   title: 'Big Contract',
   category_type: 'Contract',
   path: 'user/dmar/documents',
+  document_category_id: 1,
   project_id: 1
 )
 
@@ -73,6 +91,7 @@ document2 = Document.create(
   title: 'Floor Plan Option #2',
   category_type: 'Floor Plan',
   path: 'user/dmar/documents/floorplans',
+  document_category_id: 1,
   project_id: 1
 )
 
@@ -80,6 +99,7 @@ document3 = Document.create(
   title: 'Window Options',
   category_type: 'Supplementary',
   path: 'user/dmar/documents/windows',
+  document_category_id: 2,
   project_id: 2
 )
 
@@ -192,3 +212,4 @@ trans3 = TransactionBill.create(
 )
 
 puts "--Done Seeding TransactionBill--"
+
