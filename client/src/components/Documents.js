@@ -24,6 +24,11 @@ export default function Documents() {
   // const classes = useStyles
   const [state, setState] = useState([])
 
+  const deleteFile = () => {
+    
+  }
+
+
   useEffect(()=> {
     axios.get("/api/documents")
       .then(res => {
@@ -42,7 +47,7 @@ export default function Documents() {
         </Container>
       </ThemeProvider>
       
-      <DocumentList data={state} />
+      <DocumentList data={state} delete={deleteFile} />
       
     </section>
   );

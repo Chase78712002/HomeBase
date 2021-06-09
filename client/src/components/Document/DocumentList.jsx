@@ -14,6 +14,7 @@ export default function DocumentList(props) {
         path={file.path}
         project_id={file.project_id}
         data={props.data}
+        delete={props.delete}
         />
     )
   })

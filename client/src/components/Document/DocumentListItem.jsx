@@ -25,11 +25,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function DocumentListItem(prop) {
+export default function DocumentListItem(props) {
   const classes = useStyles();
   const [editMode, setEditMode] = useState(false)
-  const [title, setTitle] = useState(prop.title) 
-  const [category, setCategory] = useState(prop.category)
+  const [title, setTitle] = useState(props.title) 
+  const [category, setCategory] = useState(props.category)
 
 
   return (
@@ -47,9 +47,9 @@ export default function DocumentListItem(prop) {
           )}
           {editMode && (
             <>
-              <EditFile title={title} category={category} editTitle={setTitle} editCategory={setCategory} data={prop.data} />
+              <EditFile title={title} category={category} editTitle={setTitle} editCategory={setCategory} data={props.data} />
               <SaveButton onClick={() => setEditMode(false)} /> 
-              <DeleteButton />
+              <DeleteButton delete={props.delete} />
             </>
           )}
         </ListItem>
