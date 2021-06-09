@@ -20,7 +20,7 @@ const useStyle = makeStyles({
   }
 })
 
-export default function TransactionsList(props) {
+export default function TransactionsList({transactions}) {
   const classes = useStyle();
   
   return (
@@ -35,7 +35,7 @@ export default function TransactionsList(props) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {props.transactions.map((transaction) => (
+          {transactions.map((transaction) => (
             <TableRow key={transaction.id}>
               <TableCell component="th" scope="row">
                 {transaction.description}

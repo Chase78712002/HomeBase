@@ -27,9 +27,9 @@ export default function NewCategory({ addCategory }) {
 
   const newCategory = () => {
     const budget_category = {
-      id: Math.floor(Math.random() * 10000),
       description: description, 
-      estimate_amount: +estimate,
+      estimate_amount: estimate,
+      actual_amount: 0
     }
 
     addCategory(budget_category);
@@ -42,7 +42,7 @@ export default function NewCategory({ addCategory }) {
           <TextField label="Catgory name" onChange={(e) => setDescription(e.target.value)} />
         </FormControl>
         <FormControl className={classes.formControl}>
-          <TextField label="Budget estimate amount" onChange={(e) => setEstimate(e.target.value)}/>
+          <TextField type="number" label="Budget estimate amount" onChange={(e) => setEstimate(e.target.value)}/>
         </FormControl>
         <Button className={classes.button} onClick={newCategory} variant="contained">Add new category</Button>
       </form>

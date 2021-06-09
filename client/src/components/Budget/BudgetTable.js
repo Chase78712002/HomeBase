@@ -16,10 +16,8 @@ const useStyle = makeStyles({
   }
 });
 
-export default function BudgetTable(props) {
+export default function BudgetTable({categories}) {
   const classes = useStyle();
-
-  const actual = 1000000;
 
   return (
     <TableContainer component={Paper}>
@@ -33,14 +31,14 @@ export default function BudgetTable(props) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {props.categories.map((category) => (
+          {categories.map((category) => (
             <TableRow key={category.id}>
               <TableCell component="th" scope="row">
                 {category.description}
               </TableCell>
               <TableCell align="right">${category.estimate_amount}</TableCell>
-              <TableCell align="right">${actual}</TableCell>
-              <TableCell align="right">${category.estimate_amount - actual}</TableCell>
+              <TableCell align="right">${category.actual_amount}</TableCell>
+              <TableCell align="right">${category.estimate_amount - category.actual_amount}</TableCell>
             </TableRow>
           ))}
         </TableBody>
