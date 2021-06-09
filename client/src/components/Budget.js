@@ -145,6 +145,22 @@ export default function Budget() {
     .catch(error => console.log(error));
   };
 
+  // update actual_amount of a specific budget_category
+  const updateActual = (id, amount) => {
+    const category = state.categories.find(x => x.id === id);
+    const currentActual = category.actual_amount;
+    const newActual = Number(currentActual) + Number(amount);
+
+    return axios.post(`/api/budget_categories/${id}`, newActual)
+    .then(() => { 
+      setState(prev => ({
+        ...prev,
+        // update state of actual
+      }))
+    })
+    .catch(error => console.log(error));
+  };
+
   return (
     <section className="content">
       <Typography className={classes.header}>Budget</Typography>
@@ -167,7 +183,7 @@ export default function Budget() {
         <Card>
             <CardHeader className={classes.heading} title="Add new transaction" />
             <CardContent>
-              <NewTransaction categories={state.categories} addTransaction={addTransaction}/>
+              <NewTransaction categories={state.categories} addTransaction={addTransaction} updateActual={updateActual}/>
             </CardContent>
           </Card>
       </Box>

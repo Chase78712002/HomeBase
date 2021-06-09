@@ -28,7 +28,7 @@ const useStyle = makeStyles((theme) => ({
   },
 }));
 
-export default function NewTransaction({ categories, addTransaction }) {
+export default function NewTransaction({ categories, addTransaction, updateActual }) {
   const classes = useStyle();
 
   const [description, setDescription] = useState("");
@@ -52,6 +52,7 @@ export default function NewTransaction({ categories, addTransaction }) {
     };
 
     addTransaction(transaction);
+    updateActual(category, amount);
 
     resetForm();
   };
