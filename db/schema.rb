@@ -54,13 +54,21 @@ ActiveRecord::Schema.define(version: 2021_06_09_053232) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "document_categories", force: :cascade do |t|
+    t.string "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "documents", force: :cascade do |t|
     t.string "title"
     t.string "category_type"
     t.string "path"
+    t.bigint "document_category_id", null: false
     t.bigint "project_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["document_category_id"], name: "index_documents_on_document_category_id"
     t.index ["project_id"], name: "index_documents_on_project_id"
   end
 
@@ -105,6 +113,7 @@ ActiveRecord::Schema.define(version: 2021_06_09_053232) do
 
   add_foreign_key "budget_categories", "projects"
   add_foreign_key "change_orders", "projects"
+  add_foreign_key "documents", "document_categories"
   add_foreign_key "documents", "projects"
   add_foreign_key "milestones", "projects"
   add_foreign_key "projects", "builders"
