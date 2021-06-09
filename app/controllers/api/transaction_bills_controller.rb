@@ -6,11 +6,11 @@ class Api::TransactionBillsController < ApplicationController
   end
 
   def create
-    @transaction_bill = TransactionBill.new transaction_bill_params
-    if @transaction_bill.save
+    @transaction_bill = TransactionBill.create! transaction_bill_params
+    if @transaction_bill
       render json: @transaction_bill
     else
-      render json: { error: transaction_bill.errors.messages }, status: 422
+      render json: { error: @transaction_bill.errors.messages }, status: 422
     end
   end
 
@@ -38,12 +38,10 @@ class Api::TransactionBillsController < ApplicationController
 
   private
     def transaction_bill_params
-      params.require(:transaction_bill).permite(
+      params.require(:transaction_bill).permit(
         :description,
         :amount,
-        :date,
-        :change_order_id,
-        :milestone_id,
+        :date,        
         :budget_category_id
       )
     end
