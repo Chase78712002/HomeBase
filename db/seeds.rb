@@ -104,12 +104,27 @@ document3 = Document.create(
 )
 
 puts "--Done Seeding Documents--"
+puts 'Creating Change_order_status Seed data ...'
+
+co_status1 = ChangeOrderStatus.create!(
+  status: 'Approved' 
+)
+
+co_status2 = ChangeOrderStatus.create!(
+  status: 'Declined' 
+)
+
+co_status3 = ChangeOrderStatus.create!(
+  status: 'Pending' 
+)
+
+puts "--Done Seeding change_order_status--"
 puts 'Creating CHANGE_ORDER Seed data ...'
 
 co1 = ChangeOrder.create!(
   description: 'Lorem Ipsum a bunch',
   cost: 100,
-  #test for false default approval
+  change_order_status_id: 2,
   path: 'user/dmar/change_orders/co1',
   project_id: 1
 )
@@ -117,7 +132,7 @@ co1 = ChangeOrder.create!(
 co2 = ChangeOrder.create!(
   description: 'Change to bathroom paint',
   cost: 2100,
-  approval: true,
+  change_order_status_id: 1,
   path: 'user/dmar/change_orders/co2',
   project_id: 2
 )
@@ -125,7 +140,7 @@ co2 = ChangeOrder.create!(
 co3 = ChangeOrder.create!(
   description: 'Builders are generous!',
   cost: -1000,
-  approval: true,
+  change_order_status_id: 3,
   path: 'user/dmar/change_orders/co3',
   project_id: 2
 )
