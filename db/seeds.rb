@@ -136,19 +136,22 @@ puts 'Creating BUDGET_CATEGORIES Seed data ...'
 budget1 = BudgetCategory.create(
   description: 'Floors',
   estimate_amount: 1234,
-  project_id: 1
+  project_id: 1,
+  actual_amount: 1000
 )
 
 budget2 = BudgetCategory.create(
   description: 'Heating',
   estimate_amount: 42069,
-  project_id: 1
+  project_id: 1,
+  actual_amount: 4000
 )
 
 budget3 = BudgetCategory.create(
   description: 'Walls',
   estimate_amount: 666,
-  project_id: 1
+  project_id: 1,
+  actual_amount: 300
 )
 
 puts "--Done Seeding Budget_Categoies--"
@@ -184,29 +187,31 @@ mile3 = Milestone.create(
 puts "--Done Seeding Milestone--"
 puts 'Creating TRANSACTION Seed data ...'
 
-trans1 = TransactionBill.create(
+trans1 = TransactionBill.create!(
   description: 'Red Paint',
   amount: 33,
   date: Date.today, 
-  change_order_id: 1,
   budget_category_id: 1,
-  milestone_id: 1
 )
 
-trans2 = TransactionBill.create(
+trans2 = TransactionBill.create!(
   description: 'Stainless Steel Faucet',
   amount: 222,
   date: Date.today - 2.days,
-  change_order_id: 1,
   budget_category_id: 2,
-  milestone_id: 2
 )
 
-trans3 = TransactionBill.create(
+trans3 = TransactionBill.create!(
   description: 'Lava Gas',
   amount: 2020,
   date: Date.today - 3.days,
-  change_order_id: 1,
+  budget_category_id: 1,
+)
+
+trans4 = TransactionBill.create!(
+  description: 'Potato Peeler',
+  amount: 123,
+  date: Date.today + 5.weeks,
   budget_category_id: 1,
   milestone_id: 1
 )
