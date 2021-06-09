@@ -31,7 +31,6 @@ export default function DocumentListItem(props) {
   const [title, setTitle] = useState(props.title) 
   const [category, setCategory] = useState(props.category)
 
-
   return (
     <>
       <Grid item md={12}>
@@ -49,7 +48,7 @@ export default function DocumentListItem(props) {
             <>
               <EditFile title={title} category={category} editTitle={setTitle} editCategory={setCategory} data={props.data} />
               <SaveButton onClick={() => setEditMode(false)} /> 
-              <DeleteButton delete={props.delete} />
+              <DeleteButton delete={props.delete} id={props.id} />
             </>
           )}
         </ListItem>

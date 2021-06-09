@@ -9,6 +9,7 @@ export default function DocumentList(props) {
     return (
       <DocumentListItem 
         key={file.id}
+        id={file.id}
         title={file.title}
         category={file.category_type}
         path={file.path}

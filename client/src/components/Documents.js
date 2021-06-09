@@ -22,10 +22,13 @@ const theme = createMuiTheme({
 
 export default function Documents() {
   // const classes = useStyles
-  const [state, setState] = useState([])
+  const [documents, setDocuments] = useState([])
 
-  const deleteFile = () => {
-    
+  const deleteFile = (id) => {
+    return axios.delete(`/api/documents/${id}`)
+                .then(() => {
+                  setDocuments(documents.filter(document => document.id !== id))
+                })
   }
 
 
@@ -33,7 +36,7 @@ export default function Documents() {
     axios.get("/api/documents")
       .then(res => {
         // console.log('request success! here is the response: ',res.data)
-        setState(res.data)
+        setDocuments(res.data)
       })
   },[]);
   return (
@@ -43,11 +46,11 @@ export default function Documents() {
       <ThemeProvider theme={theme}>
         <Container maxWidth="lg" disableGutters={true}>
           <SearchBar />
-          <AddNewDocument data={state} />
+          <AddNewDocument data={documents} />
         </Container>
       </ThemeProvider>
       
-      <DocumentList data={state} delete={deleteFile} />
+      <DocumentList data={documents} delete={deleteFile} />
       
     </section>
   );
