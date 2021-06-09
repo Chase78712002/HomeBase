@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
@@ -14,16 +14,23 @@ const useStyles = makeStyles((theme) => ({
   input: {
     display: 'none',
   },
+  button: {
+    display: "flex",
+    justifyContent: 'space-around',
+    alignItems: 'center'
+  }
 }));
 
 export default function UploadButtons() {
   const classes = useStyles();
-
+  const [path, setPath] = useState("Select File")
 
   const file_details = (event) => {
     // this console.log the file details.
-    console.log(event.target.files);
+    // console.log(event.target.files[0].name)
+    setPath(event.target.files[0].name)
 
+      
   }
 
   return (
@@ -36,16 +43,18 @@ export default function UploadButtons() {
         type="file"
         onChange={e => file_details(e)}
       />
-      <label htmlFor="contained-button-file">
+      <label className={classes.button} htmlFor="contained-button-file">
+        <span>{path}</span>
         <Button 
         variant="contained" 
         color="primary" 
         component="span" 
-        size="large"
+        size="small"
         startIcon={<CloudUploadIcon />}
         >
           Upload
         </Button>
+        
       </label>
       
     </div>
