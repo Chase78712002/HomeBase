@@ -4,8 +4,8 @@ import DocumentListItem from './DocumentListItem';
 
 
 
-export default function DocumentList(prop) {
-  const listOfDocItems = prop.data.map(file => {
+export default function DocumentList(props) {
+  const listOfDocItems = props.data.map(file => {
     return (
       <DocumentListItem 
         key={file.id}
@@ -13,6 +13,7 @@ export default function DocumentList(prop) {
         category={file.category_type}
         path={file.path}
         project_id={file.project_id}
+        data={props.data}
         />
     )
   })
