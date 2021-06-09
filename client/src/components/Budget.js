@@ -148,14 +148,20 @@ export default function Budget() {
   // update actual_amount of a specific budget_category
   const updateActual = (id, amount) => {
     const category = state.categories.find(x => x.id === id);
-    const currentActual = category.actual_amount;
-    const newActual = Number(currentActual) + Number(amount);
-
-    return axios.post(`/api/budget_categories/${id}`, newActual)
+    const newActual = Number(category.actual_amount) + Number(amount);
+    
+    const updatedCategory = {
+      ...category,
+      actual_amount: newActual
+    };
+    
+    const updateCategories = state.categories.map(category => category.id === id ? updatedCategory : category);
+    
+    return axios.patch(`/api/budget_categories/${id}`, {actual_amount: newActual})
     .then(() => { 
       setState(prev => ({
         ...prev,
-        // update state of actual
+        categories: updateCategories
       }))
     })
     .catch(error => console.log(error));
@@ -165,7 +171,6 @@ export default function Budget() {
     <section className="content">
       <Typography className={classes.header}>Budget</Typography>
 
-      <Typography className={classes.heading} variant="h5">Budget summary</Typography>
       <BudgetTable categories={state.categories} />
 
       <Typography className={classes.heading} variant="h5">Transaction history</Typography>
