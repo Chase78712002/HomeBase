@@ -10,7 +10,7 @@ class Api::BudgetCategoriesController < ApplicationController
     if @budget_category.save
       render json: @budget_category
     else
-      render json: { error: budget_category.errors.messages }, status: 422
+      render json: { error: @budget_category.errors.messages }, status: 422
     end
   end
 
@@ -41,6 +41,7 @@ class Api::BudgetCategoriesController < ApplicationController
       params.require(:budget_category).permit(
         :description,
         :estimate_amount,
+        :actual_amount,
         :project_id
       )
     end
