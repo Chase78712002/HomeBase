@@ -1,6 +1,7 @@
 import { Container, makeStyles } from "@material-ui/core";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import "./App.scss";
+import AddNewDocument from "./Document/AddNewDocument";
 import DocumentList from "./Document/DocumentList";
 import SearchBar from "./Document/Searchbar";
 import UploadButtons from "./Document/Upload";
@@ -35,6 +36,7 @@ const theme = createMuiTheme({
       root: {
         display: "flex",
         "justify-content": "space-between",
+        alignItems:"center"
       },
     },
   },
@@ -50,7 +52,7 @@ export default function Documents() {
       <ThemeProvider theme={theme}>
         <Container maxWidth="lg" disableGutters="true">
           <SearchBar />
-          <UploadButtons />
+          <AddNewDocument data={docData} />
         </Container>
       </ThemeProvider>
       
