@@ -19,6 +19,14 @@ const useStyle = makeStyles({
 export default function BudgetTable({categories}) {
   const classes = useStyle();
 
+  if (categories.length === 0) {
+    return (
+      <div>
+        Still loading...
+      </div>
+    )
+  }
+
   return (
     <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="budget table">

@@ -27,6 +27,7 @@ export default function NewCategory({ addCategory }) {
 
   const newCategory = () => {
     const budget_category = {
+      project_id: 1,
       description: description, 
       estimate_amount: estimate,
       actual_amount: 0
