@@ -16,7 +16,7 @@ class Api::DocumentsController < ApplicationController
     if @document.save
       render json: @document
     else
-      render json: { error: document.errors.messages }, status: 422
+      render json: { error: @document.errors.messages }, status: 422
     end
   end
 
@@ -32,7 +32,7 @@ class Api::DocumentsController < ApplicationController
     if @document.destroy
       head :no_content
     else
-      render json: { error: document.errors.messages }, status: 422
+      render json: { error: @document.errors.messages }, status: 422
     end
   end
 
