@@ -97,26 +97,29 @@ export default function Budget() {
     .catch(error => console.log(error));
   }, []);
 
-  // const [categories, setCategory] = useState(categoryData);
-  // const [transactions, setTransaction] = useState(transactionData);
-
   const addCategory = category => {
     return axios.post('/api/budget_categories', category)
-    .then(() => { 
-      const newCategories = state.categories;
-      newCategories.push(category);
+    .then(() => {
+      const newCategories = state.categories.concat(category);
       setState(prev => ({
         ...prev,
         categories: newCategories
       }))
     })
     .catch(error => console.log(error));
-      // setCategory(prev => [...prev, category]);
   };
 
-  // const addTransaction = transaction => {
-  //   setTransaction(prev => [...prev, transaction]);
-  // };
+  const addTransaction = transaction => {
+    return axios.post('/api/transaction_bills', transaction)
+    .then(() => { 
+      const newTransactions = state.transactions.concat(transaction);
+      setState(prev => ({
+        ...prev,
+        transactions: newTransactions
+      }))
+    })
+    .catch(error => console.log(error));
+  };
 
   return (
     <section className="content">
@@ -131,8 +134,8 @@ export default function Budget() {
       <Typography className={classes.heading} variant="h5">Add a new budget category</Typography>
       <NewCategory addCategory={addCategory}/>
 
-      {/* <Typography className={classes.heading} variant="h5">Add a new transaction</Typography>
-      <NewTransaction categories={categories} addTransaction={addTransaction}/> */}
+      <Typography className={classes.heading} variant="h5">Add a new transaction</Typography>
+      <NewTransaction categories={state.categories} addTransaction={addTransaction}/>
     </section>
   )
 }

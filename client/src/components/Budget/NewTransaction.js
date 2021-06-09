@@ -23,20 +23,30 @@ export default function NewTransaction({ categories, addTransaction }) {
   const classes = useStyle();
 
   const [description, setDescription] = useState('');
-  const [amount, setAmount] = useState();
+  const [amount, setAmount] = useState('');
   const [category, setCategory] = useState('');
   const [date, setDate] = useState('');
 
+  const resetForm = () => {
+    setDescription('');
+    setAmount('');
+    setCategory('');
+    setDate('');
+  };
+
   const newTransaction = () => {
     const transaction = {
-      id: Math.floor(Math.random() * 10000),
       description: description, 
-      amount: +amount,
+      amount: amount,
       date: date,
-      budget_category_id: category
+      budget_category_id: category,
+      milestone_id: 1,
+      change_order_id: 1
     }
 
     addTransaction(transaction);
+
+    resetForm();
   }
   
   return (
@@ -47,15 +57,16 @@ export default function NewTransaction({ categories, addTransaction }) {
             id="date"
             label="Date"
             type="date"
+            value={date}
             InputLabelProps={{ shrink: true }}
             onChange={(e) => setDate(e.target.value)}
           />
         </FormControl>
         <FormControl className={classes.formControl}>
-          <TextField label="Description" onChange={(e) => setDescription(e.target.value)} />
+          <TextField label="Description" value={description} onChange={(e) => setDescription(e.target.value)} />
         </FormControl>
         <FormControl className={classes.formControl}>
-          <TextField label="Amount" onChange={(e) => setAmount(e.target.value)}/>
+          <TextField label="Amount" value={amount} onChange={(e) => setAmount(e.target.value)}/>
         </FormControl>
         <FormControl className={classes.formControl}>
           <InputLabel id="budget_category">Category</InputLabel>
