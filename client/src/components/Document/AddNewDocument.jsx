@@ -60,6 +60,7 @@ export default function AddNewDocument(props) {
   }, [path]);
 
   const saveFile = () => {
+    console.log(category);
     const file = {
       title: fileName,
       category_type: category,
@@ -116,8 +117,8 @@ export default function AddNewDocument(props) {
                 </MenuItem>
                 {props.data.map((file) => {
                   return (
-                    <MenuItem value={file.category_type}>
-                      {file.category_type}
+                    <MenuItem value={file.document_category_id}>
+                      {file.document_category_id}
                     </MenuItem>
                   );
                 })}
