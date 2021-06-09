@@ -5,6 +5,7 @@ class CreateDocuments < ActiveRecord::Migration[6.0]
       t.string :category_type
       t.string :path
 
+      t.belongs_to :document_category, null: false, foreign_key: true
       t.belongs_to :project, null: false, foreign_key: true
 
       t.timestamps

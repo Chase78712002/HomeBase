@@ -6,12 +6,6 @@ class Api::DocumentsController < ApplicationController
   end
 
   def create
-    # @document = Document.find_or_create_by(
-    #   title: params[:title],
-    #   category_type: params[:category_type],
-    #   path: params[:path],
-    #   project_id: params[:project_id]
-    # )
     @document = Document.new document_params
     if @document.save
       render json: @document
@@ -40,7 +34,7 @@ class Api::DocumentsController < ApplicationController
     def document_params
       params.require(:document).permit(
         :title,
-        :category_type,
+        :document_category_id,
         :path,
         :project_id
       )
