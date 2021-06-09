@@ -6,14 +6,18 @@ import {
   TableContainer,
   TableHead,
   TableRow,
-  Paper
+  Paper,
+  CircularProgress,
 } from '@material-ui/core';
 
 const useStyle = makeStyles({
   table: {
     minWidth: 650,
     marginTop: '20px'
-  }
+  },
+  progress: {
+    color: '#679436'
+  },
 });
 
 export default function BudgetTable({categories}) {
@@ -22,7 +26,7 @@ export default function BudgetTable({categories}) {
   if (categories.length === 0) {
     return (
       <div>
-        Still loading...
+        <CircularProgress className={classes.progress} />
       </div>
     )
   }
