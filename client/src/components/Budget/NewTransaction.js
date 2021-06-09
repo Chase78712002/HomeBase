@@ -88,7 +88,7 @@ export default function NewTransaction({ categories, addTransaction }) {
           <Select
             labelId="budget_category"
             id="budget_category"
-            value={category}
+            value={category.description}
             onChange={(e) => setCategory(e.target.value)}
           >
             {categories.map((category) => (

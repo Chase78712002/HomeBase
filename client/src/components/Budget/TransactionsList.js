@@ -1,4 +1,4 @@
-import { 
+import {
   makeStyles,
   Table,
   TableBody,
@@ -6,23 +6,23 @@ import {
   TableContainer,
   TableHead,
   TableRow,
-  Paper
-} from '@material-ui/core';
+  Paper,
+} from "@material-ui/core";
 
 const useStyle = makeStyles({
   table: {
     minWidth: 650,
-    marginTop: '20px'
+    marginTop: "20px",
   },
   heading: {
     marginTop: 25,
-    color: '#679436'
-  }
-})
+    color: "#679436",
+  },
+});
 
-export default function TransactionsList({transactions}) {
+export default function TransactionsList({ transactions }) {
   const classes = useStyle();
-  
+
   return (
     <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="transactions table">
@@ -42,11 +42,13 @@ export default function TransactionsList({transactions}) {
               </TableCell>
               <TableCell align="right">${transaction.amount}</TableCell>
               <TableCell align="right">{transaction.date}</TableCell>
-              <TableCell align="right">{transaction.budget_category_id}</TableCell>
+              <TableCell align="right">
+                {transaction.budget_category_id}
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>
       </Table>
     </TableContainer>
-  )
+  );
 }

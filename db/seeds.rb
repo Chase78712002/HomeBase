@@ -167,25 +167,33 @@ mile3 = Milestone.create(
 puts "--Done Seeding Milestone--"
 puts 'Creating TRANSACTION Seed data ...'
 
-trans1 = TransactionBill.create(
+trans1 = TransactionBill.create!(
   description: 'Red Paint',
   amount: 33,
   date: Date.today, 
   budget_category_id: 1,
 )
 
-trans2 = TransactionBill.create(
+trans2 = TransactionBill.create!(
   description: 'Stainless Steel Faucet',
   amount: 222,
   date: Date.today - 2.days,
   budget_category_id: 2,
 )
 
-trans3 = TransactionBill.create(
+trans3 = TransactionBill.create!(
   description: 'Lava Gas',
   amount: 2020,
   date: Date.today - 3.days,
   budget_category_id: 1,
+)
+
+trans4 = TransactionBill.create!(
+  description: 'Potato Peeler',
+  amount: 123,
+  date: Date.today + 5.weeks,
+  budget_category_id: 1,
+  milestone_id: 1
 )
 
 puts "--Done Seeding TransactionBill--"
