@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 2021_06_09_220006) do
+=======
+ActiveRecord::Schema.define(version: 2021_10_09_053232) do
+>>>>>>> master
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,14 +38,21 @@ ActiveRecord::Schema.define(version: 2021_06_09_220006) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "change_order_statuses", force: :cascade do |t|
+    t.string "status"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "change_orders", force: :cascade do |t|
     t.string "description"
     t.integer "cost"
-    t.boolean "approval", default: false
     t.string "path"
+    t.bigint "change_order_status_id", null: false
     t.bigint "project_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["change_order_status_id"], name: "index_change_orders_on_change_order_status_id"
     t.index ["project_id"], name: "index_change_orders_on_project_id"
   end
 
@@ -112,6 +123,7 @@ ActiveRecord::Schema.define(version: 2021_06_09_220006) do
   end
 
   add_foreign_key "budget_categories", "projects"
+  add_foreign_key "change_orders", "change_order_statuses"
   add_foreign_key "change_orders", "projects"
   add_foreign_key "documents", "document_categories"
   add_foreign_key "documents", "projects"

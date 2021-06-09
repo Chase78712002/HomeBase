@@ -12,7 +12,7 @@ The main important bit is that the React project has `proxy` set to `localhost:3
 
 ## Hall of Fame
 
-Here are some projects that have been built using this boilerplate.
+Here are some projects that have been built using this boilerplate. :)
 
 - [latercart](https://github.com/bonitac/latercart)
 - [Cards-Against-the-Internet](https://github.com/csx773/Cards-Against-the-Internet)
