@@ -56,7 +56,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-const categories = ["Contract", "Floor Plan", "Supplementary"]
 
 export default function EditFile(props) {
   const classes = useStyles();
