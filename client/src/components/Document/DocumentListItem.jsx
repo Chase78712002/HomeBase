@@ -7,8 +7,11 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import DeleteButton from "./Delete";
 import Edit from "./Edit";
+import EditFile from "./EditFile"
 import SaveButton from "./Save";
 import { Input } from "@material-ui/core";
+
+
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -25,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
 export default function DocumentListItem(prop) {
   const classes = useStyles();
   const [editMode, setEditMode] = useState(false)
-  const [title, setFileName] = useState(prop.title) 
+  const [title, setTitle] = useState(prop.title) 
   const [category, setCategory] = useState(prop.category)
 
 
@@ -44,7 +47,7 @@ export default function DocumentListItem(prop) {
           )}
           {editMode && (
             <>
-              <Input value={title} onChange={event => setFileName(event.target.value)} className={classes.root} />
+              <EditFile title={title} category={category} editTitle={setTitle} editCategory={setCategory} data={prop.data} />
               <SaveButton onClick={() => setEditMode(false)} /> 
               <DeleteButton />
             </>
