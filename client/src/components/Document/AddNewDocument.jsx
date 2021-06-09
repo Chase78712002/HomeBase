@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
@@ -10,7 +10,7 @@ import Input from "@material-ui/core/Input";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
-import { FormControlLabel, IconButton, Typography } from "@material-ui/core";
+import { IconButton } from "@material-ui/core";
 import PostAddRoundedIcon from "@material-ui/icons/PostAddRounded";
 import UploadButtons from "./Upload";
 
@@ -28,9 +28,9 @@ const useStyles = makeStyles((theme) => ({
 
 export default function AddNewDocument(props) {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(false);
-  const [category, setCategory] = React.useState("");
-
+  const [open, setOpen] = useState(false);
+  const [category, setCategory] = useState("");
+  const [path, setPath] = useState();
   const handleChange = (event) => {
     setCategory(event.target.value);
   };
@@ -42,6 +42,17 @@ export default function AddNewDocument(props) {
   const handleClose = () => {
     setOpen(false);
   };
+
+  const handlePath = (path) => {
+    setPath(path);
+  }
+
+  useEffect(() => {
+    if (path) {
+
+      console.log(`this is in AddNewDocument: ${path}`);
+    }
+  },[path])
 
   return (
     <div>
@@ -86,7 +97,7 @@ export default function AddNewDocument(props) {
             </FormControl>
           </form>
         </DialogContent>
-          <UploadButtons />
+          <UploadButtons sendToParent={handlePath}/>
          
           
         

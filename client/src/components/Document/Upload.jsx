@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
@@ -21,17 +21,24 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function UploadButtons() {
+export default function UploadButtons(props) {
   const classes = useStyles();
-  const [path, setPath] = useState("Select File")
+  const [path, setPath] = useState()
 
   const file_details = (event) => {
     // this console.log the file details.
     // console.log(event.target.files[0].name)
     setPath(event.target.files[0].name)
-
-      
+    props.sendToParent()
   }
+
+  useEffect(()=> {
+
+    if (path) {
+      props.sendToParent(path)
+    }
+    
+  },[path])
 
   return (
     <div className={classes.root}>

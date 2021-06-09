@@ -1,10 +1,9 @@
-import { Container, makeStyles } from "@material-ui/core";
+import { Container } from "@material-ui/core";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import "./App.scss";
 import AddNewDocument from "./Document/AddNewDocument";
 import DocumentList from "./Document/DocumentList";
 import SearchBar from "./Document/Searchbar";
-import UploadButtons from "./Document/Upload";
 
 const docData = [
   {
@@ -50,7 +49,7 @@ export default function Documents() {
       <h1>Documents</h1>
 
       <ThemeProvider theme={theme}>
-        <Container maxWidth="lg" disableGutters="true">
+        <Container maxWidth="lg" disableGutters={true}>
           <SearchBar />
           <AddNewDocument data={docData} />
         </Container>
