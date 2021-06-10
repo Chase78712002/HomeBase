@@ -1,7 +1,9 @@
 import { useState } from "react";
+
 import { makeStyles, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, CircularProgress, Button } from '@material-ui/core';
 
 import ChangeOrderDetails from './ChangeOrderDetails';
+import Status from './Status';
 
 const useStyle = makeStyles({
   header: {
@@ -22,7 +24,7 @@ export default function ChangeOrdersTable({ changeOrders, status }) {
   const classes = useStyle();
 
   const [open, setOpen] = useState(false);
-  const [selectedValue, setSelectedValue] = useState();
+  const [currentCO, setCurrentCO] = useState(false);
 
   // if data has not yet loaded, display progress bar
   if (changeOrders.length === 0 || status.length === 0) {
@@ -37,19 +39,13 @@ export default function ChangeOrdersTable({ changeOrders, status }) {
     return changeOrders.map((changeOrder => changeOrder.cost)).reduce((sum, i) => sum + i, 0);
   };
 
-  const handleClickOpen = () => {
+  const handleClickOpen = (changeOrder) => {
     setOpen(true);
+    setCurrentCO(changeOrder);
   };
 
-  const handleClose = (value) => {
+  const handleClose = () => {
     setOpen(false);
-    setSelectedValue(value);
-  };
-
-  // lookup status description from change_order_status table
-  const statusLookup = (status, id) => {
-    const statusObj = status.find(element => element.id === id);
-    return statusObj.status;
   };
 
   return (
@@ -67,13 +63,15 @@ export default function ChangeOrdersTable({ changeOrders, status }) {
           {changeOrders.map(changeOrder => (
             <TableRow key={changeOrder.id}>
               <TableCell component="th" scope="row" >
-                <Button variant="outlined" onClick={handleClickOpen}>
+                <Button variant="outlined" onClick={() => handleClickOpen(changeOrder)}>
                   CO_{changeOrder.id}
                 </Button>
-                <ChangeOrderDetails changeOrder={changeOrder} open={open} onClose={handleClose} />
+                <ChangeOrderDetails currentCO={currentCO} open={open} onClose={handleClose} />
               </TableCell>
               <TableCell>{changeOrder.description}</TableCell>
-              <TableCell align="center">{statusLookup(status, changeOrder.change_order_status_id)}</TableCell>
+              <TableCell align="center">
+                <Status statusId={changeOrder.change_order_status_id}/>
+              </TableCell>
               <TableCell align="right">${changeOrder.change_order_status_id === 2 ? changeOrder.cost = 0 : changeOrder.cost}</TableCell>
             </TableRow>
           ))}
