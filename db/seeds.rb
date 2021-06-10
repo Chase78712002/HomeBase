@@ -39,7 +39,7 @@ user4 = Builder.create(
 
 user5 = Client.create(
   first_name:"Gerrie",
-  last_name:"Longstreeth",email:"glongstreeth0@smugmug.com",password:"D8vvruvjpabA"
+  last_name:"Streeth",email:"glongstreeth0@smugmug.com",password:"D8vvruvjpabA"
 )
 user6 = Client.create(
   first_name:"Pierce",

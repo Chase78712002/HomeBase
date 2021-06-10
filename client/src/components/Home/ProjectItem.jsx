@@ -6,8 +6,9 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import CardHeader from '@material-ui/core/CardHeader';
-import { Avatar, CardMedia, IconButton } from '@material-ui/core';
+import { Avatar, CardActionArea, CardMedia, IconButton } from '@material-ui/core';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles({
   root: {
@@ -31,42 +32,47 @@ const useStyles = makeStyles({
 
 export default function ProjectItem(props) {
   const classes = useStyles();
-  const { avatarSrc, clientName, projectName, startDate, address, imgSrc} = props
+  const { avatarSrc, name, start_date, address, image} = props
 
-
-
+  const clientFullName = `${props.client.first_name} ${props.client.last_name}`
+  
   return (
     <Card className={classes.root} variant="outlined">
-      <CardHeader
-        avatar={
-          <Avatar 
-          src={avatarSrc}
-          >
-            R
-          </Avatar>
-        }
-        action={
-          <IconButton aria-label="settings">
-            <MoreVertIcon />
-          </IconButton>
-        }
-        title={clientName}
-        subheader={startDate}
-      />
-       <CardMedia
-        className={classes.houseImage}
-        image={imgSrc}
-      />
-      <CardContent>
-        
-        <Typography variant="h5" component="h2">
-          {projectName}
-        </Typography>
-        
-        <Typography variant="body2" component="p">
-          {address}
-        </Typography>
-      </CardContent>
+      <CardActionArea component={Link} to={`/projects/${props.id}`}>
+
+        <CardHeader
+          avatar={
+            <Avatar 
+            src={avatarSrc}
+            >
+              R
+            </Avatar>
+          }
+          action={
+            <IconButton aria-label="settings">
+              <MoreVertIcon />
+            </IconButton>
+          }
+          title={clientFullName}
+          subheader={start_date}
+        />
+        <CardMedia
+          className={classes.houseImage}
+          image={image}
+        />
+        <CardContent>
+          
+          <Typography variant="h5" component="h2">
+            {name}
+          </Typography>
+          
+          <Typography variant="body2" component="p">
+            {address}
+          </Typography>
+        </CardContent>
+
+      </CardActionArea>
+
       <CardActions>
         <Button size="small">COMPLETE</Button>
       </CardActions>
