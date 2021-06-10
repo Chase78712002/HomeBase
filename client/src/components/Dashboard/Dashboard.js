@@ -5,6 +5,11 @@ import axios from "axios";
 
 import CardImage from "./CardImage";
 import DocSummary from "./DocSummary";
+import BudgetGraph from "./BudgetGraph";
+import "./Dashboard.scss";
+
+import { CircularProgress } from "@material-ui/core";
+import { PieChart, Pie, ResponsiveContainer, Cell } from "recharts";
 
 /*We need to grab info about the:
  -project -> description, start date, For client: ___
@@ -44,12 +49,47 @@ export default function OutlinedCard() {
       })
       .catch((error) => console.log(error));
   }, []);
-  console.log("this set yet?", state.documentInfo);
+
+  const data1 = [
+    { name: "Facebook", value: 200000 },
+    { name: "Twitter", value: 93213 },
+    { name: "Youtube", value: 440000 },
+  ];
+
+  const data = state.budgetInfo.map((item, itemIdx) => ({ ...item }));
+
+  const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
+  const RADIAN = Math.PI / 180;
+  const renderCustomizedLabel = ({
+    cx,
+    cy,
+    midAngle,
+    innerRadius,
+    outerRadius,
+    percent,
+    index,
+  }) => {
+    const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
+    const x = cx + radius * Math.cos(-midAngle * RADIAN);
+    const y = cy + radius * Math.sin(-midAngle * RADIAN);
+    return (
+      <text
+        x={x}
+        y={y}
+        fill="white"
+        textAnchor={x > cx ? "start" : "end"}
+        dominantBaseline="central"
+      >
+        {`${(percent * 100).toFixed(0)}%`}
+      </text>
+    );
+  };
 
   return (
-    <>
+    <div className="dashboard">
       <CardImage projectInfo={state.projectInfo[0]} />
       <DocSummary documentInfo={state.documentInfo} />
-    </>
+      <BudgetGraph budgetInfo={state.budgetInfo} />
+    </div>
   );
 }

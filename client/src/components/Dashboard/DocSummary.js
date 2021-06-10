@@ -36,7 +36,6 @@ function generate(element) {
 export default function DocSummary({ documentInfo }) {
   const classes = useStyles();
   const dense = true;
-  const secondary = true;
 
   if (!documentInfo) {
     console.log("Still loading");
@@ -50,8 +49,8 @@ export default function DocSummary({ documentInfo }) {
           <div className={classes.demo}>
             <Typography variant="h6">Documents Summary</Typography>
             <List dense={dense}>
-              {documentInfo.map((file) => (
-                <ListItem>
+              {documentInfo.map((file, fileIdx) => (
+                <ListItem key={fileIdx}>
                   <ListItemAvatar>
                     <Avatar>
                       <FolderIcon />
