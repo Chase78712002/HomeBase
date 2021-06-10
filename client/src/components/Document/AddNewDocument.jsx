@@ -13,8 +13,7 @@ import Select from "@material-ui/core/Select";
 import { IconButton } from "@material-ui/core";
 import PostAddRoundedIcon from "@material-ui/icons/PostAddRounded";
 import UploadButtons from "./Upload";
-import axios from "axios";
-import {useHistory} from 'react-router-dom';
+
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -31,11 +30,12 @@ const useStyles = makeStyles((theme) => ({
 export default function AddNewDocument(props) {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
-  const history = useHistory();
 
   const [fileName, setFileName] = useState();
-  const [category, setCategory] = useState("");
+  const [category, setCategory] = useState();
   const [path, setPath] = useState();
+  const [projectId, setProjectId] = useState(1);
+  const [categoryID, setCategoryID] = useState();
 
   const handleChange = (event) => {
     setCategory(event.target.value);
@@ -53,35 +53,9 @@ export default function AddNewDocument(props) {
     setPath(path);
   };
 
-  useEffect(() => {
-    if (path) {
-      console.log(`this is in AddNewDocument: ${path}`);
-    }
-  }, [path]);
+  
 
-  const saveFile = () => {
-    console.log(category);
-    const file = {
-      title: fileName,
-      category_type: category,
-      path: path,
-      project_id: 1 
-    }
-
-    axios.post('/api/documents', file)
-      .then(res => {
-        console.log(`post request success! here's the response ${res}`)
-
-        handleClose()
-
-        window.location.reload()
-      })
-      .catch(err => {
-        console.log(`Save file Error: ${err}`)
-      })
-    
-    
-  }
+  
 
   return (
     <div>
@@ -109,16 +83,20 @@ export default function AddNewDocument(props) {
                 labelId="select-categories"
                 id="demo-dialog-select"
                 value={category}
-                onChange={handleChange}
+                onChange={e => setCategory(e.target.value) }
                 // input={<Input />}
               >
                 <MenuItem value="">
                   <em>None</em>
                 </MenuItem>
-                {props.data.map((file) => {
+                {props.categories.map((category) => {
                   return (
-                    <MenuItem value={file.document_category_id}>
-                      {file.document_category_id}
+                    <MenuItem 
+                    key={category.id}
+                    value={category.description}
+                    onClick={() => setCategoryID(category.id)}
+                    >
+                      {category.description}
                     </MenuItem>
                   );
                 })}
@@ -133,7 +111,7 @@ export default function AddNewDocument(props) {
           <Button onClick={handleClose} color="primary">
             Cancel
           </Button>
-          <Button onClick={saveFile} color="primary">
+          <Button onClick={() => props.onSave(fileName,category, path, categoryID ,projectId, handleClose)} color="primary">
             Save
           </Button>
         </DialogActions>

@@ -35,6 +35,7 @@ class Api::DocumentsController < ApplicationController
       params.require(:document).permit(
         :title,
         :document_category_id,
+        :category_type,
         :path,
         :project_id
       )
