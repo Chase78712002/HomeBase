@@ -3,7 +3,8 @@ import React from "react";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-import CardInfo from "./CardInfo";
+import CardImage from "./CardImage";
+import DocSummary from "./DocSummary";
 
 /*We need to grab info about the:
  -project -> description, start date, For client: ___
@@ -23,9 +24,9 @@ export default function OutlinedCard() {
   });
 
   // retrieve all required data via promise.all
-  useEffect(() => {
+  useEffect((id) => {
     Promise.all([
-      axios.get("/api/projects"),
+      axios.get("/api/projects"), //This get call needs to be changed to accept an id -> like this axios.get(`/api/projects/${id}`)
       axios.get("/api/budget_categories"),
       axios.get("/api/documents"),
       axios.get("/api/change_orders"),
@@ -43,6 +44,12 @@ export default function OutlinedCard() {
       })
       .catch((error) => console.log(error));
   }, []);
+  console.log("this set yet?", state.documentInfo);
 
-  return <CardInfo projectInfo={state.projectInfo[0]} />;
+  return (
+    <>
+      <CardImage projectInfo={state.projectInfo[0]} />
+      <DocSummary documentInfo={state.documentInfo} />
+    </>
+  );
 }
