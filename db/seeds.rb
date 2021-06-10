@@ -24,10 +24,40 @@ user2 = Client.create(
 )
 
 user3 = Client.create(
-  first_name: 'Third',
-  last_name: 'User_Person',
-  email: 'email@hotmail.com',
-  password: 'asdf123'
+  first_name: 'Teddie',
+  last_name: 'Skipsey',
+  email: 'tskipsey5@un.org',
+  password: 'xVR8JjWRe1'
+)
+
+user4 = Builder.create(
+  first_name: 'Farmer',
+  last_name: 'Pickles',
+  email: 'FPickles@gmail.com',
+  password: '4321'
+)
+
+user5 = Client.create(
+  first_name:"Gerrie",
+  last_name:"Longstreeth",email:"glongstreeth0@smugmug.com",password:"D8vvruvjpabA"
+)
+user6 = Client.create(
+  first_name:"Pierce",
+  last_name:"Tiptaft",
+  email:"ptiptaft1@cornell.edu",
+  password:"dX9LCxyzd"
+)
+user7 = Client.create(
+  first_name:"Clayton",
+  last_name:"Petrazzi",
+  email:"cpetrazzi2@wiley.com",
+  password:"xebHPDxTV"
+)
+user8 = Client.create(
+  first_name:"Janine",
+  last_name:"Mead",
+  email:"jmead3@ustream.tv",
+  password:"chbj0G6dSGSz"
 )
 
 puts "--Done Seeding Users--"
@@ -37,7 +67,9 @@ project1 = Project.create(
   name: 'Project 1 - Kolumbeya',
   start_date: Date.today,
   end_date: Date.today + 30, #days
-  image: 'dmar/images/1',
+  image: "/Images/Houses/webaliser-_TPTXZd9mOo-unsplash.jpg",
+  address: "612 Loucks Dr Calgary AB K4R 1B7",
+  avatarSrc: "/Images/Avatars/aiony-haust-3TLl_97HNJo-unsplash.jpg",
   builder_id: 1,
   client_id: 1
 )
@@ -46,7 +78,9 @@ project2 = Project.create(
   name: 'Project 2 - Toronto',
   start_date: Date.today,
   end_date: Date.today + 60,
-  image: 'dmar/images/2',
+  image: "/Images/Houses/sieuwert-otterloo-aren8nutd1Q-unsplash.jpg",
+  avatarSrc: "/Images/Avatars/austin-wade-X6Uj51n5CE8-unsplash.jpg",
+  address: "240 Foxhaven Dr Sherwood Park AB T8A 6L1",
   builder_id: 1,
   client_id: 2
 )
@@ -55,10 +89,46 @@ project3 = Project.create(
   name: 'Project 3 - Mumbai',
   start_date: Date.today,
   end_date: Date.today + 90,
-  image: 'dmar/images/3',
-  builder_id: 2,
+  image: "/Images/Houses/alan-j-hendry-zVf-R-r3szw-unsplash.jpg",
+  address: "15317 21 Ave Surrey BC V4A 6A8",
+  avatarSrc: "/Images/Avatars/joseph-gonzalez-iFgRcqHznqg-unsplash.jpg",
+  builder_id: 1,
   client_id: 3
 )
+
+project4 = Project.create(
+  name: 'Project PlumbeousSilver',
+  start_date: Date.today,
+  end_date: Date.today + 90,
+  image: "/Images/Houses/birgit-loit-CnXVHyO1GGA-unsplash.jpg",
+  address: "75 John St W 504 Vancouver BC L1H 1W9",
+  avatarSrc: "/Images/Avatars/jurica-koletic-7YVZYZeITc8-unsplash.jpg",
+  builder_id: 2,
+  client_id: 4
+)
+
+project5 = Project.create(
+  name: 'Project NigricantBronze',
+  start_date: Date.today,
+  end_date: Date.today + 90,
+  image: "/Images/Houses/r-architecture-2gDwlIim3Uw-unsplash.jpg",
+  address: "7161 Ave De La Deviniere , Vancouver, BC, H1K 3S8",
+  avatarSrc: "/Images/Avatars/robert-godwin-cdksyTqEXzo-unsplash.jpg",
+  builder_id: 2,
+  client_id: 5
+)
+
+project6 = Project.create(
+  name: 'Project NiveousZinc',
+  start_date: Date.today,
+  end_date: Date.today + 90,
+  image: "/Images/Houses/roger-starnes-sr-WhYsgTb1LMQ-unsplash.jpg",
+  address: "1 Lomond Dr Etobicoke BC M8X 2Z3",
+  avatarSrc: "/Images/Avatars/stefan-stefancik-QXevDflbl8A-unsplash.jpg",
+  builder_id: 2,
+  client_id: 6
+)
+
 puts "--Done Seeding Projects--"
 puts 'Creating DOCUMENT_CATEGORIES Seed data ...'
 
@@ -125,6 +195,7 @@ co1 = ChangeOrder.create!(
   description: 'Lorem Ipsum a bunch',
   cost: 100,
   change_order_status_id: 2,
+  quantity: 1,
   path: 'user/dmar/change_orders/co1',
   project_id: 1
 )
@@ -133,6 +204,7 @@ co2 = ChangeOrder.create!(
   description: 'Change to bathroom paint',
   cost: 2100,
   change_order_status_id: 1,
+  quantity: 2,
   path: 'user/dmar/change_orders/co2',
   project_id: 2
 )
@@ -141,6 +213,7 @@ co3 = ChangeOrder.create!(
   description: 'Builders are generous!',
   cost: -1000,
   change_order_status_id: 3,
+  quantity: 1,
   path: 'user/dmar/change_orders/co3',
   project_id: 2
 )
