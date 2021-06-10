@@ -71,7 +71,7 @@ const menuItems = [
     id: 6,
     text: "Projects-Builder view",
     icon: <DescriptionTwoToneIcon />,
-    path: "/",
+    path: "/projects",
     component: Home
   }
 ];
