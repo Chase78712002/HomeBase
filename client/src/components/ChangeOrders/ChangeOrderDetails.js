@@ -1,41 +1,32 @@
-import { makeStyles, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, CircularProgress, SimpleDialog, Button } from '@material-ui/core';
+import { makeStyles, Dialog, DialogTitle, DialogActions, DialogContent, DialogContentText, Button } from '@material-ui/core';
 
-export default function ChangeOrderDetails({ id, open, onClose }) {
+const useStyles = makeStyles({
+  
+});
+
+export default function ChangeOrderDetails({ changeOrder, open, onClose}) {
   const classes = useStyles();
-  const { onClose, selectedValue, open } = props;
 
   const handleClose = () => {
-    onClose(selectedValue);
-  };
-
-  const handleListItemClick = (value) => {
-    onClose(value);
+    onClose(changeOrder.id);
   };
 
   return (
-    <Dialog onClose={handleClose} aria-labelledby="simple-dialog-title" open={open}>
-      <DialogTitle id="simple-dialog-title">Set backup account</DialogTitle>
-      <List>
-        {emails.map((email) => (
-          <ListItem button onClick={() => handleListItemClick(email)} key={email}>
-            <ListItemAvatar>
-              <Avatar className={classes.avatar}>
-                <PersonIcon />
-              </Avatar>
-            </ListItemAvatar>
-            <ListItemText primary={email} />
-          </ListItem>
-        ))}
-
-        <ListItem autoFocus button onClick={() => handleListItemClick('addAccount')}>
-          <ListItemAvatar>
-            <Avatar>
-              <AddIcon />
-            </Avatar>
-          </ListItemAvatar>
-          <ListItemText primary="Add account" />
-        </ListItem>
-      </List>
+    <Dialog onClose={handleClose} aria-labelledby="change-order-details" open={open} fullWidth="true">
+      <DialogTitle id="change-order-details">Change order #: CO_{changeOrder.id}</DialogTitle>
+      <DialogContent>
+          <DialogContentText>
+            Description: {changeOrder.description}
+          </DialogContentText>
+          <DialogContentText>
+            Cost: ${changeOrder.cost}
+          </DialogContentText>
+        </DialogContent>
+      <DialogActions>
+          <Button onClick={handleClose} color="primary" autoFocus>
+            Close
+          </Button>
+        </DialogActions>
     </Dialog>
   );
 }

@@ -1,4 +1,7 @@
+import { useState } from "react";
 import { makeStyles, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, CircularProgress, Button } from '@material-ui/core';
+
+import ChangeOrderDetails from './ChangeOrderDetails';
 
 const useStyle = makeStyles({
   header: {
@@ -18,6 +21,9 @@ const useStyle = makeStyles({
 export default function ChangeOrdersTable({ changeOrders, status }) {
   const classes = useStyle();
 
+  const [open, setOpen] = useState(false);
+  const [selectedValue, setSelectedValue] = useState();
+
   // if data has not yet loaded, display progress bar
   if (changeOrders.length === 0 || status.length === 0) {
     return (
@@ -29,6 +35,15 @@ export default function ChangeOrdersTable({ changeOrders, status }) {
 
   const totalCosts = () => {
     return changeOrders.map((changeOrder => changeOrder.cost)).reduce((sum, i) => sum + i, 0);
+  };
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = (value) => {
+    setOpen(false);
+    setSelectedValue(value);
   };
 
   // lookup status description from change_order_status table
@@ -52,7 +67,10 @@ export default function ChangeOrdersTable({ changeOrders, status }) {
           {changeOrders.map(changeOrder => (
             <TableRow key={changeOrder.id}>
               <TableCell component="th" scope="row" >
+                <Button variant="outlined" onClick={handleClickOpen}>
                   CO_{changeOrder.id}
+                </Button>
+                <ChangeOrderDetails changeOrder={changeOrder} open={open} onClose={handleClose} />
               </TableCell>
               <TableCell>{changeOrder.description}</TableCell>
               <TableCell align="center">{statusLookup(status, changeOrder.change_order_status_id)}</TableCell>
