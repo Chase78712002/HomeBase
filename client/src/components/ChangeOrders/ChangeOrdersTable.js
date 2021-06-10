@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 import { makeStyles, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, CircularProgress, Button, Menu, MenuItem } from '@material-ui/core';
+import ExpandMoreTwoToneIcon from '@material-ui/icons/ExpandMoreTwoTone';
 
 import ChangeOrderDetails from './ChangeOrderDetails';
 import Status from './Status';
@@ -26,6 +27,7 @@ export default function ChangeOrdersTable({ changeOrders, status }) {
   const [open, setOpen] = useState(false);
   const [currentCO, setCurrentCO] = useState(false);
   const [statusFilterId, setStatusFilterId] = useState(0);
+  const [anchorEl, setAnchorEl] = useState(null);
 
   // if data has not yet loaded, display progress bar
   if (changeOrders.length === 0 || status.length === 0) {
@@ -36,7 +38,7 @@ export default function ChangeOrdersTable({ changeOrders, status }) {
     )
   }
 
-  // const filteredCOs = changeOrders.filter(changeOrder => changeOrder.change_order_status_id === statusFilterId);
+  // set filtering options
   let filteredCOs = changeOrders;
   
   const filterByCategory = (id) => {
@@ -47,10 +49,26 @@ export default function ChangeOrdersTable({ changeOrders, status }) {
 
   filterByCategory(statusFilterId);
 
-  const totalCosts = () => {
-    return filteredCOs.map((changeOrder => changeOrder.cost)).reduce((sum, i) => sum + i, 0);
+  // filtering handlers
+
+  const handleClickMenu = (e) => {
+    setAnchorEl(e.currentTarget);
   };
 
+  const handleCloseMenu = () => {
+    setAnchorEl(null);
+  };
+
+  // calculate total change order costs (by filtered view)
+  const totalCosts = () => {    
+    return filteredCOs
+      // remove any declined COs from total
+      .filter((changeOrder => changeOrder.change_order_status_id !== 2))
+      .map((changeOrder => changeOrder.cost))
+      .reduce((sum, i) => sum + i, 0);
+  };
+
+  // dialog box handlers
   const handleClickOpen = (changeOrder) => {
     setOpen(true);
     setCurrentCO(changeOrder);
@@ -62,7 +80,7 @@ export default function ChangeOrdersTable({ changeOrders, status }) {
 
   return (
     <>
-      <Button aria-controls="filter-approved" onClick={() => setStatusFilterId(0)}>
+      {/* <Button aria-controls="filter-approved" onClick={() => setStatusFilterId(0)}>
         VIEW ALL
       </Button>
       <Button aria-controls="filter-approved" onClick={() => setStatusFilterId(1)}>
@@ -73,7 +91,7 @@ export default function ChangeOrdersTable({ changeOrders, status }) {
       </Button>
       <Button aria-controls="filter-pending" onClick={() => setStatusFilterId(3)}>
         PENDING
-      </Button>
+      </Button> */}
 
       <TableContainer component={Paper}>
         <Table className={classes.table} aria-label="change orders table">
@@ -81,8 +99,25 @@ export default function ChangeOrdersTable({ changeOrders, status }) {
             <TableRow>
               <TableCell>Reference no.</TableCell>
               <TableCell>Description</TableCell>
-              <TableCell align="center">Status</TableCell>
-              <TableCell align="right">Cost</TableCell>
+              <TableCell align="center">
+                Status
+                <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClickMenu}>
+                  <ExpandMoreTwoToneIcon />
+                </Button>
+                <Menu
+                  id="simple-menu"
+                  anchorEl={anchorEl}
+                  keepMounted
+                  open={Boolean(anchorEl)}
+                  onClose={handleCloseMenu}
+                >
+                  <MenuItem onClick={() => { setStatusFilterId(0); handleCloseMenu() }}>View all</MenuItem>
+                  <MenuItem onClick={() => { setStatusFilterId(1); handleCloseMenu() }}>Approved</MenuItem>
+                  <MenuItem onClick={() => { setStatusFilterId(2); handleCloseMenu() }}>Declined</MenuItem>
+                  <MenuItem onClick={() => { setStatusFilterId(3); handleCloseMenu() }}>Pending</MenuItem>
+                </Menu>
+              </TableCell>
+              <TableCell align="right">Payment amount</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -98,7 +133,7 @@ export default function ChangeOrdersTable({ changeOrders, status }) {
                 <TableCell align="center">
                   <Status statusId={changeOrder.change_order_status_id}/>
                 </TableCell>
-                <TableCell align="right">${changeOrder.change_order_status_id === 2 ? changeOrder.cost = 0 : changeOrder.cost}</TableCell>
+                <TableCell align="right">${changeOrder.change_order_status_id === 2 ? 0 : changeOrder.cost}</TableCell>
               </TableRow>
             ))}
             <TableRow>
