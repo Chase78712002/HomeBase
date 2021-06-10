@@ -84,8 +84,6 @@ export default function Documents() {
       axios.get("/api/documents"),
       axios.get("/api/document_categories")
     ]).then(all => {
-      console.log('request success! this is the document data: ',all[0].data)
-      console.log('request success! this is the category data: ',all[1].data)
       setState(prev => ({
         ...prev,
         documents: all[0].data,
