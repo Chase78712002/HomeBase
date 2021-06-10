@@ -46,8 +46,8 @@ export default function DocumentListItem(props) {
           )}
           {editMode && (
             <>
-              <EditFile title={title} category={category} editTitle={setTitle} editCategory={setCategory} data={props.data} />
-              <SaveButton onClick={() => setEditMode(false)} /> 
+              <EditFile title={title} category={category} editTitle={setTitle} editCategory={setCategory} data={props.data} categories={props.categories} />
+              <SaveButton onClick={()=>props.onEdit(props.id, title, category, setEditMode)} /> 
               <DeleteButton delete={props.delete} id={props.id} />
             </>
           )}

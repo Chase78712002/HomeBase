@@ -4,6 +4,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import NativeSelect from '@material-ui/core/NativeSelect';
 import InputBase from '@material-ui/core/InputBase';
+import { MenuItem, Select } from '@material-ui/core';
 
 
 
@@ -49,7 +50,11 @@ const useStyles = makeStyles((theme) => ({
   },
   root: {
     display: "flex",
-  }
+  },
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: 200,
+  },
 }));
 
 
@@ -57,6 +62,7 @@ const useStyles = makeStyles((theme) => ({
 export default function EditFile(props) {
   const classes = useStyles();
   const {title, category, editTitle, editCategory, data} = props
+  
   
    
   return (
@@ -66,22 +72,30 @@ export default function EditFile(props) {
         <BootstrapInput value={title} onChange={event => editTitle(event.target.value)} id="demo-customized-textbox"  />
       </FormControl>
       
-      <FormControl className={classes.margin}>
+      <FormControl className={classes.formControl}>
         <InputLabel id="file_category">Category</InputLabel>
-        <NativeSelect
-          id="demo-customized-select-native"
-          value={category}
-          onChange={event => editCategory(event.target.value)}
-          input={<BootstrapInput  />}
-        >
-          {data.map(file => {
-            console.log(file)
-            return (
-              <option value={file.category_type}>{file.category_type}</option>
-            )
-          })}
-          
-        </NativeSelect>
+        <Select
+                labelId="select-categories"
+                id="demo-dialog-select"
+                value={category}
+                onChange={e => editCategory(e.target.value) }
+                // input={<Input />}
+              >
+                <MenuItem value="">
+                  <em>None</em>
+                </MenuItem>
+                {props.categories.map((category) => {
+                  return (
+                    <MenuItem 
+                    key={category.id}
+                    value={category.description}
+                    // onClick={() => setCategoryID(category.id)}
+                    >
+                      {category.description}
+                    </MenuItem>
+                  );
+                })}
+              </Select>
       </FormControl>
     </div>
   );

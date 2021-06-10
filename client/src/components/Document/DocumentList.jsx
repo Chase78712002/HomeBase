@@ -5,6 +5,7 @@ import DocumentListItem from './DocumentListItem';
 
 
 export default function DocumentList(props) {
+  console.log(`doc list props.data ${props.data}`)
   const listOfDocItems = props.data.map(file => {
     return (
       <DocumentListItem 
@@ -15,7 +16,9 @@ export default function DocumentList(props) {
         path={file.path}
         project_id={file.project_id}
         data={props.data}
-        delete={props.delete}
+        categories={props.categories}
+        delete={props.onDelete}
+        onEdit={props.onEdit}
         />
     )
   })
