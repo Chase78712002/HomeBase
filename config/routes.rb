@@ -18,6 +18,7 @@ Rails.application.routes.draw do
 
     resources :transaction_bills, except: [:new, :edit]
     resources :budget_categories, except: [:new, :edit]
+    resources :document_categories, except: [:new, :edit]
 
 
   end

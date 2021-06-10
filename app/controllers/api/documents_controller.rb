@@ -10,7 +10,7 @@ class Api::DocumentsController < ApplicationController
     if @document.save
       render json: @document
     else
-      render json: { error: document.errors.messages }, status: 422
+      render json: { error: @document.errors.messages }, status: 422
     end
   end
 
@@ -26,7 +26,7 @@ class Api::DocumentsController < ApplicationController
     if @document.destroy
       head :no_content
     else
-      render json: { error: document.errors.messages }, status: 422
+      render json: { error: @document.errors.messages }, status: 422
     end
   end
 
@@ -35,6 +35,7 @@ class Api::DocumentsController < ApplicationController
       params.require(:document).permit(
         :title,
         :document_category_id,
+        :category_type,
         :path,
         :project_id
       )
