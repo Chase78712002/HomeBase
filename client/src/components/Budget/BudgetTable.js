@@ -31,6 +31,15 @@ export default function BudgetTable({categories}) {
     )
   }
 
+  const totalCosts = (value) => {
+    return categories.map((category => category[value])).reduce((sum, i) => sum + i, 0);
+  };
+
+  // variables for table totals
+  const totalEstimate = totalCosts('estimate_amount');
+  const totalActual = totalCosts('actual_amount');
+  const totalVariance = totalEstimate - totalActual;
+
   return (
     <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="budget table">
@@ -53,6 +62,12 @@ export default function BudgetTable({categories}) {
               <TableCell align="right">${category.estimate_amount - category.actual_amount}</TableCell>
             </TableRow>
           ))}
+          <TableRow>
+            <TableCell><strong>TOTALS:</strong></TableCell>
+            <TableCell align="right">${totalEstimate}</TableCell>
+            <TableCell align="right">${totalActual}</TableCell>
+            <TableCell align="right">${totalVariance}</TableCell>
+          </TableRow>
         </TableBody>
       </Table>
     </TableContainer>
