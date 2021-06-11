@@ -41,8 +41,13 @@ class Api::BudgetCategoriesController < ApplicationController
       params.require(:budget_category).permit(
         :description,
         :estimate_amount,
+<<<<<<< HEAD
         :actual_amount,
         :project_id
+=======
+        :project_id,
+        :actual_amount
+>>>>>>> faef01953c79ee93a48c2500c836f0b60dd50fca
       )
     end
 

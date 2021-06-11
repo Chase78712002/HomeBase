@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 2021_06_11_184900) do
+=======
+ActiveRecord::Schema.define(version: 2021_10_09_053235) do
+>>>>>>> faef01953c79ee93a48c2500c836f0b60dd50fca
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,14 +38,22 @@ ActiveRecord::Schema.define(version: 2021_06_11_184900) do
     t.string "password_digest"
   end
 
+  create_table "change_order_statuses", force: :cascade do |t|
+    t.string "status"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "change_orders", force: :cascade do |t|
     t.string "description"
     t.integer "cost"
-    t.boolean "approval", default: false
     t.string "path"
+    t.bigint "change_order_status_id", null: false
     t.bigint "project_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "quantity"
+    t.index ["change_order_status_id"], name: "index_change_orders_on_change_order_status_id"
     t.index ["project_id"], name: "index_change_orders_on_project_id"
   end
 
@@ -54,13 +66,21 @@ ActiveRecord::Schema.define(version: 2021_06_11_184900) do
     t.string "password_digest"
   end
 
+  create_table "document_categories", force: :cascade do |t|
+    t.string "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "documents", force: :cascade do |t|
     t.string "title"
     t.string "category_type"
     t.string "path"
+    t.bigint "document_category_id", null: false
     t.bigint "project_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["document_category_id"], name: "index_documents_on_document_category_id"
     t.index ["project_id"], name: "index_documents_on_project_id"
   end
 
@@ -85,6 +105,8 @@ ActiveRecord::Schema.define(version: 2021_06_11_184900) do
     t.bigint "client_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "avatarSrc"
+    t.string "address"
     t.index ["builder_id"], name: "index_projects_on_builder_id"
     t.index ["client_id"], name: "index_projects_on_client_id"
   end
@@ -93,11 +115,11 @@ ActiveRecord::Schema.define(version: 2021_06_11_184900) do
     t.string "description"
     t.integer "amount"
     t.date "date"
-    t.bigint "change_order_id", null: false
-    t.bigint "milestone_id", null: false
     t.bigint "budget_category_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "milestone_id"
+    t.bigint "change_order_id"
     t.index ["budget_category_id"], name: "index_transaction_bills_on_budget_category_id"
     t.index ["change_order_id"], name: "index_transaction_bills_on_change_order_id"
     t.index ["milestone_id"], name: "index_transaction_bills_on_milestone_id"
@@ -112,7 +134,9 @@ ActiveRecord::Schema.define(version: 2021_06_11_184900) do
   end
 
   add_foreign_key "budget_categories", "projects"
+  add_foreign_key "change_orders", "change_order_statuses"
   add_foreign_key "change_orders", "projects"
+  add_foreign_key "documents", "document_categories"
   add_foreign_key "documents", "projects"
   add_foreign_key "milestones", "projects"
   add_foreign_key "projects", "builders"

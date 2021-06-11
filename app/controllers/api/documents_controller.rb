@@ -2,21 +2,16 @@ class Api::DocumentsController < ApplicationController
   def index
     @documents = Document.all
 
-    render json: @documents #the .to_json is implicitly run by Rails, it is not needed
+    render json: @documents.as_json(include: :document_category)
+    #the .to_json is implicitly run by Rails, it is not needed
   end
 
   def create
-    # @document = Document.find_or_create_by(
-    #   title: params[:title],
-    #   category_type: params[:category_type],
-    #   path: params[:path],
-    #   project_id: params[:project_id]
-    # )
     @document = Document.new document_params
     if @document.save
       render json: @document
     else
-      render json: { error: document.errors.messages }, status: 422
+      render json: { error: @document.errors.messages }, status: 422
     end
   end
 
@@ -32,7 +27,7 @@ class Api::DocumentsController < ApplicationController
     if @document.destroy
       head :no_content
     else
-      render json: { error: document.errors.messages }, status: 422
+      render json: { error: @document.errors.messages }, status: 422
     end
   end
 
@@ -40,6 +35,7 @@ class Api::DocumentsController < ApplicationController
     def document_params
       params.require(:document).permit(
         :title,
+        :document_category_id,
         :category_type,
         :path,
         :project_id

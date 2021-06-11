@@ -145,7 +145,13 @@ h1 {
   z-index: 100;
 }
 
+.timeline-item:nth-child(odd) .timeline-item-content .circle-complete {
+  right: auto;
+  left: -45px;
+}
+
 .timeline-item:nth-child(odd) .timeline-item-content .circle {
   right: auto;
   left: -40px;
 }
+

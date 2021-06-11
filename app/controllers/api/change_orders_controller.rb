@@ -2,7 +2,7 @@ class Api::ChangeOrdersController < ApplicationController
   def index
     @change_orders = ChangeOrder.all
 
-    render json: @change_orders
+    render json: @change_orders.as_json(include: :change_order_status)
   end
 
   def create

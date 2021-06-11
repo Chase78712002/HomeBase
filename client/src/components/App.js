@@ -20,8 +20,12 @@ import Schedule from "./Schedule";
 import Budget from "./Budget";
 import ChangeOrders from "./ChangeOrders";
 import Documents from "./Documents";
+<<<<<<< HEAD
 import Signup from "./Signup";
 
+=======
+import Home from "./Home/index"
+>>>>>>> faef01953c79ee93a48c2500c836f0b60dd50fca
 import "./App.scss";
 import { useState } from "react";
 import { useEffect } from "react";
@@ -92,6 +96,13 @@ const menuItems = [
     path: "/",
     component: null,
   },
+  {
+    id: 9,
+    text: "Projects-Builder view",
+    icon: <DescriptionTwoToneIcon />,
+    path: "/projects",
+    component: Home
+  }
 ];
 
 export default function App() {
