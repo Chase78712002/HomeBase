@@ -7,13 +7,7 @@ import {
   Box,
   Card,
   CardHeader,
-  CardContent,
-  Table,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Paper,
+  CardContent
 } from "@material-ui/core";
 
 import BudgetList from "./Budget/BudgetList";
