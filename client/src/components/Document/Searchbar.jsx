@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { fade, makeStyles } from "@material-ui/core";
 import SearchIcon from '@material-ui/icons/Search';
 import InputBase from '@material-ui/core/InputBase';
@@ -49,9 +49,9 @@ const useStyle = makeStyles(theme => ({
   },
 }))
 
-export default function SearchBar() {
+export default function SearchBar(props) {
   const classes = useStyle();
-
+  
   return (
     <div className={classes.search}>
       <div className={classes.searchIcon}>
@@ -59,6 +59,7 @@ export default function SearchBar() {
       </div>
       <InputBase
         placeholder="Search…"
+        onChange={event => props.setSearchTerm(event.target.value)}
         classes={{
           root: classes.inputRoot,
           input: classes.inputInput,
