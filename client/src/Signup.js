@@ -1,7 +1,8 @@
 import React, { useState } from "react";
+import { Link, Redirect } from "react-router-dom";
 import axios from "axios";
 
-function Signup() {
+function Signup(props) {
   const [state, setState] = useState({
     username: "",
     email: "",
@@ -23,6 +24,32 @@ function Signup() {
       password: password,
       password_confirmation: password_confirmation,
     };
+
+    axios
+      .post("/login", { user }, { withCredentials: true })
+      .then((response) => {
+        if (response.data.logged_in) {
+          props.handleLogin(response.data);
+          <Redirect to="/" />;
+        } else {
+          setState({
+            errors: response.data.errors,
+          });
+        }
+      })
+      .catch((error) => console.log("api errors:", error));
+  };
+
+  const handleErrors = () => {
+    return (
+      <div>
+        <ul>
+          {state.errors.map((error) => {
+            return <li key={error}>{error}</li>;
+          })}
+        </ul>
+      </div>
+    );
   };
 
   return (
