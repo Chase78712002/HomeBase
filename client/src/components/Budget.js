@@ -208,11 +208,13 @@ export default function Budget() {
       {/* <Typography className={classes.heading} variant="h5">
         Transaction history
       </Typography>
-      <TransactionsList transactions={state.transactions} />
+      <TransactionsList transactions={state.transactions} /> */}
 
-      <Divider /> */}
+      <br />
+      <Divider />
+      <br />
 
-      {/* <Box className={classes.container}>
+      <Box className={classes.container}>
         <Card className={classes.root}>
           <CardHeader
             className={classes.heading}
@@ -232,7 +234,7 @@ export default function Budget() {
             />
           </CardContent>
         </Card>
-      </Box> */}
+      </Box>
     </section>
   );
 }
