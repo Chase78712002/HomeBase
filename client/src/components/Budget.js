@@ -16,7 +16,7 @@ import {
   Paper,
 } from "@material-ui/core";
 
-import BudgetTable from "./Budget/BudgetTable";
+import BudgetList from "./Budget/BudgetList";
 import NewCategory from "./Budget/NewCategory";
 import NewTransaction from "./Budget/NewTransaction";
 
@@ -141,14 +141,13 @@ export default function Budget() {
         <Table className={classes.table} aria-label="budget table">
           <TableHead>
             <TableRow>
-              <TableCell></TableCell>
               <TableCell>Category</TableCell>
               <TableCell align="right">Estimate</TableCell>
               <TableCell align="right">Actual</TableCell>
               <TableCell align="right">Variance</TableCell>
             </TableRow>
           </TableHead>
-          <BudgetTable categories={state.categories} transactions={state.transactions} />
+          <BudgetList categories={state.categories} transactions={state.transactions} />
         </Table>
       </TableContainer>
 

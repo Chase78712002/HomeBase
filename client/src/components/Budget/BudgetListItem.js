@@ -1,59 +1,53 @@
-import { useState } from 'react';
-import { makeStyles, Collapse, Box, Typography, Table, TableHead, TableCell, TableRow, TableBody } from '@material-ui/core';
+import { useState, useEffect } from 'react';
+import { Collapse, Box, Table, TableHead, TableCell, TableRow, TableBody } from '@material-ui/core';
 import IconButton from '@material-ui/core/IconButton';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 
-const useStyle = makeStyles({
-  root: {
-    '& > *': {
-      borderBottom: 'unset',
-    },
-  },
-});
-
-export default function TransactionRowItem( { category, transactions, setCurrentCategoryId }) {
-  const classes = useStyle();
+export default function TransactionRowItem( { category, transactions }) {
   const [open, setOpen] = useState(false);
+  const [currentCategoryId, setCurrentCategoryId] = useState('');
+  const [currentCategoryTransactions, setCurrentCategoryTransactions] = useState(transactions);
+  
+  useEffect(() => {
+    const filteredTransactions = transactions.filter(transaction => transaction.budget_category_id === currentCategoryId);
+    setCurrentCategoryTransactions(filteredTransactions);
+    
+  }, [currentCategoryId, transactions]);
 
   return (
     <>
-     <TableRow className={classes.root}>
-        <TableCell>
+     <TableRow>
+        <TableCell component="th" scope="row">
           <IconButton aria-label="expand row" size="small" onClick={() => { setCurrentCategoryId(category.id); setOpen(!open);}}>
             {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
           </IconButton>
-        </TableCell>
-        <TableCell component="th" scope="row">
           {category.description}
         </TableCell>
-        <TableCell align="right">{category.estimate_amount}</TableCell>
-        <TableCell align="right">{category.actual_amount}</TableCell>
-        <TableCell align="right">{category.estimate_amount - category.actual_amount}</TableCell>
+        <TableCell align="right">${category.estimate_amount}</TableCell>
+        <TableCell align="right">${category.actual_amount}</TableCell>
+        <TableCell align="right">${category.estimate_amount - category.actual_amount}</TableCell>
       </TableRow>
       <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
           <Collapse in={open} timeout="auto" unmountOnExit>
             <Box margin={1}>
-              <Typography variant="h6" gutterBottom component="div">
-                History
-              </Typography>
               <Table size="small" aria-label="purchases">
                 <TableHead>
                   <TableRow>
-                    <TableCell>Description</TableCell>
+                    <TableCell colSpan="2">Transaction</TableCell>
                     <TableCell>Date</TableCell>
                     <TableCell align="right">Amount</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {transactions.map((transaction) => (
+                  {currentCategoryTransactions.map((transaction) => (
                     <TableRow key={transaction.id}>
-                      <TableCell component="th" scope="row">
+                      <TableCell component="th" scope="row" colSpan="2">
                         {transaction.description}
                       </TableCell>
                       <TableCell>{transaction.date}</TableCell>
-                      <TableCell align="right">{transaction.amount}</TableCell>
+                      <TableCell align="right">${transaction.amount}</TableCell>
                     </TableRow>
                   ))}
                 </TableBody>
@@ -63,5 +57,5 @@ export default function TransactionRowItem( { category, transactions, setCurrent
         </TableCell>
       </TableRow>
   </>
-  )
+  );
 }
