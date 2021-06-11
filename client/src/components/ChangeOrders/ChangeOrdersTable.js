@@ -79,71 +79,56 @@ export default function ChangeOrdersTable({ changeOrders, status }) {
   };
 
   return (
-    <>
-      {/* <Button aria-controls="filter-approved" onClick={() => setStatusFilterId(0)}>
-        VIEW ALL
-      </Button>
-      <Button aria-controls="filter-approved" onClick={() => setStatusFilterId(1)}>
-        APPROVED
-      </Button>
-      <Button aria-controls="filter-declined" onClick={() => setStatusFilterId(2)}>
-        DECLINED
-      </Button>
-      <Button aria-controls="filter-pending" onClick={() => setStatusFilterId(3)}>
-        PENDING
-      </Button> */}
-
-      <TableContainer component={Paper}>
-        <Table className={classes.table} aria-label="change orders table">
-          <TableHead>
-            <TableRow>
-              <TableCell>Reference no.</TableCell>
-              <TableCell>Description</TableCell>
-              <TableCell align="center">
-                Status
-                <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClickMenu}>
-                  <ExpandMoreTwoToneIcon />
+    <TableContainer component={Paper}>
+      <Table className={classes.table} aria-label="change orders table">
+        <TableHead>
+          <TableRow>
+            <TableCell>Reference no.</TableCell>
+            <TableCell>Description</TableCell>
+            <TableCell align="center">
+              Status
+              <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClickMenu}>
+                <ExpandMoreTwoToneIcon />
+              </Button>
+              <Menu
+                id="simple-menu"
+                anchorEl={anchorEl}
+                keepMounted
+                open={Boolean(anchorEl)}
+                onClose={handleCloseMenu}
+              >
+                <MenuItem onClick={() => { setStatusFilterId(0); handleCloseMenu() }}>View all</MenuItem>
+                <MenuItem onClick={() => { setStatusFilterId(1); handleCloseMenu() }}>Approved</MenuItem>
+                <MenuItem onClick={() => { setStatusFilterId(2); handleCloseMenu() }}>Declined</MenuItem>
+                <MenuItem onClick={() => { setStatusFilterId(3); handleCloseMenu() }}>Pending</MenuItem>
+              </Menu>
+            </TableCell>
+            <TableCell align="right">Payment amount</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {filteredCOs.map(changeOrder => (
+            <TableRow key={changeOrder.id}>
+              <TableCell component="th" scope="row" >
+                <Button variant="outlined" onClick={() => handleClickOpen(changeOrder)}>
+                  CO_{changeOrder.id}
                 </Button>
-                <Menu
-                  id="simple-menu"
-                  anchorEl={anchorEl}
-                  keepMounted
-                  open={Boolean(anchorEl)}
-                  onClose={handleCloseMenu}
-                >
-                  <MenuItem onClick={() => { setStatusFilterId(0); handleCloseMenu() }}>View all</MenuItem>
-                  <MenuItem onClick={() => { setStatusFilterId(1); handleCloseMenu() }}>Approved</MenuItem>
-                  <MenuItem onClick={() => { setStatusFilterId(2); handleCloseMenu() }}>Declined</MenuItem>
-                  <MenuItem onClick={() => { setStatusFilterId(3); handleCloseMenu() }}>Pending</MenuItem>
-                </Menu>
+                <ChangeOrderDetails currentCO={currentCO} open={open} onClose={handleClose} />
               </TableCell>
-              <TableCell align="right">Payment amount</TableCell>
+              <TableCell>{changeOrder.description}</TableCell>
+              <TableCell align="center">
+                <Status statusId={changeOrder.change_order_status_id}/>
+              </TableCell>
+              <TableCell align="right">${changeOrder.change_order_status_id === 2 ? 0 : changeOrder.cost}</TableCell>
             </TableRow>
-          </TableHead>
-          <TableBody>
-            {filteredCOs.map(changeOrder => (
-              <TableRow key={changeOrder.id}>
-                <TableCell component="th" scope="row" >
-                  <Button variant="outlined" onClick={() => handleClickOpen(changeOrder)}>
-                    CO_{changeOrder.id}
-                  </Button>
-                  <ChangeOrderDetails currentCO={currentCO} open={open} onClose={handleClose} />
-                </TableCell>
-                <TableCell>{changeOrder.description}</TableCell>
-                <TableCell align="center">
-                  <Status statusId={changeOrder.change_order_status_id}/>
-                </TableCell>
-                <TableCell align="right">${changeOrder.change_order_status_id === 2 ? 0 : changeOrder.cost}</TableCell>
-              </TableRow>
-            ))}
-            <TableRow>
-              <TableCell colSpan={2} />
-              <TableCell align="center"><strong>TOTAL:</strong></TableCell>
-              <TableCell align="right"><strong>${totalCosts()}</strong></TableCell>
-            </TableRow>
-          </TableBody>
-        </Table>
-      </TableContainer>
-    </>
+          ))}
+          <TableRow>
+            <TableCell colSpan={2} />
+            <TableCell align="center"><strong>TOTAL:</strong></TableCell>
+            <TableCell align="right"><strong>${totalCosts()}</strong></TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
+    </TableContainer>
   )
 }
