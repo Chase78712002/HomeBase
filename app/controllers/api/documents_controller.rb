@@ -2,7 +2,8 @@ class Api::DocumentsController < ApplicationController
   def index
     @documents = Document.all
 
-    render json: @documents #the .to_json is implicitly run by Rails, it is not needed
+    render json: @documents.as_json(include: :document_category)
+    #the .to_json is implicitly run by Rails, it is not needed
   end
 
   def create

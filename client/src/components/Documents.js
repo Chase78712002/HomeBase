@@ -26,6 +26,7 @@ export default function Documents() {
     documents: [],
     categories: []
   })
+  const [searchTerm, setSearchTerm] = useState("");
 
   const deleteFile = (id) => {
     return axios.delete(`/api/documents/${id}`)
@@ -84,8 +85,6 @@ export default function Documents() {
       axios.get("/api/documents"),
       axios.get("/api/document_categories")
     ]).then(all => {
-      console.log('request success! this is the document data: ',all[0].data)
-      console.log('request success! this is the category data: ',all[1].data)
       setState(prev => ({
         ...prev,
         documents: all[0].data,
@@ -93,18 +92,26 @@ export default function Documents() {
       }))  
     })
   },[]);
+
+  const filteredDoc = state.documents.filter(docObj => {
+    if (searchTerm === ""){
+      return docObj 
+    } else if (docObj.title.toLowerCase().includes(searchTerm.toLowerCase())) {
+      return docObj
+    }
+    return 0;
+  })
   return (
     <section className="content">
       <h1>Documents</h1>
 
       <ThemeProvider theme={theme}>
         <Container maxWidth="lg" disableGutters={true}>
-          {/* <SearchBar /> */}
+          <SearchBar setSearchTerm={setSearchTerm} />
           <AddNewDocument categories={state.categories} onSave={saveFile} />
         </Container>
       </ThemeProvider>
-      
-      <DocumentList data={state.documents} categories={state.categories} onEdit={editFile} onDelete={deleteFile} />
+      <DocumentList data={filteredDoc} categories={state.categories} onEdit={editFile} onDelete={deleteFile} />
       
     </section>
   );

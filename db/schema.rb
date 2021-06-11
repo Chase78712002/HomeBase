@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_09_053232) do
+ActiveRecord::Schema.define(version: 2021_10_09_053235) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(version: 2021_10_09_053232) do
     t.bigint "project_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "quantity"
     t.index ["change_order_status_id"], name: "index_change_orders_on_change_order_status_id"
     t.index ["project_id"], name: "index_change_orders_on_project_id"
   end
@@ -100,6 +101,8 @@ ActiveRecord::Schema.define(version: 2021_10_09_053232) do
     t.bigint "client_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "avatarSrc"
+    t.string "address"
     t.index ["builder_id"], name: "index_projects_on_builder_id"
     t.index ["client_id"], name: "index_projects_on_client_id"
   end
