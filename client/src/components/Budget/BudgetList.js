@@ -1,6 +1,6 @@
 import { 
-  makeStyles, CircularProgress,
-  TableBody, TableRow, TableCell,
+  makeStyles, CircularProgress, Paper,
+  TableContainer, Table, TableHead, TableBody, TableRow, TableCell,
 } from '@material-ui/core';
 
 import BudgetListItem from './BudgetListItem';
@@ -15,7 +15,7 @@ const useStyle = makeStyles({
   },
 });
 
-export default function BudgetTable({ categories, transactions }) {
+export default function BudgetList({ categories, transactions }) {
   const classes = useStyle();
   
   if (categories.length === 0 || transactions.length === 0) {
@@ -36,16 +36,28 @@ export default function BudgetTable({ categories, transactions }) {
   const totalVariance = totalEstimate - totalActual;
 
   return (
-    <TableBody>
-      {categories.map((category) => (
-        <BudgetListItem category={category} transactions={transactions}/>
-      ))}
-      <TableRow>
-        <TableCell><strong>TOTAL:</strong></TableCell>
-        <TableCell align="right"><strong>${totalEstimate}</strong></TableCell>
-        <TableCell align="right"><strong>${totalActual}</strong></TableCell>
-        <TableCell align="right"><strong>${totalVariance}</strong></TableCell>
-      </TableRow>
-    </TableBody>
+    <TableContainer component={Paper}>
+    <Table className={classes.table} aria-label="budget table">
+      <TableHead>
+        <TableRow>
+          <TableCell>Category</TableCell>
+          <TableCell align="right">Estimate</TableCell>
+          <TableCell align="right">Actual</TableCell>
+          <TableCell align="right">Variance</TableCell>
+        </TableRow>
+      </TableHead>
+      <TableBody>
+        {categories.map((category) => (
+        <BudgetListItem key={category.id} category={category} transactions={transactions}/>
+        ))}
+        <TableRow>
+          <TableCell><strong>TOTAL:</strong></TableCell>
+          <TableCell align="right"><strong>${totalEstimate}</strong></TableCell>
+          <TableCell align="right"><strong>${totalActual}</strong></TableCell>
+          <TableCell align="right"><strong>${totalVariance}</strong></TableCell>
+        </TableRow>
+      </TableBody>
+    </Table>
+  </TableContainer>
   );
 }

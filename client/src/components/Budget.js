@@ -137,19 +137,7 @@ export default function Budget() {
     <section className="content">
       <Typography className={classes.header}>Budget</Typography>
 
-      <TableContainer component={Paper}>
-        <Table className={classes.table} aria-label="budget table">
-          <TableHead>
-            <TableRow>
-              <TableCell>Category</TableCell>
-              <TableCell align="right">Estimate</TableCell>
-              <TableCell align="right">Actual</TableCell>
-              <TableCell align="right">Variance</TableCell>
-            </TableRow>
-          </TableHead>
-          <BudgetList categories={state.categories} transactions={state.transactions} />
-        </Table>
-      </TableContainer>
+      <BudgetList categories={state.categories} transactions={state.transactions} />
 
       <Box className={classes.container}>
         <Card className={classes.root}>
