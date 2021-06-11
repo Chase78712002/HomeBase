@@ -17,6 +17,9 @@ const useStyle = makeStyles({
   progress: {
     color: '#679436'
   },
+  footer: {
+    backgroundColor: '#f5f5f5',
+  }
 });
 
 export default function BudgetList({ categories, transactions }) {
@@ -44,10 +47,10 @@ export default function BudgetList({ categories, transactions }) {
       <Table className={classes.table} aria-label="budget table">
         <TableHead>
           <TableRow>
-            <TableCell className={classes.head}>CATEGORY</TableCell>
-            <TableCell className={classes.head} align="right">ESTIMATE</TableCell>
-            <TableCell className={classes.head} align="right">ACTUAL</TableCell>
-            <TableCell className={classes.head} align="right">VARIANCE</TableCell>
+            <TableCell>CATEGORY</TableCell>
+            <TableCell align="right">ESTIMATE</TableCell>
+            <TableCell align="right">ACTUAL</TableCell>
+            <TableCell align="right">VARIANCE</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -55,10 +58,10 @@ export default function BudgetList({ categories, transactions }) {
           <BudgetListItem key={category.id} category={category} transactions={transactions}/>
           ))}
           <TableRow>
-            <TableCell><strong>TOTAL:</strong></TableCell>
-            <TableCell align="right"><strong>${totalEstimate}</strong></TableCell>
-            <TableCell align="right"><strong>${totalActual}</strong></TableCell>
-            <TableCell align="right"><strong>${totalVariance}</strong></TableCell>
+            <TableCell className={classes.footer} ><strong>TOTAL:</strong></TableCell>
+            <TableCell className={classes.footer} align="right"><strong>${totalEstimate}</strong></TableCell>
+            <TableCell className={classes.footer} align="right"><strong>${totalActual}</strong></TableCell>
+            <TableCell className={classes.footer} align="right"><strong>${totalVariance}</strong></TableCell>
           </TableRow>
         </TableBody>
       </Table>

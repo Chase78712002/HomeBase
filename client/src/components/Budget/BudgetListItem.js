@@ -7,10 +7,11 @@ import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 const useStyle = makeStyles({
   transactions: {
     backgroundColor: '#ebf2fa',
-    paddingBottom: 0,
-    paddingTop: 0,
-    paddingRight: 0
+    padding: 0,
   },
+  header: {
+    color: "#05668d",
+  }
 });
 
 export default function BudgetListItem( { category, transactions }) {
@@ -28,9 +29,9 @@ export default function BudgetListItem( { category, transactions }) {
 
   return (
     <>
-     <TableRow>
+     <TableRow onClick={() => { setCurrentCategoryId(category.id); setOpen(!open);}}>
         <TableCell component="th" scope="row">
-          <IconButton aria-label="expand row" size="small" onClick={() => { setCurrentCategoryId(category.id); setOpen(!open);}}>
+          <IconButton aria-label="expand row" size="small">
             {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
           </IconButton>
           {category.description}
@@ -46,9 +47,9 @@ export default function BudgetListItem( { category, transactions }) {
             <Table size="small" aria-label="transactions">
               <TableHead>
                 <TableRow>
-                  <TableCell colSpan="2">TRANSACTION DETAILS</TableCell>
-                  <TableCell>DATE</TableCell>
-                  <TableCell align="right">AMOUNT</TableCell>
+                  <TableCell className={classes.header} colSpan="2">TRANSACTION DETAILS</TableCell>
+                  <TableCell className={classes.header}>DATE</TableCell>
+                  <TableCell className={classes.header} align="right">AMOUNT</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>

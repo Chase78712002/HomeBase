@@ -2,9 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 import {
-  makeStyles, Typography, Grid,
-  Card, CardHeader, CardContent
-} from "@material-ui/core";
+  makeStyles, Typography, Grid, Card, Divider } from "@material-ui/core";
 
 import BudgetList from "./Budget/BudgetList";
 import NewCategory from "./Budget/NewCategory";
@@ -20,14 +18,15 @@ const useStyle = makeStyles({
       flex: 1,
     },
   },
+  /* Can delete after title component is created */
   header: {
     color: "#05668d",
     fontSize: 30,
     margin: "10px 0",
   },
+  /* end */
   heading: {
-    marginTop: 25,
-    color: "#679436",
+    color: "#05668d",
   },
   grid: {
     "& > *": {
@@ -37,11 +36,10 @@ const useStyle = makeStyles({
   divider: {
     margin: "20px 0",
   },
-  root: {
-    flexGrow: 1,
-  },
   card: {
     margin: 0,
+    padding: "1em",
+    backgroundColor: "#ebf2fa"
   },
 });
 
@@ -129,28 +127,26 @@ export default function Budget() {
 
       <BudgetList categories={state.categories} transactions={state.transactions} />
 
-      <br />
+      <Divider className={classes.divider}/>
 
-      <Grid className={classes.container}>
-        <Card className={classes.root} xs={6}>
-          <CardHeader
-            className={classes.heading}
-            title="Add new budget category"
-          />
-          <CardContent className="card">
+      <Grid container spacing={2}>
+        <Grid item xs={6}>
+          <Card className={classes.card}>
+            <Typography variant="h6" className={classes.heading}>
+              Add new category
+            </Typography>
             <NewCategory addCategory={addCategory} />
-          </CardContent>
-        </Card>
-        <Card className={classes.root} xs={6}>
-          <CardHeader className={classes.heading} title="Add new transaction" />
-          <CardContent>
-            <NewTransaction
-              categories={state.categories}
-              addTransaction={addTransaction}
-              updateActual={updateActual}
-            />
-          </CardContent>
-        </Card>
+          </Card>
+        </Grid>
+
+        <Grid item xs={6}>
+          <Card className={classes.card}>
+            <Typography variant="h6" className={classes.heading}>
+              Add new transaction
+            </Typography>
+            <NewTransaction categories={state.categories} addTransaction={addTransaction} updateActual={updateActual} />
+          </Card>
+        </Grid>
       </Grid>
     </section>
   );
