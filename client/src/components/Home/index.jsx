@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Grid, makeStyles } from "@material-ui/core";
+import Grid from '@material-ui/core/Grid';
+import {makeStyles} from '@material-ui/core/styles'
 import ProjectItem from "./ProjectItem";
 import axios from "axios";
 import AddNewProject from "./AddNewProject";
@@ -28,7 +29,7 @@ export default function Home() {
       <Grid container direction="row" spacing={4}>
         {projectData.map((projectObj) => {
           return (
-            <Grid item xs={12} sm={6} md={4} key={projectObj.id}>
+            <Grid item xs={12} sm={4} key={projectObj.id}>
               <ProjectItem {...projectObj} />
             </Grid>
           );
