@@ -20,7 +20,6 @@ import Schedule from "./Schedule";
 import Budget from "./Budget";
 import ChangeOrders from "./ChangeOrders";
 import Documents from "./Documents";
-import Signup from "./Signup";
 
 import Home from "./Home/index";
 import "./App.scss";
