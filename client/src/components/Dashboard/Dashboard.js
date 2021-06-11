@@ -9,7 +9,6 @@ import BudgetGraph from "./BudgetGraph";
 import "./Dashboard.scss";
 
 import { CircularProgress } from "@material-ui/core";
-import { PieChart, Pie, ResponsiveContainer, Cell } from "recharts";
 
 /*We need to grab info about the:
  -project -> description, start date, For client: ___
