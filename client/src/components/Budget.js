@@ -5,7 +5,6 @@ import {
   makeStyles,
   Typography,
   Box,
-  Divider,
   Card,
   CardHeader,
   CardContent,
@@ -18,7 +17,6 @@ import {
 } from "@material-ui/core";
 
 import BudgetTable from "./Budget/BudgetTable";
-import TransactionsList from "./Budget/TransactionsList";
 import NewCategory from "./Budget/NewCategory";
 import NewTransaction from "./Budget/NewTransaction";
 
@@ -56,57 +54,6 @@ const useStyle = makeStyles({
     margin: 0,
   },
 });
-
-// const categoryData = [
-//   {
-//     id: 1,
-//     description: 'Construction costs',
-//     estimate_amount: 350000,
-//     actual_amount: 6250
-//   },
-//   {
-//     id: 2,
-//     description: 'Change orders',
-//     estimate_amount: 100000,
-//     actual_amount: 500
-//   },
-//   {
-//     id: 3,
-//     description: 'Appliances',
-//     estimate_amount: 3000,
-//     actual_amount: 1500
-//   },
-//   {
-//     id: 4,
-//     description: 'Misc',
-//     estimate_amount: 10000,
-//     actual_amount: 0
-//   }
-// ];
-
-// const transactionData = [
-//   {
-//     id: 1,
-//     description: 'Excavation and backfill',
-//     amount: 6250,
-//     date: '2021-04-25',
-//     budget_category_id: 1
-//   },
-//   {
-//     id: 2,
-//     description: 'Stainless steel faucet',
-//     amount: 500,
-//     date: '2021-05-15',
-//     budget_category_id: 2
-//   },
-//   {
-//     id: 3,
-//     description: 'Bar fridge',
-//     amount: 1500,
-//     date: '2021-06-04',
-//     budget_category_id: 3
-//   }
-// ]
 
 export default function Budget() {
   const classes = useStyle();
@@ -204,15 +151,6 @@ export default function Budget() {
           <BudgetTable categories={state.categories} transactions={state.transactions} />
         </Table>
       </TableContainer>
-
-      {/* <Typography className={classes.heading} variant="h5">
-        Transaction history
-      </Typography>
-      <TransactionsList transactions={state.transactions} /> */}
-
-      <br />
-      <Divider />
-      <br />
 
       <Box className={classes.container}>
         <Card className={classes.root}>
