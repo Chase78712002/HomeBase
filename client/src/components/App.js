@@ -20,7 +20,7 @@ import Schedule from "./Schedule";
 import Budget from "./Budget";
 import ChangeOrders from "./ChangeOrders";
 import Documents from "./Documents";
-import Home from "./Home/index"
+import Home from "./Home/index";
 import "./App.scss";
 
 const useStyles = makeStyles((theme) => ({
@@ -72,8 +72,8 @@ const menuItems = [
     text: "Projects-Builder view",
     icon: <DescriptionTwoToneIcon />,
     path: "/projects",
-    component: Home
-  }
+    component: Home,
+  },
 ];
 
 export default function App() {
