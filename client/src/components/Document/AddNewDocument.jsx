@@ -36,16 +36,15 @@ export default function AddNewDocument(props) {
   const [path, setPath] = useState();
   const [projectId, setProjectId] = useState(1);
   const [categoryID, setCategoryID] = useState();
-
-  const handleChange = (event) => {
-    setCategory(event.target.value);
-  };
-
+  
   const handleClickOpen = () => {
     setOpen(true);
   };
 
   const handleClose = () => {
+    setFileName("")
+    setCategory("")
+    setPath("")
     setOpen(false);
   };
 

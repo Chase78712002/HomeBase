@@ -5,7 +5,6 @@ import DocumentListItem from './DocumentListItem';
 
 
 export default function DocumentList(props) {
-  console.log(`doc list props.data ${props.data}`)
   const listOfDocItems = props.data.map(file => {
     return (
       <DocumentListItem 
