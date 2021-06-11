@@ -9,6 +9,16 @@ Rails.application.routes.draw do
 
     get '/data', to: 'tests#index' #<--- from boilerplate
 
+    # Could delete
+    get '/signup' => 'users#new'
+    post '/users' => 'users#create'
+    # could delete ^^
+
+    get '/login' => 'sessions#new'
+    post '/login' => 'sessions#create'
+    get '/logout' => 'sessions#destroy'
+
+
     resources :projects, only: [:index, :show]
     resources :documents, only: [:index, :create, :update, :destroy]
     resources :change_orders, only: [:index, :create, :update, :destroy]

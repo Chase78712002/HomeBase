@@ -20,6 +20,7 @@ import Schedule from "./Schedule";
 import Budget from "./Budget";
 import ChangeOrders from "./ChangeOrders";
 import Documents from "./Documents";
+import Login from "./Login/Login";
 
 import Home from "./Home/index";
 import "./App.scss";
@@ -74,6 +75,13 @@ const menuItems = [
     icon: <DescriptionTwoToneIcon />,
     path: "/projects",
     component: Home,
+  },
+  {
+    id: 7,
+    text: "Login",
+    icon: <DescriptionTwoToneIcon />,
+    path: "/login",
+    component: Login,
   },
 ];
 
