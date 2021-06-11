@@ -1,5 +1,5 @@
 import { 
-  makeStyles, Divider, Button, 
+  makeStyles, Typography, Divider, Button, 
   Dialog, DialogTitle, DialogActions, DialogContent, DialogContentText, 
   Table, TableBody, TableCell, TableHead, TableRow
 } from '@material-ui/core';
@@ -10,21 +10,20 @@ const useStyles = makeStyles({
   header: {
     display: "flex",
     justifyContent: "space-between",
-    padding: '2em'
+    alignItems: "center",
+    padding: "2em"
   },
   right: {
     display: "flex",
     justifyContent: "flex-end"
   },
   divider: {
-    marginBottom: '10px'
+    marginTop: '10px'
   }
 });
 
 export default function ChangeOrderDetails({ currentCO, open, onClose }) {
   const classes = useStyles();
-
-  const quantity = 1;
 
   const handleClose = () => {
     onClose();
@@ -32,19 +31,28 @@ export default function ChangeOrderDetails({ currentCO, open, onClose }) {
 
   return (
     <Dialog onClose={handleClose} aria-labelledby="change-order-details" open={open} fullWidth={true}>
-      <div className={classes.header}>
-        <div>Logo</div>
-        <div><Status statusId={currentCO.change_order_status_id}/></div>
-      </div>
+        <div className={classes.header}>
+          <div>Logo</div>
+          <div>
+            <strong>Builder Name</strong><br/>
+            123 Main Street<br/>
+            Victoria, BC T3V 88<br/>
+          </div>
+        </div>
 
-      <Divider />
+        <div className={classes.header}>
+          <div>
+            <strong>Change order #:</strong> CO_{currentCO.id}<br />
+          </div>
+          <div>
+            <strong>Client name:</strong> Name<br />
+          </div>
+        </div>
 
-      <DialogTitle id="change-order-details" align="center">Change Order Details: CO_{currentCO.id}</DialogTitle>
-      
-      <DialogContent>
-        <DialogContentText align="center">
-        </DialogContentText>
-
+      <DialogTitle id="change-order-details" align="center">Change Order Details</DialogTitle>
+            
+        <DialogContent>
+        <Divider className={classes.divider} />
         <DialogContentText>
           <Table className={classes.table} aria-label="change orders table">
             <TableHead>
@@ -58,16 +66,25 @@ export default function ChangeOrderDetails({ currentCO, open, onClose }) {
             <TableBody>
               <TableRow>
                 <TableCell>{currentCO.description}</TableCell>
-                <TableCell align="right">{quantity}</TableCell>
+                <TableCell align="right">{currentCO.quantity}</TableCell>
+                <TableCell align="right">${currentCO.cost / currentCO.quantity}</TableCell>
                 <TableCell align="right">${currentCO.cost}</TableCell>
-                <TableCell align="right">${quantity * currentCO.cost}</TableCell>
               </TableRow>
             </TableBody>
           </Table>
         </DialogContentText>
+
+        <br/>
+
+        <DialogContentText>
+          <Typography><strong>Details:</strong></Typography>
+          <Typography>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi tristique nunc a elit facilisis ornare.</Typography>
+        </DialogContentText>
+        
       </DialogContent>
 
-      <DialogActions>
+      <DialogActions className={classes.header}>
+        <Status statusId={currentCO.change_order_status_id}/>
         <Button onClick={handleClose} color="primary" autoFocus>
           Close
         </Button>
