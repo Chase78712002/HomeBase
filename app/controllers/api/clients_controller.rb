@@ -9,6 +9,7 @@ class Api::ClientsController < ApplicationController
       redirect_to '/projects'
     else
       redirect_to '/signup'
+    end
   end
 
   private

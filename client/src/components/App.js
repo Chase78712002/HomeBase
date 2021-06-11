@@ -23,6 +23,9 @@ import Documents from "./Documents";
 import Signup from "./Signup";
 
 import "./App.scss";
+import { useState } from "react";
+import { useEffect } from "react";
+import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
   drawerPaper: { width: "inherit" },
@@ -75,9 +78,57 @@ const menuItems = [
     path: "/signup",
     component: Signup,
   },
+  {
+    id: 7,
+    text: "Login",
+    icon: <DescriptionTwoToneIcon />,
+    path: "/login",
+    component: null,
+  },
+  {
+    id: 8,
+    text: "/",
+    icon: <DescriptionTwoToneIcon />,
+    path: "/",
+    component: null,
+  },
 ];
 
 export default function App() {
+  const [state, setState] = useState({
+    isLoggedIn: false,
+    user: {},
+  });
+
+  const handleLogin = (data) => {
+    setState({
+      isLoggedIn: true,
+      user: data.user,
+    });
+  };
+
+  const handleLogout = () => {
+    setState({
+      isLoggedIn: false,
+      user: {},
+    });
+  };
+
+  useEffect(() => {
+    axios
+      .get("/logged_in", { withCredentials: true })
+      .then((response) => {
+        if (response.data.logged_in) {
+          handleLogin(response);
+        } else {
+          handleLogout();
+        }
+      })
+      .catch((error) => {
+        console.log("api errors:", error);
+      });
+  }, []);
+
   const classes = useStyles();
 
   return (
