@@ -2,12 +2,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 import {
-  makeStyles,
-  Typography,
-  Box,
-  Card,
-  CardHeader,
-  CardContent
+  makeStyles, Typography, Grid,
+  Card, CardHeader, CardContent
 } from "@material-ui/core";
 
 import BudgetList from "./Budget/BudgetList";
@@ -133,8 +129,10 @@ export default function Budget() {
 
       <BudgetList categories={state.categories} transactions={state.transactions} />
 
-      <Box className={classes.container}>
-        <Card className={classes.root}>
+      <br />
+
+      <Grid className={classes.container}>
+        <Card className={classes.root} xs={6}>
           <CardHeader
             className={classes.heading}
             title="Add new budget category"
@@ -143,7 +141,7 @@ export default function Budget() {
             <NewCategory addCategory={addCategory} />
           </CardContent>
         </Card>
-        <Card>
+        <Card className={classes.root} xs={6}>
           <CardHeader className={classes.heading} title="Add new transaction" />
           <CardContent>
             <NewTransaction
@@ -153,7 +151,7 @@ export default function Budget() {
             />
           </CardContent>
         </Card>
-      </Box>
+      </Grid>
     </section>
   );
 }

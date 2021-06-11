@@ -1,10 +1,21 @@
 import { useState, useEffect } from 'react';
-import { Collapse, Box, Table, TableHead, TableCell, TableRow, TableBody } from '@material-ui/core';
+import { makeStyles, Collapse, Box, Table, TableHead, TableCell, TableRow, TableBody } from '@material-ui/core';
 import IconButton from '@material-ui/core/IconButton';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 
+const useStyle = makeStyles({
+  transactions: {
+    backgroundColor: '#ebf2fa',
+    paddingBottom: 0,
+    paddingTop: 0,
+    paddingRight: 0
+  },
+});
+
 export default function BudgetListItem( { category, transactions }) {
+  const classes = useStyle();
+  
   const [open, setOpen] = useState(false);
   const [currentCategoryId, setCurrentCategoryId] = useState('');
   const [currentCategoryTransactions, setCurrentCategoryTransactions] = useState(transactions);
@@ -29,15 +40,15 @@ export default function BudgetListItem( { category, transactions }) {
         <TableCell align="right">${category.estimate_amount - category.actual_amount}</TableCell>
     </TableRow>
     <TableRow>
-      <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
+      <TableCell className={classes.transactions} colSpan={6}>
         <Collapse in={open} timeout="auto" unmountOnExit>
           <Box margin={1}>
-            <Table size="small" aria-label="purchases">
+            <Table size="small" aria-label="transactions">
               <TableHead>
                 <TableRow>
-                  <TableCell colSpan="2">Transaction</TableCell>
-                  <TableCell>Date</TableCell>
-                  <TableCell align="right">Amount</TableCell>
+                  <TableCell colSpan="2">TRANSACTION DETAILS</TableCell>
+                  <TableCell>DATE</TableCell>
+                  <TableCell align="right">AMOUNT</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
