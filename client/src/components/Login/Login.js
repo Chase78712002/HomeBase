@@ -50,7 +50,7 @@ export default function InputWithIcon(props) {
           </Grid>
         </Grid>
 
-        <a href="../budget" style={{ "text-decoration": "none" }}>
+        <a href="../projects" style={{ "text-decoration": "none" }}>
           <Button
             className={classes.button}
             variant="contained"
