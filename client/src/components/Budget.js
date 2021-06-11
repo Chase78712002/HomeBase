@@ -9,6 +9,12 @@ import {
   Card,
   CardHeader,
   CardContent,
+  Table,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
 } from "@material-ui/core";
 
 import BudgetTable from "./Budget/BudgetTable";
@@ -184,16 +190,29 @@ export default function Budget() {
     <section className="content">
       <Typography className={classes.header}>Budget</Typography>
 
-      <BudgetTable categories={state.categories} />
+      <TableContainer component={Paper}>
+        <Table className={classes.table} aria-label="budget table">
+          <TableHead>
+            <TableRow>
+              <TableCell></TableCell>
+              <TableCell>Category</TableCell>
+              <TableCell align="right">Estimate</TableCell>
+              <TableCell align="right">Actual</TableCell>
+              <TableCell align="right">Variance</TableCell>
+            </TableRow>
+          </TableHead>
+          <BudgetTable categories={state.categories} transactions={state.transactions} />
+        </Table>
+      </TableContainer>
 
-      <Typography className={classes.heading} variant="h5">
+      {/* <Typography className={classes.heading} variant="h5">
         Transaction history
       </Typography>
       <TransactionsList transactions={state.transactions} />
 
-      <Divider />
+      <Divider /> */}
 
-      <Box className={classes.container}>
+      {/* <Box className={classes.container}>
         <Card className={classes.root}>
           <CardHeader
             className={classes.heading}
@@ -213,7 +232,7 @@ export default function Budget() {
             />
           </CardContent>
         </Card>
-      </Box>
+      </Box> */}
     </section>
   );
 }
