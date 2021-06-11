@@ -1,14 +1,9 @@
 import React from "react";
 import { makeStyles, Button } from "@material-ui/core";
-import Input from "@material-ui/core/Input";
-import InputLabel from "@material-ui/core/InputLabel";
-import InputAdornment from "@material-ui/core/InputAdornment";
-import FormControl from "@material-ui/core/FormControl";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import { useState } from "react";
-import { useEffect } from "react";
 
 const useStyles = makeStyles((theme) => ({
   margin: {
@@ -20,10 +15,11 @@ export default function InputWithIcon(props) {
   const classes = useStyles();
 
   const [user, setUser] = useState("");
+  const [userChange, setUserChange] = useState("");
 
-  useEffect((event) => {
-    setUser("event.target.value");
-  }, []);
+  const handleLogin = (e) => {
+    setUser(e);
+  };
 
   return (
     <div>
@@ -34,7 +30,11 @@ export default function InputWithIcon(props) {
             <AccountCircle />
           </Grid>
           <Grid item>
-            <TextField id="input-with-icon-grid" label="Email" onChange={}/>
+            <TextField
+              id="input-with-icon-grid"
+              label="Email"
+              onChange={(e) => setUserChange(e.target.value)}
+            />
           </Grid>
 
           <Grid item>
@@ -42,13 +42,25 @@ export default function InputWithIcon(props) {
             <AccountCircle />
           </Grid>
           <Grid item>
-            <TextField id="input-with-icon-grid" label="Password" />
+            <TextField
+              id="input-with-icon-grid"
+              label="Password"
+              type="password"
+            />
           </Grid>
         </Grid>
 
-        <Button className={classes.button} variant="contained">
-          Login
-        </Button>
+        <a href="../budget" style={{ "text-decoration": "none" }}>
+          <Button
+            className={classes.button}
+            variant="contained"
+            onClick={() => {
+              handleLogin(userChange);
+            }}
+          >
+            Login
+          </Button>
+        </a>
       </div>
     </div>
   );
