@@ -7,10 +7,7 @@
     "@material-ui/icons": "^4.11.2",
     "@material-ui/lab": "*",
     "axios": "^0.18.0",
-<<<<<<< HEAD
-=======
     "classnames": "^2.3.1",
->>>>>>> faef01953c79ee93a48c2500c836f0b60dd50fca
     "http-proxy-middleware": "^0.19.1",
     "node-sass": "^6.0.0",
     "react": "^17.0.2",
