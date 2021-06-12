@@ -3,7 +3,6 @@ import { Doughnut } from "react-chartjs-2";
 
 export default function Donut(props) {
   const theme = useTheme();
-  console.log(props.actualAmountArr);
   const data = {
     datasets: [
       {

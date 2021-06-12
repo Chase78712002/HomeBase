@@ -1,14 +1,10 @@
 import React, { useEffect, useState } from "react";
 import {
   Container,
-  createMuiTheme,
   Grid,
-  makeStyles,
-  ThemeProvider,
 } from "@material-ui/core";
 import GlassCard from "./components/dashboard/GlassCard";
 import RecentChangeOrders from "./components/dashboard/RecentChangeOrders";
-import LatestProducts from "./components/dashboard/LatestProducts";
 import RecentSpending from "./components/dashboard/RecentSpending";
 import ArrowDownwardIcon from "@material-ui/icons/ArrowDownward";
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
@@ -20,20 +16,31 @@ export default function Dashboard() {
   // const classes = useStyles();
   // const background ={backgroundImage:'url("/Images/Houses/bg1.jpg")'}
   // style={background}
-  const [budgetData, setBudgetData] = useState([]);
+  const [state, setState] = useState({
+    budgetData:[],
+    changeOrderData:[]
+  });
 
-  const totalBudget = budgetData.map(budgetObj => budgetObj.estimate_amount)
+  const totalBudget = state.budgetData.map(budgetObj => budgetObj.estimate_amount)
                                 .reduce((acc,val)=> acc + val, 0)
 
-  const totalActual = budgetData.map(budgetObj=> budgetObj.actual_amount)
+  const totalActual = state.budgetData.map(budgetObj=> budgetObj.actual_amount)
                                 .reduce((acc, val) => acc + val, 0)
 
-  const categoriesArr = budgetData.map(obj => obj.description)
-  const actualAmountArr = budgetData.map(budgetObj => budgetObj.actual_amount);
+  const categoriesArr = state.budgetData.map(obj => obj.description)
+  const actualAmountArr = state.budgetData.map(budgetObj => budgetObj.actual_amount);
 
   useEffect(() => {
-    axios.get("/api/budget_categories").then((res) => {
-      setBudgetData(res.data);
+    Promise.all([
+      axios.get("/api/budget_categories"),
+      axios.get("/api/change_orders")
+    ])
+    .then(all => {
+      setState(prev => ({
+        ...prev,
+        budgetData: all[0].data,
+        changeOrderData:all[1].data
+      }));
     });
   }, []);
   return (
@@ -47,7 +54,7 @@ export default function Dashboard() {
             icon={<ArrowDownwardIcon />}
             caption="12% Since last week"
           />
-          <RecentSpending data={budgetData} />
+          <RecentSpending data={state.budgetData} />
         </Grid>
 
         <Grid item lg={6} md={12}>
@@ -63,7 +70,7 @@ export default function Dashboard() {
 
 
         <Grid item md={12} xs={12}>
-          <RecentChangeOrders />
+          <RecentChangeOrders data={state.changeOrderData} />
         </Grid>
       </Grid>
     </Container>

@@ -1,15 +1,10 @@
 import {
-  Box,
   Card,
   CardContent,
-  colors,
-  Container,
   Grid,
   makeStyles,
   Typography,
-  useTheme,
 } from "@material-ui/core";
-import { Doughnut } from "react-chartjs-2";
 
 const useStyles = makeStyles({
   root: {},
