@@ -44,7 +44,7 @@ export default function Dashboard() {
     });
   }, []);
   return (
-    <Container maxWidth={true}>
+    <Container maxWidth={false}>
       <Grid container spacing={3}>
         <Grid item lg={6} md={12}>
           <GlassCard
