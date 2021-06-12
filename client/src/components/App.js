@@ -15,7 +15,7 @@ import LocalAtmTwoToneIcon from "@material-ui/icons/LocalAtmTwoTone";
 import LoopTwoToneIcon from "@material-ui/icons/LoopTwoTone";
 import DescriptionTwoToneIcon from "@material-ui/icons/DescriptionTwoTone";
 
-import Dashboard from "./Dashboard/Dashboard";
+import Dashboard from "./Dashboard-v2/Dashboard";
 import Schedule from "./Schedule";
 import Budget from "./Budget";
 import ChangeOrders from "./ChangeOrders";
