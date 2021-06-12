@@ -3,10 +3,9 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { useState } from 'react';
 import clsx from 'clsx';
 
-import { makeStyles, Typography, Divider, AppBar, Toolbar, Drawer, List, ListItem, ListItemIcon, ListItemText, IconButton, Button } from "@material-ui/core";
+import { makeStyles, Divider, AppBar, Toolbar, Drawer, List, ListItem, ListItemIcon, ListItemText, IconButton, Typography } from "@material-ui/core";
 
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import HomeTwoToneIcon from '@material-ui/icons/HomeTwoTone';
 import DashboardTwoToneIcon from "@material-ui/icons/DashboardTwoTone";
 import ScheduleTwoToneIcon from "@material-ui/icons/ScheduleTwoTone";
@@ -83,20 +82,8 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
   },
   appBar: {
-    // zIndex: theme.zIndex.drawer + 1,
     backgroundColor: "transparent",
     boxShadow: "none",
-    //   borderBottom: "0",
-    //   marginBottom: "0",
-    //   position: "absolute",
-    //   width: "100%",
-    //   paddingTop: "10px",
-    //   border: "0",
-    //   borderRadius: "3px",
-    //   padding: "10px 0",
-    //   transition: "all 150ms ease 0s",
-    //   minHeight: "50px",
-    //   display: "block",
     transition: theme.transitions.create(['width', 'margin'], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
@@ -142,7 +129,7 @@ const useStyles = makeStyles((theme) => ({
   toolbar: {
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'space-between',
     padding: theme.spacing(0, 1),
     // necessary for content to be below app bar
     ...theme.mixins.toolbar,
@@ -151,12 +138,9 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     padding: theme.spacing(3),
   },
-  icon: {
-    margin: 0,
-    padding: 0,
-  },
   header: {
-    backgroundColor: '#f5f5f5',
+    color: '#252218',
+    align: 'right',
   },
   sidebar: {
     backgroundColor: '#252218',
@@ -186,13 +170,8 @@ export default function App() {
             [classes.appBarShift]: open,
           }, classes.header)}
         >
-          <Toolbar className="header">
-            {/* <IconButton className={classes.icon} color="inherit" onClick={handleDrawer}>
-              { open ? <ChevronLeftIcon /> : <MenuTwoToneIcon /> }
-            </IconButton> */}
-          </Toolbar>
+          <Toolbar></Toolbar>
         </AppBar>
-        <Toolbar />
         
         <Drawer
           variant="permanent"
@@ -208,8 +187,7 @@ export default function App() {
           }}
         >
           <div className={classes.toolbar}>
-            {/* <Typography variant="h6" align="center" noWrap>HomeBase</Typography> */}
-            <IconButton className={classes.icon} color="inherit" onClick={handleDrawer}>
+            <IconButton color="inherit" onClick={handleDrawer}>
               { open ? <ChevronLeftIcon /> : <MenuTwoToneIcon /> }
             </IconButton>
           </div>
