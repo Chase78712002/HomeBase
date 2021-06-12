@@ -14,7 +14,7 @@ import LoopTwoToneIcon from "@material-ui/icons/LoopTwoTone";
 import DescriptionTwoToneIcon from "@material-ui/icons/DescriptionTwoTone";
 import MenuTwoToneIcon from '@material-ui/icons/MenuTwoTone';
 
-import Dashboard from "./Dashboard";
+import Dashboard from "./Dashboard-v2/Dashboard";
 import Schedule from "./Schedule";
 import Budget from "./Budget";
 import ChangeOrders from "./ChangeOrders";
@@ -22,6 +22,8 @@ import Documents from "./Documents";
 import Home from "./Home/index"
 
 import "./App.scss";
+
+
 
 const menuItems = [
   {
