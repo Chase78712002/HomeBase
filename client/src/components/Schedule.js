@@ -16,16 +16,13 @@ export default function CustomizedTimeline() {
     axios
       .get(`/api/milestones`)
       .then((response) => {
-        console.log("The response:", response.data);
         setSchedule(response.data);
-
-        console.log("schedule sate:", schedule);
       })
       .catch((error) => {
         const errorMessage = error;
         return errorMessage;
       });
-  }, [schedule]);
+  }, []);
 
   const timeline = schedule.map((data, idx) => (
     <TimelineItem data={data} key={idx} />
