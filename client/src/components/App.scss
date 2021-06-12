@@ -1,11 +1,14 @@
 @import "../styles/variables.scss";
 
+h1 {
+  color: $primary;
+  margin-top: 0;
+}
+
 .content {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  padding: 0 $spacing $spacing $spacing;
+  padding: 0 $spacing $spacing 0;
   width: 100%;
-  border-radius: 10px;
-  background-color: $white;
 }

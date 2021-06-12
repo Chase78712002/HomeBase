@@ -4,6 +4,7 @@ import {makeStyles} from '@material-ui/core/styles'
 import ProjectItem from "./ProjectItem";
 import axios from "axios";
 import AddNewProject from "./AddNewProject";
+import Title from "../Title";
 
 const useStyles = makeStyles({
   root: {
@@ -24,18 +25,20 @@ export default function Home() {
     });
   }, []);
   return (
-    <div className={classes.root}>
-      <AddNewProject />
-      <Grid container direction="row" spacing={4}>
-        {projectData.map((projectObj) => {
-          return (
-            <Grid item xs={12} sm={4} key={projectObj.id}>
-              <ProjectItem {...projectObj} />
-            </Grid>
-          );
-        })}
-      </Grid>
-      
-    </div>
+    <section className="content">
+      <Title title={"Client Projects"} />
+      <div className={classes.root}>
+        {/* <AddNewProject /> */}
+        <Grid container direction="row" spacing={4}>
+          {projectData.map((projectObj) => {
+            return (
+              <Grid item xs={12} sm={4} key={projectObj.id}>
+                <ProjectItem {...projectObj} />
+              </Grid>
+            );
+          })}
+        </Grid>
+      </div>
+    </section>
   );
 }

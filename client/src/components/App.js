@@ -72,7 +72,9 @@ const menuItems = [
 const drawerWidth = 235;
 
 const useStyles = makeStyles((theme) => ({
-  drawerPaper: { width: "inherit" },
+  drawerPaper: { 
+    width: "inherit"
+  },
   link: {
     textDecoration: "none",
     color: theme.palette.text.primary,

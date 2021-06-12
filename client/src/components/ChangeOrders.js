@@ -4,6 +4,7 @@ import axios from "axios";
 import { makeStyles, Typography } from '@material-ui/core';
 
 import ChangeOrdersTable from './ChangeOrders/ChangeOrdersTable';
+import Title from './Title';
 
 const useStyle = makeStyles({
   header: {
@@ -43,7 +44,7 @@ export default function ChangeOrders() {
 
   return (
     <section className="content">
-      <Typography className={classes.header}>Change orders</Typography>
+      <Title title={"Change Orders"} />
       <ChangeOrdersTable changeOrders={state.changeOrders} status={state.changeOrderStatus} />
     </section>
   )

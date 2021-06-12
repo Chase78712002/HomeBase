@@ -7,6 +7,7 @@ import {
 import BudgetList from "./Budget/BudgetList";
 import NewCategory from "./Budget/NewCategory";
 import NewTransaction from "./Budget/NewTransaction";
+import Title from "./Title";
 
 import "./App.scss";
 
@@ -123,7 +124,7 @@ export default function Budget() {
 
   return (
     <section className="content">
-      <Typography className={classes.header}>Budget</Typography>
+      <Title title={"Budget"} />
 
       <BudgetList categories={state.categories} transactions={state.transactions} />
 

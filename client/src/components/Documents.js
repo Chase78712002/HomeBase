@@ -5,6 +5,7 @@ import "./App.scss";
 import AddNewDocument from "./Document/AddNewDocument";
 import DocumentList from "./Document/DocumentList";
 import SearchBar from "./Document/Searchbar";
+import Title from "./Title";
 import axios from 'axios';
 
 
@@ -103,7 +104,7 @@ export default function Documents() {
   })
   return (
     <section className="content">
-      <h1>Documents</h1>
+      <Title title={"Documents"} />
 
       <ThemeProvider theme={theme}>
         <Container maxWidth="lg" disableGutters={true}>
