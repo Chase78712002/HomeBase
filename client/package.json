@@ -7,14 +7,18 @@
     "@material-ui/icons": "^4.11.2",
     "@material-ui/lab": "*",
     "axios": "^0.18.0",
+    "chart.js": "^3.3.2",
     "classnames": "^2.3.1",
     "http-proxy-middleware": "^0.19.1",
+    "moment": "^2.27.0",
     "node-sass": "^6.0.0",
     "react": "^17.0.2",
     "react-chartjs-2": "^3.0.3",
     "react-dom": "^17.0.2",
+    "react-perfect-scrollbar": "^1.5.8",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "4.0.3"
+    "react-scripts": "4.0.3",
+    "uuid": "^8.3.0"
   },
   "scripts": {
     "start": "react-scripts start",
