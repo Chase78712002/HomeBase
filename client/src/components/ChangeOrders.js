@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-import { makeStyles, Typography } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core';
 
 import ChangeOrdersTable from './ChangeOrders/ChangeOrdersTable';
 import Title from './Title';

@@ -11,15 +11,12 @@ const useStyles = makeStyles({
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
-    padding: "2em"
+    padding: "2em 2em 1em 2em"
   },
   right: {
     display: "flex",
     justifyContent: "flex-end"
   },
-  divider: {
-    marginTop: '10px'
-  }
 });
 
 export default function ChangeOrderDetails({ currentCO, open, onClose }) {
@@ -31,28 +28,29 @@ export default function ChangeOrderDetails({ currentCO, open, onClose }) {
 
   return (
     <Dialog onClose={handleClose} aria-labelledby="change-order-details" open={open} fullWidth={true}>
-        <div className={classes.header}>
-          <div>Logo</div>
-          <div>
-            <strong>Builder Name</strong><br/>
-            123 Main Street<br/>
-            Victoria, BC T3V 88<br/>
-          </div>
+      <div className={classes.header}>
+        <div>Logo</div>
+        <div>
+          <strong>Builder Name</strong><br/>
+          123 Main Street<br/>
+          Victoria, BC T3V 88<br/>
         </div>
-
-        <div className={classes.header}>
-          <div>
-            <strong>Change order #:</strong> CO_{currentCO.id}<br />
-          </div>
-          <div>
-            <strong>Client name:</strong> Name<br />
-          </div>
-        </div>
+      </div>
 
       <DialogTitle id="change-order-details" align="center">Change Order Details</DialogTitle>
-            
-        <DialogContent>
-        <Divider className={classes.divider} />
+
+      <div className={classes.header}>
+        <div>
+          <strong>Change order #:</strong> CO_{currentCO.id}<br />
+        </div>
+        <div>
+          <strong>Client name:</strong> Name<br />
+        </div>
+      </div>
+
+      <Divider variant="middle" />
+        
+      <DialogContent>
         <DialogContentText>
           <Table className={classes.table} aria-label="change orders table">
             <TableHead>
@@ -80,7 +78,6 @@ export default function ChangeOrderDetails({ currentCO, open, onClose }) {
           <Typography><strong>Details:</strong></Typography>
           <Typography>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi tristique nunc a elit facilisis ornare.</Typography>
         </DialogContentText>
-        
       </DialogContent>
 
       <DialogActions className={classes.header}>
