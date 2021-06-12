@@ -2,17 +2,9 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 import {
-  makeStyles,
-  Typography,
-  Box,
-  Divider,
-  Card,
-  CardHeader,
-  CardContent,
-} from "@material-ui/core";
+  makeStyles, Typography, Grid, Card, Divider } from "@material-ui/core";
 
-import BudgetTable from "./Budget/BudgetTable";
-import TransactionsList from "./Budget/TransactionsList";
+import BudgetList from "./Budget/BudgetList";
 import NewCategory from "./Budget/NewCategory";
 import NewTransaction from "./Budget/NewTransaction";
 
@@ -26,14 +18,15 @@ const useStyle = makeStyles({
       flex: 1,
     },
   },
+  /* Can delete after title component is created */
   header: {
     color: "#05668d",
     fontSize: 30,
     margin: "10px 0",
   },
+  /* end */
   heading: {
-    marginTop: 25,
-    color: "#679436",
+    color: "#05668d",
   },
   grid: {
     "& > *": {
@@ -43,64 +36,12 @@ const useStyle = makeStyles({
   divider: {
     margin: "20px 0",
   },
-  root: {
-    flexGrow: 1,
-  },
   card: {
     margin: 0,
+    padding: "1em",
+    backgroundColor: "#ebf2fa"
   },
 });
-
-// const categoryData = [
-//   {
-//     id: 1,
-//     description: 'Construction costs',
-//     estimate_amount: 350000,
-//     actual_amount: 6250
-//   },
-//   {
-//     id: 2,
-//     description: 'Change orders',
-//     estimate_amount: 100000,
-//     actual_amount: 500
-//   },
-//   {
-//     id: 3,
-//     description: 'Appliances',
-//     estimate_amount: 3000,
-//     actual_amount: 1500
-//   },
-//   {
-//     id: 4,
-//     description: 'Misc',
-//     estimate_amount: 10000,
-//     actual_amount: 0
-//   }
-// ];
-
-// const transactionData = [
-//   {
-//     id: 1,
-//     description: 'Excavation and backfill',
-//     amount: 6250,
-//     date: '2021-04-25',
-//     budget_category_id: 1
-//   },
-//   {
-//     id: 2,
-//     description: 'Stainless steel faucet',
-//     amount: 500,
-//     date: '2021-05-15',
-//     budget_category_id: 2
-//   },
-//   {
-//     id: 3,
-//     description: 'Bar fridge',
-//     amount: 1500,
-//     date: '2021-06-04',
-//     budget_category_id: 3
-//   }
-// ]
 
 export default function Budget() {
   const classes = useStyle();
@@ -184,36 +125,29 @@ export default function Budget() {
     <section className="content">
       <Typography className={classes.header}>Budget</Typography>
 
-      <BudgetTable categories={state.categories} />
+      <BudgetList categories={state.categories} transactions={state.transactions} />
 
-      <Typography className={classes.heading} variant="h5">
-        Transaction history
-      </Typography>
-      <TransactionsList transactions={state.transactions} />
+      <Divider className={classes.divider}/>
 
-      <Divider />
-
-      <Box className={classes.container}>
-        <Card className={classes.root}>
-          <CardHeader
-            className={classes.heading}
-            title="Add new budget category"
-          />
-          <CardContent className="card">
+      <Grid container spacing={2}>
+        <Grid item xs={6}>
+          <Card className={classes.card}>
+            <Typography variant="h6" className={classes.heading}>
+              Add new category
+            </Typography>
             <NewCategory addCategory={addCategory} />
-          </CardContent>
-        </Card>
-        <Card>
-          <CardHeader className={classes.heading} title="Add new transaction" />
-          <CardContent>
-            <NewTransaction
-              categories={state.categories}
-              addTransaction={addTransaction}
-              updateActual={updateActual}
-            />
-          </CardContent>
-        </Card>
-      </Box>
+          </Card>
+        </Grid>
+
+        <Grid item xs={6}>
+          <Card className={classes.card}>
+            <Typography variant="h6" className={classes.heading}>
+              Add new transaction
+            </Typography>
+            <NewTransaction categories={state.categories} addTransaction={addTransaction} updateActual={updateActual} />
+          </Card>
+        </Grid>
+      </Grid>
     </section>
   );
 }
