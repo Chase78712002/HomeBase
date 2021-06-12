@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_09_053235) do
+ActiveRecord::Schema.define(version: 2021_10_09_053236) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,12 +40,6 @@ ActiveRecord::Schema.define(version: 2021_10_09_053235) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "change_order_statuses", force: :cascade do |t|
-    t.string "status"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "change_orders", force: :cascade do |t|
     t.string "description"
     t.integer "cost"
@@ -55,6 +49,7 @@ ActiveRecord::Schema.define(version: 2021_10_09_053235) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "quantity"
+    t.string "details"
     t.index ["change_order_status_id"], name: "index_change_orders_on_change_order_status_id"
     t.index ["project_id"], name: "index_change_orders_on_project_id"
   end
@@ -64,12 +59,6 @@ ActiveRecord::Schema.define(version: 2021_10_09_053235) do
     t.string "last_name"
     t.string "email"
     t.string "password"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "document_categories", force: :cascade do |t|
-    t.string "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
