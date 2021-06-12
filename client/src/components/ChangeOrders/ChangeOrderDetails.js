@@ -76,7 +76,7 @@ export default function ChangeOrderDetails({ currentCO, open, onClose }) {
 
         <DialogContentText>
           <Typography><strong>Details:</strong></Typography>
-          <Typography>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi tristique nunc a elit facilisis ornare.</Typography>
+          <Typography>{currentCO.details}</Typography>
         </DialogContentText>
       </DialogContent>
 
