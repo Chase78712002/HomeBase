@@ -41,18 +41,21 @@ user5 = Client.create(
   first_name:"Gerrie",
   last_name:"Streeth",email:"glongstreeth0@smugmug.com",password:"D8vvruvjpabA"
 )
+
 user6 = Client.create(
   first_name:"Pierce",
   last_name:"Tiptaft",
   email:"ptiptaft1@cornell.edu",
   password:"dX9LCxyzd"
 )
+
 user7 = Client.create(
   first_name:"Clayton",
   last_name:"Petrazzi",
   email:"cpetrazzi2@wiley.com",
   password:"xebHPDxTV"
 )
+
 user8 = Client.create(
   first_name:"Janine",
   last_name:"Mead",
@@ -137,7 +140,7 @@ docCat1 = DocumentCategory.create(
 )
 
 docCat2 = DocumentCategory.create(
-  description: 'Email'
+  description: 'Supplementary'
 
 )
 
@@ -192,82 +195,207 @@ puts "--Done Seeding change_order_status--"
 puts 'Creating CHANGE_ORDER Seed data ...'
 
 co1 = ChangeOrder.create!(
-  description: 'Lorem Ipsum a bunch',
-  cost: 100,
-  change_order_status_id: 2,
+  description: 'Soundproofing insultation',
+  cost: 585.00,
+  change_order_status_id: 1,
   quantity: 1,
   path: 'user/dmar/change_orders/co1',
-  project_id: 1
+  project_id: 1,
+  details: 'Add soundproofing insulation to bedrooms.'
 )
 
 co2 = ChangeOrder.create!(
-  description: 'Change to bathroom paint',
-  cost: 2100,
-  change_order_status_id: 1,
+  description: 'Air conditioning',
+  cost: 7786.00,
+  change_order_status_id: 2,
   quantity: 2,
   path: 'user/dmar/change_orders/co2',
-  project_id: 2
+  project_id: 1,
+  details: 'Two-ton air conditioning unit, including electrical.'
 )
 
 co3 = ChangeOrder.create!(
-  description: 'Builders are generous!',
-  cost: -1000,
+  description: 'Gym floor',
+  cost: 2885,
   change_order_status_id: 3,
   quantity: 1,
   path: 'user/dmar/change_orders/co3',
-  project_id: 2
+  project_id: 1,
+  details: 'Credit for carpet and replace with cork flooring'
+)
+
+co4 = ChangeOrder.create!(
+  description: 'CREDIT: Pantry shelves',
+  cost: -975,
+  change_order_status_id: 1,
+  quantity: 1,
+  path: 'user/dmar/change_orders/co4',
+  project_id: 1,
+  details: 'Credit for Credit for all MDF shelving.'
+)
+
+co5 = ChangeOrder.create!(
+  description: 'Stone fireplace facing',
+  cost: 1200,
+  change_order_status_id: 2,
+  quantity: 1,
+  path: 'user/dmar/change_orders/co5',
+  project_id: 1,
+  details: 'Stone facing for living room fireplace.'
+)
+
+co6 = ChangeOrder.create!(
+  description: 'Vinyl deck',
+  cost: 7525,
+  change_order_status_id: 1,
+  quantity: 1,
+  path: 'user/dmar/change_orders/co6',
+  project_id: 1,
+  details: 'Add vinyl deck with smartboard skirt, aluminum picket railing and pressure treated deck stair.'
+)
+
+co7 = ChangeOrder.create!(
+  description: 'Mudroom built-ins',
+  cost: 4500,
+  change_order_status_id: 2,
+  quantity: 1,
+  path: 'user/dmar/change_orders/co7',
+  project_id: 1,
+  details: 'Add closed storage in mudroom (MDF).'
+)
+
+co8 = ChangeOrder.create!(
+  description: 'Wine room',
+  cost: 5000,
+  change_order_status_id: 1,
+  quantity: 1,
+  path: 'user/dmar/change_orders/co8',
+  project_id: 1,
+  details: 'Add a wine wall and 10mm glass panel door for the wine room.'
 )
 
 puts "--Done Seeding Change_orders--"
 puts 'Creating BUDGET_CATEGORIES Seed data ...'
 
 budget1 = BudgetCategory.create(
-  description: 'Floors',
-  estimate_amount: 1234,
+  description: 'Base constuction fees',
+  estimate_amount: 450000,
   project_id: 1,
-  actual_amount: 1000
+  actual_amount: 346500
 )
 
 budget2 = BudgetCategory.create(
-  description: 'Heating',
-  estimate_amount: 42069,
+  description: 'Upgrades',
+  estimate_amount: 50000,
   project_id: 1,
-  actual_amount: 4000
+  actual_amount: 13110
 )
 
 budget3 = BudgetCategory.create(
-  description: 'Walls',
-  estimate_amount: 666,
+  description: 'Appliances',
+  estimate_amount: 15000,
   project_id: 1,
-  actual_amount: 300
+  actual_amount: 11162
 )
 
 puts "--Done Seeding Budget_Categoies--"
 puts 'Creating MILESTONE Seed data ...'
 
 mile1 = Milestone.create(
-  description: 'Ground Break',
-  start_date: Date.today,
-  end_date: Date.today + 1.day,
-  status: 'Active',
+  description: 'Ground Breaking',
+  start_date: Date.today - 120.days,
+  end_date: Date.today - 120.days,
+  status: 'Complete',
   reminder: true,
   project_id: 1
 )
 
 mile2 = Milestone.create(
-  description: 'First Floor Done',
-  start_date: Date.today + 2.month,
-  end_date: Date.today + 3.months,
+  description: 'Selections due',
+  start_date: Date.today - 115.days,
+  end_date: Date.today - 115.days,
   status: 'Complete',
   reminder: true,
   project_id: 1
 )
 
 mile3 = Milestone.create(
-  description: 'House Done',
-  start_date: Date.today + 1.month,
-  end_date: Date.today + 6.months,
-  status: 'Canceled',
+  description: 'Backfill complete',
+  start_date: Date.today - 90.days,
+  end_date: Date.today - 90.days,
+  status: 'Complete',
+  reminder: true,
+  project_id: 1
+)
+
+mile4 = Milestone.create(
+  description: 'Framing complete',
+  start_date: Date.today - 60.days,
+  end_date: Date.today - 60.days,
+  status: 'Complete',
+  reminder: true,
+  project_id: 1
+)
+
+mile5 = Milestone.create(
+  description: 'Rough-ins complete',
+  start_date: Date.today - 60.days,
+  end_date: Date.today - 60.days,
+  status: 'Complete',
+  reminder: true,
+  project_id: 1
+)
+
+mile6 = Milestone.create(
+  description: 'Drywall complete',
+  start_date: Date.today - 30.days,
+  end_date: Date.today - 30.days,
+  status: 'Complete',
+  reminder: true,
+  project_id: 1
+)
+
+mile7 = Milestone.create(
+  description: 'Stage 1 finishing complete',
+  start_date: Date.today,
+  end_date: Date.today,
+  status: 'Upcoming',
+  reminder: true,
+  project_id: 1
+)
+
+mile8 = Milestone.create(
+  description: 'Paiting and flooring complete',
+  start_date: Date.today + 14.days,
+  end_date: Date.today + 14.days,
+  status: 'Upcoming',
+  reminder: true,
+  project_id: 1
+)
+
+mile9 = Milestone.create(
+  description: 'Final finishes complete',
+  start_date: Date.today - 30.days,
+  end_date: Date.today - 30.days,
+  status: 'Upcoming',
+  reminder: true,
+  project_id: 1
+)
+
+mile10 = Milestone.create(
+  description: 'Pre-occupancy walkthrough',
+  start_date: Date.today + 38.days,
+  end_date: Date.today + 38.days,
+  status: 'Upcoming',
+  reminder: true,
+  project_id: 1
+)
+
+mile11 = Milestone.create(
+  description: 'Possesion day!',
+  start_date: Date.today + 45.days,
+  end_date: Date.today + 45.days,
+  status: 'Upcoming',
   reminder: true,
   project_id: 1
 )
@@ -276,32 +404,94 @@ puts "--Done Seeding Milestone--"
 puts 'Creating TRANSACTION Seed data ...'
 
 trans1 = TransactionBill.create!(
-  description: 'Red Paint',
-  amount: 33,
-  date: Date.today, 
+  description: 'Deposit payment',
+  amount: 45000,
+  date: Date.today - 150.days, 
   budget_category_id: 1,
 )
 
 trans2 = TransactionBill.create!(
-  description: 'Stainless Steel Faucet',
-  amount: 222,
-  date: Date.today - 2.days,
-  budget_category_id: 2,
+  description: 'Payment: Backfill complete',
+  amount: 63000,
+  date: Date.today - 90.days,
+  budget_category_id: 1,
 )
 
 trans3 = TransactionBill.create!(
-  description: 'Lava Gas',
-  amount: 2020,
-  date: Date.today - 3.days,
-  budget_category_id: 1,
+  description: 'Soundproofing insulation',
+  amount: 585,
+  date: Date.today - 75.days,
+  budget_category_id: 2,
 )
 
 trans4 = TransactionBill.create!(
-  description: 'Potato Peeler',
-  amount: 123,
-  date: Date.today + 5.weeks,
+  description: 'Payment: Plumbing rough-in complete',
+  amount: 103500,
+  date: Date.today - 60.days,
   budget_category_id: 1,
-  milestone_id: 1
+)
+
+trans5 = TransactionBill.create!(
+  description: 'Super fancy mini bar fridge',
+  amount: 728,
+  date: Date.today - 50.days,
+  budget_category_id: 3,
+)
+
+trans6 = TransactionBill.create!(
+  description: 'Double wall oven',
+  amount: 2800,
+  date: Date.today - 42.days,
+  budget_category_id: 3,
+)
+
+trans7 = TransactionBill.create!(
+  description: 'Payment: Mechanical rough-in and dry wall complete',
+  amount: 135000,
+  date: Date.today - 30.days,
+  budget_category_id: 1,
+)
+
+trans8 = TransactionBill.create!(
+  description: 'Deck',
+  amount: 7525,
+  date: Date.today - 21.days,
+  budget_category_id: 2,
+)
+
+trans9 = TransactionBill.create!(
+  description: 'Gas stove',
+  amount: 1994,
+  date: Date.today - 15.days,
+  budget_category_id: 3,
+)
+
+trans10 = TransactionBill.create!(
+  description: 'Wine room',
+  amount: 5000,
+  date: Date.today - 9.days,
+  budget_category_id: 2,
+)
+
+trans11 = TransactionBill.create!(
+  description: 'Smart fridge',
+  amount: 2899,
+  date: Date.today - 3.days,
+  budget_category_id: 3,
+)
+
+trans12 = TransactionBill.create!(
+  description: 'Super quiet dishwasher',
+  amount: 549,
+  date: Date.today - 3.days,
+  budget_category_id: 3,
+)
+
+trans13 = TransactionBill.create!(
+  description: 'Front load steam washer & dryer',
+  amount: 2192,
+  date: Date.today - 3.days,
+  budget_category_id: 3,
 )
 
 puts "--Done Seeding TransactionBill--"
