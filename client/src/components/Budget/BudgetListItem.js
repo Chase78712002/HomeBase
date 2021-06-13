@@ -1,4 +1,9 @@
 import { useState, useEffect } from 'react';
+
+// currency formatter
+import NumberFormat from 'react-number-format';
+
+// @material-ui imports
 import { makeStyles, Collapse, Box, Table, TableHead, TableCell, TableRow, TableBody } from '@material-ui/core';
 import IconButton from '@material-ui/core/IconButton';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
@@ -36,9 +41,9 @@ export default function BudgetListItem( { category, transactions }) {
           </IconButton>
           {category.description}
         </TableCell>
-        <TableCell align="right">${category.estimate_amount}</TableCell>
-        <TableCell align="right">${category.actual_amount}</TableCell>
-        <TableCell align="right">${category.estimate_amount - category.actual_amount}</TableCell>
+        <TableCell align="right"><NumberFormat value={category.estimate_amount} displayType={'text'} thousandSeparator={true} prefix={'$'} /></TableCell>
+        <TableCell align="right"><NumberFormat value={category.actual_amount} displayType={'text'} thousandSeparator={true} prefix={'$'} /></TableCell>
+        <TableCell align="right"><NumberFormat value={category.estimate_amount - category.actual_amount} displayType={'text'} thousandSeparator={true} prefix={'$'} /></TableCell>
     </TableRow>
     <TableRow>
       <TableCell className={classes.transactions} colSpan={6}>
@@ -59,7 +64,7 @@ export default function BudgetListItem( { category, transactions }) {
                       {transaction.description}
                     </TableCell>
                     <TableCell>{transaction.date}</TableCell>
-                    <TableCell align="right">${transaction.amount}</TableCell>
+                    <TableCell align="right"><NumberFormat value={transaction.amount} displayType={'text'} thousandSeparator={true} prefix={'$'} /></TableCell>
                   </TableRow>
                 ))}
               </TableBody>

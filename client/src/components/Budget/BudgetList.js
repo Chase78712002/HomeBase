@@ -1,8 +1,13 @@
+// currency formatter
+import NumberFormat from 'react-number-format';
+
+// @material-ui imports
 import { 
   makeStyles, CircularProgress, Paper,
   TableContainer, Table, TableHead, TableBody, TableRow, TableCell,
 } from '@material-ui/core';
 
+// app imports
 import BudgetListItem from './BudgetListItem';
 
 const useStyle = makeStyles({
@@ -59,9 +64,9 @@ export default function BudgetList({ categories, transactions }) {
           ))}
           <TableRow>
             <TableCell className={classes.footer} ><strong>TOTAL:</strong></TableCell>
-            <TableCell className={classes.footer} align="right"><strong>${totalEstimate}</strong></TableCell>
-            <TableCell className={classes.footer} align="right"><strong>${totalActual}</strong></TableCell>
-            <TableCell className={classes.footer} align="right"><strong>${totalVariance}</strong></TableCell>
+            <TableCell className={classes.footer} align="right"><strong><NumberFormat value={totalEstimate} displayType={'text'} thousandSeparator={true} prefix={'$'} /></strong></TableCell>
+            <TableCell className={classes.footer} align="right"><strong><NumberFormat value={totalActual} displayType={'text'} thousandSeparator={true} prefix={'$'} /></strong></TableCell>
+            <TableCell className={classes.footer} align="right"><strong><NumberFormat value={totalVariance} displayType={'text'} thousandSeparator={true} prefix={'$'} /></strong></TableCell>
           </TableRow>
         </TableBody>
       </Table>

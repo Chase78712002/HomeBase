@@ -1,8 +1,13 @@
 import { useState } from "react";
 
+// currency formatter
+import NumberFormat from 'react-number-format';
+
+// @material-ui imports
 import { makeStyles, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, CircularProgress, Button, Menu, MenuItem } from '@material-ui/core';
 import ExpandMoreTwoToneIcon from '@material-ui/icons/ExpandMoreTwoTone';
 
+// app imports
 import ChangeOrderDetails from './ChangeOrderDetails';
 import Status from './Status';
 
@@ -122,13 +127,13 @@ export default function ChangeOrdersTable({ changeOrders, status }) {
               <TableCell align="center">
                 <Status statusId={changeOrder.change_order_status_id}/>
               </TableCell>
-              <TableCell align="right">${changeOrder.change_order_status_id === 2 ? 0 : changeOrder.cost}</TableCell>
+              <TableCell align="right"><NumberFormat value={changeOrder.change_order_status_id === 2 ? 0 : changeOrder.cost} displayType={'text'} thousandSeparator={true} prefix={'$'} /></TableCell>
             </TableRow>
           ))}
           <TableRow>
             <TableCell colSpan={2} className={classes.footer} />
             <TableCell align="center" className={classes.footer}><strong>TOTAL:</strong></TableCell>
-            <TableCell align="right" className={classes.footer}><strong>${totalCosts()}</strong></TableCell>
+            <TableCell align="right" className={classes.footer}><strong><NumberFormat value={totalCosts()} displayType={'text'} thousandSeparator={true} prefix={'$'} /></strong></TableCell>
           </TableRow>
         </TableBody>
       </Table>

@@ -1,9 +1,15 @@
+
+// currency formatter
+import NumberFormat from 'react-number-format';
+
+// @material-ui imports
 import { 
   makeStyles, Typography, Divider, Button, 
   Dialog, DialogTitle, DialogActions, DialogContent, DialogContentText, 
   Table, TableBody, TableCell, TableHead, TableRow
 } from '@material-ui/core';
 
+// app imports
 import Status from './Status';
 
 const useStyles = makeStyles({
@@ -65,8 +71,8 @@ export default function ChangeOrderDetails({ currentCO, open, onClose }) {
               <TableRow>
                 <TableCell>{currentCO.description}</TableCell>
                 <TableCell align="right">{currentCO.quantity}</TableCell>
-                <TableCell align="right">${currentCO.cost / currentCO.quantity}</TableCell>
-                <TableCell align="right">${currentCO.cost}</TableCell>
+                <TableCell align="right"><NumberFormat value={currentCO.cost / currentCO.quantity} displayType={'text'} thousandSeparator={true} prefix={'$'} /></TableCell>
+                <TableCell align="right"><NumberFormat value={currentCO.cost} displayType={'text'} thousandSeparator={true} prefix={'$'} /></TableCell>
               </TableRow>
             </TableBody>
           </Table>
