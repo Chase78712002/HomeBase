@@ -1,7 +1,8 @@
 import React from "react";
+import EditTwoToneIcon from "@material-ui/icons/EditTwoTone";
+import IconButton from "@material-ui/core/IconButton";
+import EditIcon from "@material-ui/icons/Edit";
 import CheckCircleTwoToneIcon from "@material-ui/icons/CheckCircleTwoTone";
-
-// const completeOrNot =
 
 const TimelineItem = ({ data }) => (
   <div className="timeline-item">
@@ -12,7 +13,7 @@ const TimelineItem = ({ data }) => (
       <p>Estimated Completion Date:</p>
       <p> {data.end_date}</p>
       <p className="status" style={{ background: data.status_color }}>
-        {data.status}
+        Status: {data.status}
       </p>
       {data.status === "Complete" ? (
         <span className="circle-complete">
@@ -21,6 +22,9 @@ const TimelineItem = ({ data }) => (
       ) : (
         <span className="circle" />
       )}
+      <IconButton>
+        <EditTwoToneIcon onClick={data.editMilestone}>Edit</EditTwoToneIcon>
+      </IconButton>
     </div>
   </div>
 );

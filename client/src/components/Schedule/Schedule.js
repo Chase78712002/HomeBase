@@ -1,12 +1,13 @@
 import { React, useEffect, useState } from "react";
 
 import TimelineItem from "./TimelineItem";
+import AddNewTimeline from "./AddNewTimeline";
 
-import "./App.scss";
+import "../App.scss";
 import "./Schedule.scss";
 import axios from "axios";
 
-export default function CustomizedTimeline() {
+export default function Schedule() {
   const [schedule, setSchedule] = useState([]);
 
   useEffect(() => {
@@ -29,8 +30,11 @@ export default function CustomizedTimeline() {
   ));
 
   return (
-    <>
+    <div>
+      <div>
+        <AddNewTimeline />
+      </div>
       <div className="timeline-container">{timeline}</div>
-    </>
+    </div>
   );
 }
