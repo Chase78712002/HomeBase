@@ -1,19 +1,20 @@
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-
 import { useState } from 'react';
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import clsx from 'clsx';
 
+// @material-ui imports
 import { makeStyles, Divider, AppBar, Toolbar, Drawer, List, ListItem, ListItemIcon, ListItemText, IconButton } from "@material-ui/core";
 
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import MenuTwoToneIcon from '@material-ui/icons/MenuTwoTone';
 import HomeTwoToneIcon from '@material-ui/icons/HomeTwoTone';
 import DashboardTwoToneIcon from "@material-ui/icons/DashboardTwoTone";
 import ScheduleTwoToneIcon from "@material-ui/icons/ScheduleTwoTone";
 import LocalAtmTwoToneIcon from "@material-ui/icons/LocalAtmTwoTone";
 import LoopTwoToneIcon from "@material-ui/icons/LoopTwoTone";
 import DescriptionTwoToneIcon from "@material-ui/icons/DescriptionTwoTone";
-import MenuTwoToneIcon from '@material-ui/icons/MenuTwoTone';
 
+// app imports
 import Dashboard from "./Dashboard-v2/Dashboard";
 import Schedule from "./Schedule";
 import Budget from "./Budget";
@@ -22,8 +23,6 @@ import Documents from "./Documents";
 import Home from "./Home/index"
 
 import "./App.scss";
-
-
 
 const menuItems = [
   {
@@ -73,15 +72,9 @@ const menuItems = [
 const drawerWidth = 235;
 
 const useStyles = makeStyles((theme) => ({
-  drawerPaper: { 
-    width: "inherit"
-  },
   link: {
     textDecoration: "none",
     color: theme.palette.text.primary,
-  },
-  root: {
-    display: 'flex',
   },
   appBar: {
     backgroundColor: "transparent",
@@ -98,9 +91,6 @@ const useStyles = makeStyles((theme) => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
     }),
-  },
-  menuButton: {
-    marginRight: 36,
   },
   hide: {
     display: 'none',
@@ -136,10 +126,6 @@ const useStyles = makeStyles((theme) => ({
     // necessary for content to be below app bar
     ...theme.mixins.toolbar,
   },
-  content: {
-    flexGrow: 1,
-    padding: theme.spacing(3),
-  },
   header: {
     color: '#252218',
     align: 'right',
@@ -173,8 +159,8 @@ export default function App() {
   }
 
   return (
-    <Router>
-      <div style={{ display: "flex" }}>
+    <div style={{ display: "flex" }}>
+      <Router>
         <AppBar
           position="fixed"
           className={clsx(classes.appBar, {
@@ -198,24 +184,24 @@ export default function App() {
           }}
         >
           <div className={classes.overlay}>
-          <div className={classes.toolbar}>
-            <IconButton className={classes.white} onClick={handleDrawer}>
-              { open ? <ChevronLeftIcon /> : <MenuTwoToneIcon /> }
-            </IconButton>
-          </div>
-          
-          <Divider variant="middle" />
+            <div className={classes.toolbar}>
+              <IconButton className={classes.white} onClick={handleDrawer}>
+                { open ? <ChevronLeftIcon /> : <MenuTwoToneIcon /> }
+              </IconButton>
+            </div>
+            
+            <Divider variant="middle" />
 
-          <List>
-            {menuItems.map((item) => (
-              <Link key={item.id} to={item.path} className={classes.link}>
-                <ListItem button>
-                  <ListItemIcon className={classes.white}>{item.icon}</ListItemIcon>
-                  <ListItemText className={classes.white} primary={item.text} />
-                </ListItem>
-              </Link>
-            ))}
-          </List>
+            <List>
+              {menuItems.map((item) => (
+                <Link key={item.id} to={item.path} className={classes.link}>
+                  <ListItem button>
+                    <ListItemIcon className={classes.white}>{item.icon}</ListItemIcon>
+                    <ListItemText className={classes.white} primary={item.text} />
+                  </ListItem>
+                </Link>
+              ))}
+            </List>
           </div>
         </Drawer>
 
@@ -224,7 +210,7 @@ export default function App() {
             <Route key={item.id} path={item.path} component={item.component} />
           ))}
         </Switch>
-      </div>
-    </Router>
+      </Router>
+    </div>
   );
 }
