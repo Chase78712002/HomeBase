@@ -7,6 +7,26 @@ export default function CountDown(props) {
   const [minutes, setMinutes] = useState(8);
   const [seconds, setSeconds] = useState(7);
 
+  const countdown = () => {
+    const endDate = new Date("December 25, 2021 00:00:00").getTime()
+    const today = new Date().getTime()
+
+    const timeDiff = endDate - today
+
+    const second = 1000 // milisec
+    const minute = 60 * second
+    const hour = 60 * minute
+    const day = 24 * hour
+
+    let timeDays = Math.floor(timeDiff/ day)
+    let timeHours = Math.floor((timeDiff % day)/ hour)
+    let timeMinutes = Math.floor((timeDiff % hour) / minute )
+    let timeSeconds = Math.floor((timeDiff % minute) / second)
+  }
+
+
+
+
   const boxProps = {
     bgcolor: "transparent",
     borderColor: "text.primary",
