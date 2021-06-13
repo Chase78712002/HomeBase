@@ -5,6 +5,9 @@ import AddNewTimeline from "./AddNewTimeline";
 
 import "../App.scss";
 import "./Schedule.scss";
+
+import Title from "./Title";
+
 import axios from "axios";
 
 export default function Schedule() {
@@ -14,10 +17,7 @@ export default function Schedule() {
     axios
       .get(`/api/milestones`)
       .then((response) => {
-        console.log("The response:", response.data);
         setSchedule(response.data);
-
-        console.log("schedule sate:", schedule);
       })
       .catch((error) => {
         const errorMessage = error;
@@ -30,11 +30,9 @@ export default function Schedule() {
   ));
 
   return (
-    <div>
-      <div>
-        <AddNewTimeline />
-      </div>
+    <section className="content">
+      <Title title={"Schedule and Milestones"} />
       <div className="timeline-container">{timeline}</div>
-    </div>
+    </section>
   );
 }

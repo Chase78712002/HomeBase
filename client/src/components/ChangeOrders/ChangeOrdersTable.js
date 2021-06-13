@@ -19,6 +19,9 @@ const useStyle = makeStyles({
   progress: {
     color: '#679436'
   },
+  footer: {
+    backgroundColor: '#f5f5f5',
+  }
 });
 
 export default function ChangeOrdersTable({ changeOrders, status }) {
@@ -83,10 +86,10 @@ export default function ChangeOrdersTable({ changeOrders, status }) {
       <Table className={classes.table} aria-label="change orders table">
         <TableHead>
           <TableRow>
-            <TableCell>Reference no.</TableCell>
-            <TableCell>Description</TableCell>
+            <TableCell>REFERENCE NO.</TableCell>
+            <TableCell>DESCRIPTION</TableCell>
             <TableCell align="center">
-              Status
+              STATUS
               <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClickMenu}>
                 <ExpandMoreTwoToneIcon />
               </Button>
@@ -103,7 +106,7 @@ export default function ChangeOrdersTable({ changeOrders, status }) {
                 <MenuItem onClick={() => { setStatusFilterId(3); handleCloseMenu() }}>Pending</MenuItem>
               </Menu>
             </TableCell>
-            <TableCell align="right">Payment amount</TableCell>
+            <TableCell align="right">PAYMENT AMOUNT</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -123,9 +126,9 @@ export default function ChangeOrdersTable({ changeOrders, status }) {
             </TableRow>
           ))}
           <TableRow>
-            <TableCell colSpan={2} />
-            <TableCell align="center"><strong>TOTAL:</strong></TableCell>
-            <TableCell align="right"><strong>${totalCosts()}</strong></TableCell>
+            <TableCell colSpan={2} className={classes.footer} />
+            <TableCell align="center" className={classes.footer}><strong>TOTAL:</strong></TableCell>
+            <TableCell align="right" className={classes.footer}><strong>${totalCosts()}</strong></TableCell>
           </TableRow>
         </TableBody>
       </Table>
