@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 // app imports
-import ChangeOrdersTable from './ChangeOrders/ChangeOrdersTable';
-import Title from './Title';
+import ChangeOrdersTable from './ChangeOrdersTable';
+import Title from '../Title';
 
 export default function ChangeOrders() {
   const [state, setState] = useState({
@@ -34,5 +34,5 @@ export default function ChangeOrders() {
       <Title title={"Change Orders"} />
       <ChangeOrdersTable changeOrders={state.changeOrders} status={state.changeOrderStatus} projects={state.projects} />
     </section>
-  )
+  );
 }

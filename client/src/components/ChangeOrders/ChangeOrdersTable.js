@@ -12,11 +12,6 @@ import ChangeOrderDetails from './ChangeOrderDetails';
 import Status from './Status';
 
 const useStyle = makeStyles({
-  header: {
-    color: '#05668d',
-    fontSize: 30,
-    margin: '10px 0'
-  },
   table: {
     minWidth: 650,
     marginTop: '20px'
