@@ -1,38 +1,21 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
+// @material-ui imports
 import {
   makeStyles, Typography, Grid, Card, Divider } from "@material-ui/core";
 
-import BudgetList from "./Budget/BudgetList";
-import NewCategory from "./Budget/NewCategory";
-import NewTransaction from "./Budget/NewTransaction";
-import Title from "./Title";
+  // app imports
+import BudgetList from "./BudgetList";
+import NewCategory from "./NewCategory";
+import NewTransaction from "./NewTransaction";
+import Title from "../Title";
 
-import "./App.scss";
+import "../App.scss";
 
 const useStyle = makeStyles({
-  container: {
-    display: "flex",
-    "& > *": {
-      padding: 10,
-      flex: 1,
-    },
-  },
-  /* Can delete after title component is created */
-  header: {
-    color: "#05668d",
-    fontSize: 30,
-    margin: "10px 0",
-  },
-  /* end */
   heading: {
     color: "#05668d",
-  },
-  grid: {
-    "& > *": {
-      margin: "10px",
-    },
   },
   divider: {
     margin: "20px 0",

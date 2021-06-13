@@ -1,26 +1,11 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-import { makeStyles } from '@material-ui/core';
-
-import ChangeOrdersTable from './ChangeOrders/ChangeOrdersTable';
-import Title from './Title';
-
-const useStyle = makeStyles({
-  header: {
-    color: '#05668d',
-    fontSize: 30,
-    margin: '10px 0'
-  },
-  table: {
-    minWidth: 650,
-    marginTop: '20px'
-  },
-});
+// app imports
+import ChangeOrdersTable from './ChangeOrdersTable';
+import Title from '../Title';
 
 export default function ChangeOrders() {
-  const classes = useStyle();
-
   const [state, setState] = useState({
     changeOrders: [],
     changeOrderStatus: []
@@ -31,12 +16,14 @@ export default function ChangeOrders() {
     Promise.all([
       axios.get("/api/change_orders"),
       axios.get("/api/change_order_status"),
+      axios.get("/api/projects"),
     ])
       .then((all) => {
         setState((prev) => ({
           ...prev,
           changeOrders: all[0].data,
           changeOrderStatus: all[1].data,
+          projects: all[2].data,
         }));
       })
       .catch((error) => console.log(error));
@@ -45,7 +32,7 @@ export default function ChangeOrders() {
   return (
     <section className="content">
       <Title title={"Change Orders"} />
-      <ChangeOrdersTable changeOrders={state.changeOrders} status={state.changeOrderStatus} />
+      <ChangeOrdersTable changeOrders={state.changeOrders} status={state.changeOrderStatus} projects={state.projects} />
     </section>
-  )
+  );
 }
