@@ -6,7 +6,7 @@ import AddNewTimeline from "./AddNewTimeline";
 import "../App.scss";
 import "./Schedule.scss";
 
-import Title from "./Title";
+import Title from "../Title";
 
 import axios from "axios";
 

@@ -5,9 +5,7 @@ Rails.application.routes.draw do
 
   namespace :api do # /api/data
 
-    # root to: 'landingpage#index' is same as path to '/'
-
-    get '/data', to: 'tests#index' #<--- from boilerplate
+    root to: 'projects#index'
 
     resources :projects, only: [:index, :show]
     resources :documents, only: [:index, :create, :update, :destroy]

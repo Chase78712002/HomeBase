@@ -27,7 +27,7 @@ import DescriptionTwoToneIcon from "@material-ui/icons/DescriptionTwoTone";
 import MenuTwoToneIcon from "@material-ui/icons/MenuTwoTone";
 
 import Dashboard from "./Dashboard-v2/Dashboard";
-import Schedule from "./Schedule";
+import Schedule from "./Schedule/Schedule";
 import Budget from "./Budget";
 import ChangeOrders from "./ChangeOrders";
 import Documents from "./Documents";
