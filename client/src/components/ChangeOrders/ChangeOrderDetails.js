@@ -1,11 +1,10 @@
-
 // currency formatter
 import NumberFormat from 'react-number-format';
 
 // @material-ui imports
 import { 
-  makeStyles, Typography, Divider, Button, 
-  Dialog, DialogTitle, DialogActions, DialogContent, DialogContentText, 
+  makeStyles, Divider, Button, 
+  Dialog, DialogTitle, DialogActions, DialogContent,
   Table, TableBody, TableCell, TableHead, TableRow
 } from '@material-ui/core';
 
@@ -19,13 +18,9 @@ const useStyles = makeStyles({
     alignItems: "center",
     padding: "2em 2em 1em 2em"
   },
-  right: {
-    display: "flex",
-    justifyContent: "flex-end"
-  },
 });
 
-export default function ChangeOrderDetails({ currentCO, open, onClose }) {
+export default function ChangeOrderDetails({ currentCO, client, open, onClose }) {
   const classes = useStyles();
 
   const handleClose = () => {
@@ -39,7 +34,7 @@ export default function ChangeOrderDetails({ currentCO, open, onClose }) {
         <div>
           <strong>Builder Name</strong><br/>
           123 Main Street<br/>
-          Victoria, BC T3V 88<br/>
+          Victoria, BC V8P 1H5<br/>
         </div>
       </div>
 
@@ -50,14 +45,14 @@ export default function ChangeOrderDetails({ currentCO, open, onClose }) {
           <strong>Change order #:</strong> CO_{currentCO.id}<br />
         </div>
         <div>
-          <strong>Client name:</strong> Name<br />
+          <strong>Client name:</strong> {client.first_name} {client.last_name}<br />
         </div>
       </div>
 
       <Divider variant="middle" />
         
       <DialogContent>
-        <DialogContentText>
+
           <Table className={classes.table} aria-label="change orders table">
             <TableHead>
               <TableRow>
@@ -76,14 +71,11 @@ export default function ChangeOrderDetails({ currentCO, open, onClose }) {
               </TableRow>
             </TableBody>
           </Table>
-        </DialogContentText>
 
         <br/>
 
-        <DialogContentText>
-          <Typography><strong>Details:</strong></Typography>
-          <Typography>{currentCO.details}</Typography>
-        </DialogContentText>
+        <div><strong>Details:</strong></div>
+        <div>{currentCO.details}</div>
       </DialogContent>
 
       <DialogActions className={classes.header}>
