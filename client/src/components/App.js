@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { useState } from 'react';
 import clsx from 'clsx';
 
-import { makeStyles, Divider, AppBar, Toolbar, Drawer, List, ListItem, ListItemIcon, ListItemText, IconButton, Typography } from "@material-ui/core";
+import { makeStyles, Divider, AppBar, Toolbar, Drawer, List, ListItem, ListItemIcon, ListItemText, IconButton } from "@material-ui/core";
 
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import HomeTwoToneIcon from '@material-ui/icons/HomeTwoTone';
@@ -145,9 +145,18 @@ const useStyles = makeStyles((theme) => ({
     align: 'right',
   },
   sidebar: {
-    backgroundColor: '#252218',
-    opacity: '.8',
-    color: '#fff',
+    backgroundImage: 'url("https://source.unsplash.com/SAFF_1rWBqE/600x400")',
+    backgroundPosition: 'center bottom',
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'auto 100%',
+  },
+  overlay: {
+    backgroundColor: 'rgba(37, 34, 24, 1)',
+    top: 0,
+    left: 0,
+    opacity: '.6',
+    width: '100%',
+    height: '100%'
   },
   white: {
     color: '#fff',
@@ -157,7 +166,7 @@ const useStyles = makeStyles((theme) => ({
 export default function App() {
   const classes = useStyles();
 
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
 
   const handleDrawer = () => {
     setOpen(!open);
@@ -188,8 +197,9 @@ export default function App() {
             }, classes.sidebar),
           }}
         >
+          <div className={classes.overlay}>
           <div className={classes.toolbar}>
-            <IconButton color="inherit" onClick={handleDrawer}>
+            <IconButton className={classes.white} onClick={handleDrawer}>
               { open ? <ChevronLeftIcon /> : <MenuTwoToneIcon /> }
             </IconButton>
           </div>
@@ -206,6 +216,7 @@ export default function App() {
               </Link>
             ))}
           </List>
+          </div>
         </Drawer>
 
         <Switch>
