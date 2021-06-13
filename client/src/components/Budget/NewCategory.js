@@ -55,5 +55,5 @@ export default function NewCategory({ addCategory }) {
         <Button className={classes.button} onClick={newCategory} variant="contained">Add new category</Button>
       </form>
     </Box>
-  )
+  );
 }
