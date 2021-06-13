@@ -1,17 +1,17 @@
 import { useState } from "react";
 
+// currency formatter
+import NumberFormat from 'react-number-format';
+
+// @material-ui imports
 import { makeStyles, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, CircularProgress, Button, Menu, MenuItem } from '@material-ui/core';
 import ExpandMoreTwoToneIcon from '@material-ui/icons/ExpandMoreTwoTone';
 
+// app imports
 import ChangeOrderDetails from './ChangeOrderDetails';
 import Status from './Status';
 
 const useStyle = makeStyles({
-  header: {
-    color: '#05668d',
-    fontSize: 30,
-    margin: '10px 0'
-  },
   table: {
     minWidth: 650,
     marginTop: '20px'
@@ -24,7 +24,7 @@ const useStyle = makeStyles({
   }
 });
 
-export default function ChangeOrdersTable({ changeOrders, status }) {
+export default function ChangeOrdersTable({ changeOrders, status, projects }) {
   const classes = useStyle();
 
   const [open, setOpen] = useState(false);
@@ -33,7 +33,7 @@ export default function ChangeOrdersTable({ changeOrders, status }) {
   const [anchorEl, setAnchorEl] = useState(null);
 
   // if data has not yet loaded, display progress bar
-  if (changeOrders.length === 0 || status.length === 0) {
+  if (changeOrders.length === 0 || status.length === 0 || projects.length === 0) {
     return (
       <div>
         <CircularProgress className={classes.progress} />
@@ -44,7 +44,7 @@ export default function ChangeOrdersTable({ changeOrders, status }) {
   // set filtering options
   let filteredCOs = changeOrders;
   
-  const filterByCategory = (id) => {
+  const filterByCategory = () => {
     if (statusFilterId !== 0) {
       filteredCOs = changeOrders.filter(changeOrder => changeOrder.change_order_status_id === statusFilterId)
     }
@@ -81,6 +81,8 @@ export default function ChangeOrdersTable({ changeOrders, status }) {
     setOpen(false);
   };
 
+  const currentProject = projects[0];
+
   return (
     <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="change orders table">
@@ -116,19 +118,19 @@ export default function ChangeOrdersTable({ changeOrders, status }) {
                 <Button variant="outlined" onClick={() => handleClickOpen(changeOrder)}>
                   CO_{changeOrder.id}
                 </Button>
-                <ChangeOrderDetails currentCO={currentCO} open={open} onClose={handleClose} />
+                <ChangeOrderDetails currentCO={currentCO} client={currentProject.client} open={open} onClose={handleClose} />
               </TableCell>
               <TableCell>{changeOrder.description}</TableCell>
               <TableCell align="center">
                 <Status statusId={changeOrder.change_order_status_id}/>
               </TableCell>
-              <TableCell align="right">${changeOrder.change_order_status_id === 2 ? 0 : changeOrder.cost}</TableCell>
+              <TableCell align="right"><NumberFormat value={changeOrder.change_order_status_id === 2 ? 0 : changeOrder.cost} displayType={'text'} thousandSeparator={true} prefix={'$'} /></TableCell>
             </TableRow>
           ))}
           <TableRow>
             <TableCell colSpan={2} className={classes.footer} />
             <TableCell align="center" className={classes.footer}><strong>TOTAL:</strong></TableCell>
-            <TableCell align="right" className={classes.footer}><strong>${totalCosts()}</strong></TableCell>
+            <TableCell align="right" className={classes.footer}><strong><NumberFormat value={totalCosts()} displayType={'text'} thousandSeparator={true} prefix={'$'} /></strong></TableCell>
           </TableRow>
         </TableBody>
       </Table>
