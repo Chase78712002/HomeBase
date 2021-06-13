@@ -27,7 +27,7 @@ import DescriptionTwoToneIcon from "@material-ui/icons/DescriptionTwoTone";
 
 // app imports
 import Dashboard from "./Dashboard-v2/Dashboard";
-import Schedule from "./Schedule";
+import Schedule from "./Schedule/Schedule";
 import Budget from "./Budget/Budget";
 import ChangeOrders from "./ChangeOrders/ChangeOrders";
 import Documents from "./Documents";
