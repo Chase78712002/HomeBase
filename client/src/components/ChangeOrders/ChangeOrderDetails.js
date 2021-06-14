@@ -11,17 +11,17 @@ import {
 // app imports
 import Status from './Status';
 
-const useStyles = makeStyles({
+const useStyle = makeStyles((theme) => ({
   header: {
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
     padding: "2em 2em 1em 2em"
   },
-});
+}));
 
 export default function ChangeOrderDetails({ currentCO, client, open, onClose }) {
-  const classes = useStyles();
+  const classes = useStyle();
 
   const handleClose = () => {
     onClose();
@@ -80,7 +80,7 @@ export default function ChangeOrderDetails({ currentCO, client, open, onClose })
 
       <DialogActions className={classes.header}>
         <Status statusId={currentCO.change_order_status_id}/>
-        <Button onClick={handleClose} color="primary" autoFocus>
+        <Button onClick={handleClose} variant="contained" autoFocus>
           Close
         </Button>
       </DialogActions>
