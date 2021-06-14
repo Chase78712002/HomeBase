@@ -20,7 +20,7 @@ import Dashboard from "./Dashboard/Dashboard";
 import Schedule from "./Schedule";
 import Budget from "./Budget/Budget";
 import ChangeOrders from "./ChangeOrders/ChangeOrders";
-import Documents from "./Documents";
+import Documents from "./Document/Documents";
 
 import "./App.scss";
 
