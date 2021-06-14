@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 import "./index.scss";
 import App from "./components/App";
 import * as serviceWorker from "./serviceWorker";
@@ -11,33 +12,34 @@ const theme = createMuiTheme({
   palette: {
     type: "light",
     primary: {
-      main: "#05668d" // dark blue
+      main: "#05668d", // dark blue
     },
     secondary: {
-      main: "#679436" // green
+      main: "#679436", // green
     },
     error: {
-      main: "#8d0522" // red
+      main: "#8d0522", // red
     },
     darkBackground: {
-      main: "#252218" // black
+      main: "#252218", // black
     },
     lightBackground: {
-      main: "#ebf2fa" // pale blue
+      main: "#ebf2fa", // pale blue
     },
     background: {
-      main: "#f5f5f5" // light grey
+      main: "#f5f5f5", // light grey
     },
     white: {
-      main: "#fff" // white
-    }
+      main: "#fff", // white
+    },
   },
 });
 
 ReactDOM.render(
   <ThemeProvider theme={theme}>
-    {/* <App /> */}
-    <SplashLogin />
+    <Router>
+      <App />
+    </Router>
   </ThemeProvider>,
 
   document.getElementById("root")

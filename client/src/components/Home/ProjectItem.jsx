@@ -38,7 +38,7 @@ export default function ProjectItem(props) {
   
   return (
     <Card className={classes.root} variant="outlined">
-      <CardActionArea component={Link} to={`/projects/${props.id}`}>
+      <CardActionArea component={Link} to={`/dashboard`}>
 
         <CardHeader
           avatar={
