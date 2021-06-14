@@ -24,6 +24,7 @@ import ChangeOrders from "./ChangeOrders/ChangeOrders";
 import Documents from "./Document/Documents";
 
 import "./App.scss";
+import SplashLogin from "./Splash_login";
 
 const menuItems = [
   {
@@ -81,6 +82,7 @@ export default function App() {
         {menuItems.map((item) => (
           <Route key={item.id} path={item.path} component={item.component} />
         ))}
+        <Route path="/" component={SplashLogin} />
       </Switch>
       </Router>
     </div>

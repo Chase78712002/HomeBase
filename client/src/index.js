@@ -38,8 +38,8 @@ const theme = createMuiTheme({
 ReactDOM.render(
   <ThemeProvider theme={theme}>
     <Router>
-      {/* <App /> */}
-      <SplashLogin />
+      <App />
+      {/* <SplashLogin /> */}
       
     </Router>
   </ThemeProvider>,
