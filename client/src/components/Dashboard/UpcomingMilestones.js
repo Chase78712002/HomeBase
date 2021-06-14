@@ -16,7 +16,7 @@ export default function UpcomingMilestones({ milestone }) {
     return null;
   };
 
-  getUpcomingMilestoneDates(milestone);
+  // getUpcomingMilestoneDates(milestone);
 
   return (
     <div className="upcoming-milestones-container">
