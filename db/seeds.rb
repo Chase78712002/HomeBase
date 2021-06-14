@@ -70,9 +70,9 @@ project1 = Project.create(
   name: 'Project 1 - Kolumbeya',
   start_date: Date.today,
   end_date: Date.today + 30, #days
-  image: "/Images/Houses/1.jpg",
+  image: "https://source.unsplash.com/rChFUMwAe7E",
   address: "612 Loucks Dr Calgary AB K4R 1B7",
-  avatarSrc: "/Images/Avatars/1.jpg",
+  avatarSrc: "https://source.unsplash.com/6anudmpILw4",
   builder_id: 1,
   client_id: 1
 )
@@ -81,8 +81,8 @@ project2 = Project.create(
   name: 'Project 2 - Toronto',
   start_date: Date.today,
   end_date: Date.today + 60,
-  image: "/Images/Houses/2.jpg",
-  avatarSrc: "/Images/Avatars/2.jpg",
+  image: "https://source.unsplash.com/R1uiDu8vBh0",
+  avatarSrc: "https://source.unsplash.com/AJIqZDAUD7A",
   address: "240 Foxhaven Dr Sherwood Park AB T8A 6L1",
   builder_id: 1,
   client_id: 2
@@ -92,9 +92,9 @@ project3 = Project.create(
   name: 'Project 3 - Mumbai',
   start_date: Date.today,
   end_date: Date.today + 90,
-  image: "/Images/Houses/3.jpg",
+  image: "https://source.unsplash.com/aren8nutd1Q",
   address: "15317 21 Ave Surrey BC V4A 6A8",
-  avatarSrc: "/Images/Avatars/3.jpg",
+  avatarSrc: "https://source.unsplash.com/rDEOVtE7vOs",
   builder_id: 1,
   client_id: 3
 )
@@ -103,9 +103,9 @@ project4 = Project.create(
   name: 'Project PlumbeousSilver',
   start_date: Date.today,
   end_date: Date.today + 90,
-  image: "/Images/Houses/4.jpg",
+  image: "https://source.unsplash.com/TiVPTYCG_3E",
   address: "75 John St W 504 Vancouver BC L1H 1W9",
-  avatarSrc: "/Images/Avatars/4.jpg",
+  avatarSrc: "https://source.unsplash.com/X6Uj51n5CE8",
   builder_id: 2,
   client_id: 4
 )
@@ -114,9 +114,9 @@ project5 = Project.create(
   name: 'Project NigricantBronze',
   start_date: Date.today,
   end_date: Date.today + 90,
-  image: "/Images/Houses/5.jpg",
+  image: "https://source.unsplash.com/_TPTXZd9mOo",
   address: "7161 Ave De La Deviniere , Vancouver, BC, H1K 3S8",
-  avatarSrc: "/Images/Avatars/5.jpg",
+  avatarSrc: "https://source.unsplash.com/3TLl_97HNJo",
   builder_id: 2,
   client_id: 5
 )
@@ -125,9 +125,9 @@ project6 = Project.create(
   name: 'Project NiveousZinc',
   start_date: Date.today,
   end_date: Date.today + 90,
-  image: "/Images/Houses/6.jpg",
+  image: "https://source.unsplash.com/RCF5KSWb7Ms",
   address: "1 Lomond Dr Etobicoke BC M8X 2Z3",
-  avatarSrc: "/Images/Avatars/6.jpg",
+  avatarSrc: "https://source.unsplash.com/bLpMy2UDnOc",
   builder_id: 2,
   client_id: 6
 )
