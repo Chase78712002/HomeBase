@@ -4,6 +4,8 @@ import "./index.scss";
 import App from "./components/App";
 import * as serviceWorker from "./serviceWorker";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core";
+import SplashLogin from './components/Splash_login';
+
 
 const theme = createMuiTheme({
   palette: {
@@ -34,7 +36,8 @@ const theme = createMuiTheme({
 
 ReactDOM.render(
   <ThemeProvider theme={theme}>
-    <App />
+    {/* <App /> */}
+    <SplashLogin />
   </ThemeProvider>,
 
   document.getElementById("root")

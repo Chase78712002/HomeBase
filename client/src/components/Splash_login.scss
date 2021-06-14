@@ -1,0 +1,66 @@
+
+
+body {
+  margin: 0;
+  padding: 0;
+  background-image: url("../image/houseBuild_ex1.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  min-height: 100vh;
+  display: grid;
+  place-items: center; 
+}
+
+.wrapper {
+  width: 400px;
+  height: 450px;
+  color: #fff;
+  box-sizing: border-box;
+  padding: 70px 30px;
+  background: #ffffff1a;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 0 50px #0000002a;
+}
+
+.wrapper h1 {
+  margin:0;
+  padding: 0 0 20px;
+  text-align: center;
+  font-size: 30px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+}
+
+.wrapper input{
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.wrapper input[type=text],
+.wrapper input[type=password] {
+  border: none ;
+  border-bottom: 1px solid #fff;
+  background: transparent;
+  outline: none;
+  height: 40px;
+  color: #fff;
+  font-size: 16px;
+}
+
+.wrapper input[type=submit] {
+  border: none;
+  outline: none;
+  height: 40px;
+  background: #fff;
+  color: #333;
+  font-size: 18px;
+  display: block;
+  margin-top: 25px;
+}
+
+.wrapper a {
+  text-decoration: none;
+  font-size: 14px;
+  color: #fff;
+}
