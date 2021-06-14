@@ -69,13 +69,12 @@ const menuItems = [
 
 export default function App() {
   return (
-    <div >
-      <Header />
+    <div>
       <Router>
-
         <Switch>
           <Route exact path="/" component={SplashLogin} />
           <div style={{ display: "flex" }}>
+            <Header />
             <Nav menuItems={menuItems} />
 
             {menuItems.map((item) => (
@@ -86,8 +85,6 @@ export default function App() {
               />
             ))}
           </div>
-          
-
         </Switch>
       </Router>
     </div>
