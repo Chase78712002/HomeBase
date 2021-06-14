@@ -23,7 +23,7 @@ import {
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import MenuTwoToneIcon from "@material-ui/icons/MenuTwoTone";
 
-const drawerWidth = 235;
+const drawerWidth = 255;
 
 const useStyles = makeStyles((theme) => ({
   link: {

@@ -6,7 +6,8 @@ import App from "./App";
 
 export default function SplashLogin(props) {
   return (
-    <Tilt
+    <div className="splash-screen">
+      <Tilt
       className="wrapper"
       options={{
         max: 15,
@@ -40,5 +41,7 @@ export default function SplashLogin(props) {
         </div>
       </form>
     </Tilt>
+    </div>
+    
   );
 }

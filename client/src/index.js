@@ -39,8 +39,6 @@ ReactDOM.render(
   <ThemeProvider theme={theme}>
     <Router>
       <App />
-      {/* <SplashLogin /> */}
-      
     </Router>
   </ThemeProvider>,
 

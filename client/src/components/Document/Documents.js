@@ -18,7 +18,7 @@ const theme = createMuiTheme({
     MuiContainer: {
       root: {
         display: "flex",
-        "justify-content": "space-between",
+        justifyContent: "space-between",
         alignItems:"center"
       },
     },
@@ -111,7 +111,7 @@ export default function Documents() {
       <Title title={"Documents"} />
 
       <ThemeProvider theme={theme}>
-        <Container maxWidth="lg" disableGutters={true}>
+        <Container disableGutters={true}>
           <SearchBar setSearchTerm={setSearchTerm} />
           <AddNewDocument categories={state.categories} onSave={saveFile} />
         </Container>

@@ -1,10 +1,6 @@
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-import './App.scss';
+import "./App.scss";
 
 import HomeTwoToneIcon from "@material-ui/icons/HomeTwoTone";
 import DashboardTwoToneIcon from "@material-ui/icons/DashboardTwoTone";
@@ -14,8 +10,8 @@ import LoopTwoToneIcon from "@material-ui/icons/LoopTwoTone";
 import DescriptionTwoToneIcon from "@material-ui/icons/DescriptionTwoTone";
 
 // app imports
-import Header from './Header';
-import Nav from './Nav';
+import Header from "./Header";
+import Nav from "./Nav";
 import Home from "./Home/index";
 import Dashboard from "./Dashboard/Dashboard";
 import Schedule from "./Schedule";
@@ -73,17 +69,26 @@ const menuItems = [
 
 export default function App() {
   return (
-    <div style={{ display: "flex" }}>
+    <div >
       <Header />
       <Router>
-      <Nav menuItems={menuItems}/>
 
-      <Switch>
-        {menuItems.map((item) => (
-          <Route key={item.id} path={item.path} component={item.component} />
-        ))}
-        <Route path="/" component={SplashLogin} />
-      </Switch>
+        <Switch>
+          <Route exact path="/" component={SplashLogin} />
+          <div style={{ display: "flex" }}>
+            <Nav menuItems={menuItems} />
+
+            {menuItems.map((item) => (
+              <Route
+                key={item.id}
+                path={item.path}
+                component={item.component}
+              />
+            ))}
+          </div>
+          
+
+        </Switch>
       </Router>
     </div>
   );
