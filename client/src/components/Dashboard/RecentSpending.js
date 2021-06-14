@@ -93,19 +93,12 @@ const RecentSpending = (props) => {
   };
 
   return (
-    <Card style={{ backgroundColor: "rgba(255,255,255, 0.2)" }} raised>
-      <CardHeader title="Recent Spending" />
-      <Divider />
-      <CardContent>
         <Box>
           <Bar
             data={data}
             options={options}
           />
         </Box>
-      </CardContent>
-      <Divider />
-    </Card>
   );
 };
 

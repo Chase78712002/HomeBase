@@ -46,17 +46,16 @@ export default function Header() {
         <AppBar position="absolute" className={classes.appBar}>
           <Toolbar>
             <Typography className={classes.title}></Typography>
-
+{/* 
             <Button size="small" color="primary">
               <HomeTwoToneIcon />
               &nbsp;
-              {/* <Link to="/projects" className={classes.link}> */}
+              <Link to="/projects" className={classes.link}> */}
               {/* All Projects */}
-              {/* </Link> */}
-              All Projects
-            </Button>
+              {/* </Link>
+            </Button> */}
 
-            <Typography color="primary">&nbsp;|&nbsp;</Typography>
+            {/* <Typography color="primary">&nbsp;|&nbsp;</Typography> */}
 
             <Button color="primary">
               <AccountCircleTwoToneIcon />
