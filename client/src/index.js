@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter as Router } from "react-router-dom";
+import { BrowserRouter as Router} from "react-router-dom";
 import "./index.scss";
 import App from "./components/App";
 import * as serviceWorker from "./serviceWorker";
@@ -38,7 +38,9 @@ const theme = createMuiTheme({
 ReactDOM.render(
   <ThemeProvider theme={theme}>
     <Router>
-      <App />
+      {/* <App /> */}
+      <SplashLogin />
+      
     </Router>
   </ThemeProvider>,
 
