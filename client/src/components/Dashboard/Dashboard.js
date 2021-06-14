@@ -1,23 +1,32 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import NumberFormat from 'react-number-format';
+import NumberFormat from "react-number-format";
 
 // @material-ui imports
-import { makeStyles, Typography, Grid, Card, CardContent, CardActions, Button } from "@material-ui/core";
+import {
+  makeStyles,
+  Typography,
+  Grid,
+  Card,
+  CardContent,
+  CardActions,
+  Button,
+} from "@material-ui/core";
 
 // @material-ui imports
 // import ArrowDownwardIcon from "@material-ui/icons/ArrowDownward";
 // import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 
 // app imports
-import Title from '../Title';
+import Title from "../Title";
 import GlassCard from "./GlassCard";
 import ProjectInfo from "./ProjectInfo";
 // import RecentChangeOrders from "./RecentChangeOrders";
 import RecentSpending from "./RecentSpending";
 import Donut from "./Donut";
 import Countdown from "./CountDownCard";
+import UpcomingMilestones from "./UpcomingMilestones";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -42,8 +51,8 @@ const useStyles = makeStyles((theme) => ({
   card: {
     backgroundColor: "rgba(255,255,255, 0.2)",
     marginBottom: "25px",
-    height: "100%"
-  }
+    height: "100%",
+  },
 }));
 
 export default function Dashboard() {
@@ -53,20 +62,25 @@ export default function Dashboard() {
   // const background ={backgroundImage:'url("/Images/Houses/bg1.jpg")'}
   // style={background}
   const [state, setState] = useState({
-    budgetData:[],
-    changeOrderData:[],
-    milestoneData:[],
-    projectData: []
+    budgetData: [],
+    changeOrderData: [],
+    milestoneData: [],
+    projectData: [],
   });
+  const [filteredMilestones, setFilteredMilestones] = useState([]);
 
-  const totalBudget = state.budgetData.map(budgetObj => budgetObj.estimate_amount)
-                                .reduce((acc,val)=> acc + val, 0)
+  const totalBudget = state.budgetData
+    .map((budgetObj) => budgetObj.estimate_amount)
+    .reduce((acc, val) => acc + val, 0);
 
-  const totalActual = state.budgetData.map(budgetObj=> budgetObj.actual_amount)
-                                .reduce((acc, val) => acc + val, 0)
+  const totalActual = state.budgetData
+    .map((budgetObj) => budgetObj.actual_amount)
+    .reduce((acc, val) => acc + val, 0);
 
-  const categoriesArr = state.budgetData.map(obj => obj.description)
-  const actualAmountArr = state.budgetData.map(budgetObj => budgetObj.actual_amount);
+  const categoriesArr = state.budgetData.map((obj) => obj.description);
+  const actualAmountArr = state.budgetData.map(
+    (budgetObj) => budgetObj.actual_amount
+  );
 
   useEffect(() => {
     Promise.all([
@@ -74,17 +88,24 @@ export default function Dashboard() {
       axios.get("/api/change_orders"),
       axios.get("/api/milestones"),
       axios.get("/api/projects"),
-    ])
-    .then(all => {
-      setState(prev => ({
+    ]).then((all) => {
+      setState((prev) => ({
         ...prev,
         budgetData: all[0].data,
-        changeOrderData:all[1].data,
-        milestoneData:all[2].data,
-        projectData:all[3].data
+        changeOrderData: all[1].data,
+        milestoneData: all[2].data,
+        projectData: all[3].data,
       }));
     });
   }, []);
+
+  const upcomingMilestonesData = state.milestoneData.map((data, dataIdx) => (
+    <UpcomingMilestones key={dataIdx} milestone={data} />
+  ));
+
+  const projectsInfoData = state.projectData
+    .slice(0, 1)
+    .map((data, dataIdx) => <ProjectInfo key={dataIdx} projectsInfo={data} />);
 
   return (
     <section className="content">
@@ -92,12 +113,16 @@ export default function Dashboard() {
 
       <Grid container className={classes.root} spacing={1}>
         <Grid item xs={12} sm={12} md={4}>
-          <Card className={classes.card} raised >
+          <Card className={classes.card} raised>
             <CardContent>
-              <Typography className={classes.title} color="textSecondary" gutterBottom>
+              <Typography
+                className={classes.title}
+                color="textSecondary"
+                gutterBottom
+              >
                 PROJECT INFO
               </Typography>
-              <ProjectInfo project={state.projectData} />
+              {projectsInfoData}
             </CardContent>
           </Card>
         </Grid>
@@ -105,7 +130,11 @@ export default function Dashboard() {
         <Grid item xs={12} sm={6} md={4}>
           <Card className={classes.card} raised>
             <CardContent>
-              <Button size="small"><Link to="/schedule" className={classes.link}>SCHEDULE &amp; MILESTONES</Link></Button>
+              <Button size="small">
+                <Link to="/schedule" className={classes.link}>
+                  SCHEDULE &amp; MILESTONES
+                </Link>
+              </Button>
               <Typography variant="h5" component="h2" color="secondary">
                 Countdown to possession day!
               </Typography>
@@ -115,19 +144,24 @@ export default function Dashboard() {
         </Grid>
 
         <Grid item xs={12} sm={12} md={4}>
-          <Card className={classes.card} raised >
+          <Card className={classes.card} raised>
             <CardContent>
-              <Button size="small"><Link to="/schedule" className={classes.link}>SCHEDULE &amp; MILESTONES</Link></Button>
+              <Button size="small">
+                <Link to="/schedule" className={classes.link}>
+                  SCHEDULE &amp; MILESTONES
+                </Link>
+              </Button>
               <Typography variant="h5" component="h2" color="secondary">
                 Upcoming milestones
               </Typography>
-              <Typography variant="body2" component="p">
-                Pull in milestones after today's date; limit to 4 or 5?
+              <UpcomingMilestones milestone={state.milestoneData} />
+              <Typography variant="body2" component="div">
+                {upcomingMilestonesData}
               </Typography>
             </CardContent>
           </Card>
         </Grid>
-{/* 
+        {/* 
         <Grid item xs={12} sm={6} md={4}>
           <Link to="/budget" className={classes.link}>
           <Card className={classes.card} raised>
@@ -152,7 +186,11 @@ export default function Dashboard() {
         <Grid item xs={12} sm={6} md={8}>
           <Card className={classes.card} raised>
             <CardContent>
-            <Button size="small"><Link to="/budget" className={classes.link}>BUDGET</Link></Button>
+              <Button size="small">
+                <Link to="/budget" className={classes.link}>
+                  BUDGET
+                </Link>
+              </Button>
               {/* <GlassCard
                 amount={<NumberFormat value={totalBudget} displayType={'text'} thousandSeparator={true} prefix={'$'} />}
                 icon={<ArrowDownwardIcon />}
@@ -172,7 +210,11 @@ export default function Dashboard() {
         <Grid item xs={12} sm={6} md={4}>
           <Card className={classes.card} raised>
             <CardContent>
-              <Button size="small"><Link to="/budget" className={classes.link}>BUDGET</Link></Button>
+              <Button size="small">
+                <Link to="/budget" className={classes.link}>
+                  BUDGET
+                </Link>
+              </Button>
               <Typography variant="h5" component="h2" color="secondary">
                 Total actual spending
               </Typography>
@@ -180,9 +222,21 @@ export default function Dashboard() {
                 As of TODAY'S DATE
               </Typography> */}
               <GlassCard
-                amount={<NumberFormat value={totalActual} displayType={'text'} thousandSeparator={true} prefix={'$'} />}
+                amount={
+                  <NumberFormat
+                    value={totalActual}
+                    displayType={"text"}
+                    thousandSeparator={true}
+                    prefix={"$"}
+                  />
+                }
                 // icon={<ArrowUpwardIcon/>}
-                graph={<Donut actualAmountArr={actualAmountArr} categoriesArr={categoriesArr} />}
+                graph={
+                  <Donut
+                    actualAmountArr={actualAmountArr}
+                    categoriesArr={categoriesArr}
+                  />
+                }
               />
             </CardContent>
           </Card>
