@@ -4,19 +4,19 @@ import axios from "axios";
 import NumberFormat from 'react-number-format';
 
 // @material-ui imports
-import { makeStyles, Typography, Button, Grid, Card, CardContent, CardActions } from "@material-ui/core";
+import { makeStyles, Typography, Grid, Card, CardContent, CardActions, Button } from "@material-ui/core";
 
 // @material-ui imports
-import { Container } from "@material-ui/core";
-import ArrowDownwardIcon from "@material-ui/icons/ArrowDownward";
-import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
+// import ArrowDownwardIcon from "@material-ui/icons/ArrowDownward";
+// import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 
 // app imports
 import Title from '../Title';
-import GlassCard from "./components/dashboard/GlassCard";
-import RecentChangeOrders from "./components/dashboard/RecentChangeOrders";
-import RecentSpending from "./components/dashboard/RecentSpending";
-import Donut from "./components/dashboard/Donut";
+import GlassCard from "./GlassCard";
+import ProjectInfo from "./ProjectInfo";
+// import RecentChangeOrders from "./RecentChangeOrders";
+import RecentSpending from "./RecentSpending";
+import Donut from "./Donut";
 import Countdown from "./CountDownCard";
 
 const useStyles = makeStyles((theme) => ({
@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
   },
   link: {
     textDecoration: "none",
-    color: theme.palette.primary.main,
+    color: theme.palette.text.secondary,
   },
   card: {
     backgroundColor: "rgba(255,255,255, 0.2)",
@@ -54,7 +54,9 @@ export default function Dashboard() {
   // style={background}
   const [state, setState] = useState({
     budgetData:[],
-    changeOrderData:[]
+    changeOrderData:[],
+    milestoneData:[],
+    projectData: []
   });
 
   const totalBudget = state.budgetData.map(budgetObj => budgetObj.estimate_amount)
@@ -69,16 +71,21 @@ export default function Dashboard() {
   useEffect(() => {
     Promise.all([
       axios.get("/api/budget_categories"),
-      axios.get("/api/change_orders")
+      axios.get("/api/change_orders"),
+      axios.get("/api/milestones"),
+      axios.get("/api/projects"),
     ])
     .then(all => {
       setState(prev => ({
         ...prev,
         budgetData: all[0].data,
-        changeOrderData:all[1].data
+        changeOrderData:all[1].data,
+        milestoneData:all[2].data,
+        projectData:all[3].data
       }));
     });
   }, []);
+
   return (
     <section className="content">
       <Title title={"Project Dashboard"} />
@@ -90,19 +97,7 @@ export default function Dashboard() {
               <Typography className={classes.title} color="textSecondary" gutterBottom>
                 PROJECT INFO
               </Typography>
-              <Typography variant="h5" component="h2" color="secondary">
-                Project name
-              </Typography>
-              <Typography className={classes.pos} color="textSecondary">
-                Project start date
-              </Typography>
-              <Typography variant="body2" component="p">
-                Address of new home
-                <br /><br />
-                Image?
-                <br /><br />
-                Avatars of builders and clients associated with this project?
-              </Typography>
+              <ProjectInfo project={state.projectData} />
             </CardContent>
           </Card>
         </Grid>
@@ -110,14 +105,9 @@ export default function Dashboard() {
         <Grid item xs={12} sm={6} md={4}>
           <Card className={classes.card} raised>
             <CardContent>
-              <Typography className={classes.title} color="textSecondary" gutterBottom>
-              POSSESSION DAY
-              </Typography>
+              <Button size="small"><Link to="/schedule" className={classes.link}>SCHEDULE &amp; MILESTONES</Link></Button>
               <Typography variant="h5" component="h2" color="secondary">
                 Countdown to possession day!
-              </Typography>
-              <Typography className={classes.pos} color="textSecondary">
-                Date
               </Typography>
               <Countdown />
             </CardContent>
@@ -125,27 +115,17 @@ export default function Dashboard() {
         </Grid>
 
         <Grid item xs={12} sm={12} md={4}>
-          <Link to="/schedule" className={classes.link}>
           <Card className={classes.card} raised >
             <CardContent>
-              <Typography className={classes.title} color="textSecondary" gutterBottom>
-                SCHEDULE &amp; MILESTONES
-              </Typography>
+              <Button size="small"><Link to="/schedule" className={classes.link}>SCHEDULE &amp; MILESTONES</Link></Button>
               <Typography variant="h5" component="h2" color="secondary">
                 Upcoming milestones
-              </Typography>
-              <Typography className={classes.pos} color="textSecondary">
-                Project start date
               </Typography>
               <Typography variant="body2" component="p">
                 Pull in milestones after today's date; limit to 4 or 5?
               </Typography>
             </CardContent>
-            {/* <CardActions className={classes.cardAction}>
-            <Button size="small"><Link to="/schedule" className={classes.link}>View full schedule</Link></Button>
-            </CardActions> */}
           </Card>
-          </Link>
         </Grid>
 {/* 
         <Grid item xs={12} sm={6} md={4}>
@@ -172,87 +152,42 @@ export default function Dashboard() {
         <Grid item xs={12} sm={6} md={8}>
           <Card className={classes.card} raised>
             <CardContent>
-              <Typography className={classes.title} color="textSecondary" gutterBottom>
-              BUDGET
-              </Typography>
+            <Button size="small"><Link to="/budget" className={classes.link}>BUDGET</Link></Button>
               {/* <GlassCard
                 amount={<NumberFormat value={totalBudget} displayType={'text'} thousandSeparator={true} prefix={'$'} />}
                 icon={<ArrowDownwardIcon />}
                 caption="12% Since last week"
               /> */}
-              <Typography variant="h5" component="h2">
+              <Typography variant="h5" component="h2" color="secondary">
                 Recent spending
               </Typography>
-              <Typography className={classes.pos} color="textSecondary">
+              {/* <Typography className={classes.pos} color="textSecondary">
                 As of TODAY'S DATE
-              </Typography>
+              </Typography> */}
               <RecentSpending data={state.budgetData} />
             </CardContent>
-            {/* <CardActions className={classes.cardAction}>
-            <Button size="small"><Link to="/schedule" className={classes.link}>View budget</Link></Button>
-            </CardActions> */}
           </Card>
         </Grid>
 
         <Grid item xs={12} sm={6} md={4}>
           <Card className={classes.card} raised>
             <CardContent>
-              <Typography className={classes.title} color="textSecondary" gutterBottom>
-              BUDGET
-              </Typography>
-              <Typography variant="h5" component="h2">
+              <Button size="small"><Link to="/budget" className={classes.link}>BUDGET</Link></Button>
+              <Typography variant="h5" component="h2" color="secondary">
                 Total actual spending
               </Typography>
-              <Typography className={classes.pos} color="textSecondary">
+              {/* <Typography className={classes.pos} color="textSecondary">
                 As of TODAY'S DATE
-              </Typography>
+              </Typography> */}
               <GlassCard
                 amount={<NumberFormat value={totalActual} displayType={'text'} thousandSeparator={true} prefix={'$'} />}
-                icon={<ArrowUpwardIcon/>}
-                caption="35% Since last week"
+                // icon={<ArrowUpwardIcon/>}
                 graph={<Donut actualAmountArr={actualAmountArr} categoriesArr={categoriesArr} />}
               />
             </CardContent>
-            {/* <CardActions className={classes.cardAction}>
-            <Button size="small"><Link to="/schedule" className={classes.link}>View budget</Link></Button>
-            </CardActions> */}
           </Card>
         </Grid>
       </Grid>
-
-      
-
-    {/* <Container maxWidth={false}>
-    <CountDown />
-      <Grid container spacing={3}>
-        <Grid item lg={6} md={12}>
-          <GlassCard
-            title="BUDGET"
-            amount={<NumberFormat value={totalBudget} displayType={'text'} thousandSeparator={true} prefix={'$'} />
-          }
-            icon={<ArrowDownwardIcon />}
-            caption="12% Since last week"
-          />
-          <RecentSpending data={state.budgetData} />
-        </Grid>
-
-        <Grid item lg={6} md={12}>
-          <GlassCard
-            title="Total Actual Spending"
-            amount={<NumberFormat value={totalActual} displayType={'text'} thousandSeparator={true} prefix={'$'} />}
-            icon={<ArrowUpwardIcon/>}
-            caption="35% Since last week"
-            graph={<Donut actualAmountArr={actualAmountArr} categoriesArr={categoriesArr} />}
-          />
-          
-        </Grid>
-
-
-        <Grid item md={12} xs={12}>
-          <RecentChangeOrders data={state.changeOrderData} />
-        </Grid>
-      </Grid>
-    </Container> */}
     </section>
   );
 }
