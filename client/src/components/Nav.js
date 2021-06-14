@@ -127,6 +127,9 @@ const useStyles = makeStyles((theme) => ({
   },
   white: {
     color: theme.palette.white.main,
+  },
+  active: {
+    backgroundColor: theme.palette.secondary.main,
   }
 }));
 
@@ -134,6 +137,11 @@ export default function Nav() {
   const classes = useStyles();
 
   const [open, setOpen] = useState(false);
+  const [activeButton, setActiveButton] = useState();
+
+  const onSideBtnClick = id => {
+    setActiveButton(id);
+  };
 
   const handleDrawer = () => {
     setOpen(!open);
@@ -166,8 +174,8 @@ export default function Nav() {
 
           <List>
             {menuItems.map((item) => (
-              <Link key={item.id} to={item.path} className={classes.link}>
-                <ListItem button>
+              <Link key={item.id} to={item.path} className={classes.link} onClick={() => onSideBtnClick(item.id)}>
+                <ListItem button className={activeButton === item.id ? classes.active : ""}>
                   <ListItemIcon className={classes.white}>{item.icon}</ListItemIcon>
                   <ListItemText className={classes.white} primary={item.text} />
                 </ListItem>
