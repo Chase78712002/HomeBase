@@ -33,13 +33,15 @@
   margin: 40px 0;
 }
 
+// Middle line
 .timeline-container::after {
   background-color: $primary;
-  content: "";
+  content: ""; //Needs to be empty for line to show
   position: absolute;
-  left: calc(50% - 2px);
-  width: 4px;
-  height: 100%;
+  top: 50px; //Start of line length
+  left: calc(50% - 3px); //Centers line between cards
+  width: 6px;
+  height: 97%; //End up line length
 }
 
 .timeline-item {
