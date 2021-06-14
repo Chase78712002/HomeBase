@@ -13,19 +13,15 @@ import Title from "../Title";
 
 import "../App.scss";
 
-const useStyle = makeStyles({
-  heading: {
-    color: "#05668d",
-  },
+const useStyle = makeStyles((theme) => ({
   divider: {
     margin: "20px 0",
   },
   card: {
     margin: 0,
     padding: "1em",
-    backgroundColor: "#ebf2fa"
   },
-});
+}));
 
 export default function Budget() {
   const classes = useStyle();
@@ -116,7 +112,7 @@ export default function Budget() {
       <Grid container spacing={2}>
         <Grid item xs={6}>
           <Card className={classes.card}>
-            <Typography variant="h6" className={classes.heading}>
+            <Typography variant="h6" color="secondary">
               Add new category
             </Typography>
             <NewCategory addCategory={addCategory} />
@@ -125,7 +121,7 @@ export default function Budget() {
 
         <Grid item xs={6}>
           <Card className={classes.card}>
-            <Typography variant="h6" className={classes.heading}>
+            <Typography variant="h6" color="secondary">
               Add new transaction
             </Typography>
             <NewTransaction categories={state.categories} addTransaction={addTransaction} updateActual={updateActual} />

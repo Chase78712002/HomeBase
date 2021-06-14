@@ -1,11 +1,10 @@
 import { Link } from "react-router-dom";
 
 // @material-ui imports
-import { makeStyles, Typography, Divider, Button, Grid, Card, CardContent, CardActions } from "@material-ui/core";
-import HourglassFullTwoToneIcon from '@material-ui/icons/HourglassFullTwoTone';
+import { makeStyles, Typography, Button, Grid, Card, CardContent, CardActions } from "@material-ui/core";
 
 // app imports
-import Title from './Title';
+import Title from '../Title';
 
 const useStyles = makeStyles({
   root: {
@@ -23,7 +22,6 @@ const useStyles = makeStyles({
   },
   link: {
     textDecoration: 'none',
-    color: '#679436',
   }
 });
 

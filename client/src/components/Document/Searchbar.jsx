@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { fade, makeStyles } from "@material-ui/core";
-import SearchIcon from '@material-ui/icons/Search';
+import SearchTwoToneIcon from '@material-ui/icons/SearchTwoTone';
 import InputBase from '@material-ui/core/InputBase';
 
 
@@ -16,7 +16,6 @@ const useStyle = makeStyles(theme => ({
     },
     marginRight: theme.spacing(2),
     marginLeft: 0,
-    width: '50%',
     [theme.breakpoints.up('sm')]: {
       marginLeft: theme.spacing(3),
       width: 'auto',
@@ -55,7 +54,7 @@ export default function SearchBar(props) {
   return (
     <div className={classes.search}>
       <div className={classes.searchIcon}>
-        <SearchIcon />
+        <SearchTwoToneIcon />
       </div>
       <InputBase
         placeholder="Search…"

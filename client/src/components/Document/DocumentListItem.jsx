@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import FolderIcon from "@material-ui/icons/Folder";
+import DescriptionTwoToneIcon from '@material-ui/icons/DescriptionTwoTone';
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
@@ -36,7 +36,7 @@ export default function DocumentListItem(props) {
       <Grid item md={12}>
         <ListItem alignItems="center">
 
-          <ListItemIcon><FolderIcon /></ListItemIcon>
+          <ListItemIcon><DescriptionTwoToneIcon /></ListItemIcon>
 
           {!editMode && (
             <> 

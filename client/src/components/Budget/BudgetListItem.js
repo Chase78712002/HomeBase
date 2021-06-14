@@ -9,15 +9,15 @@ import IconButton from '@material-ui/core/IconButton';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 
-const useStyle = makeStyles({
+const useStyle = makeStyles((theme) => ({
   transactions: {
-    backgroundColor: '#ebf2fa',
+    backgroundColor: theme.palette.lightBackground.main,
     padding: 0,
   },
   header: {
-    color: "#05668d",
+    color: theme.palette.primary.main,
   }
-});
+}));
 
 export default function BudgetListItem( { category, transactions }) {
   const classes = useStyle();
@@ -52,7 +52,7 @@ export default function BudgetListItem( { category, transactions }) {
             <Table size="small" aria-label="transactions">
               <TableHead>
                 <TableRow>
-                  <TableCell className={classes.header} colSpan="2">TRANSACTION DETAILS</TableCell>
+                  <TableCell className={classes.header}>TRANSACTION DETAILS</TableCell>
                   <TableCell className={classes.header}>DATE</TableCell>
                   <TableCell className={classes.header} align="right">AMOUNT</TableCell>
                 </TableRow>
@@ -60,9 +60,7 @@ export default function BudgetListItem( { category, transactions }) {
               <TableBody>
                 {currentCategoryTransactions.map((transaction) => (
                   <TableRow key={transaction.id}>
-                    <TableCell component="th" scope="row" colSpan="2">
-                      {transaction.description}
-                    </TableCell>
+                    <TableCell>{transaction.description}</TableCell>
                     <TableCell>{transaction.date}</TableCell>
                     <TableCell align="right"><NumberFormat value={transaction.amount} displayType={'text'} thousandSeparator={true} prefix={'$'} /></TableCell>
                   </TableRow>

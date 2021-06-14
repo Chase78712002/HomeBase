@@ -18,10 +18,6 @@ const useStyle = makeStyles((theme) => ({
       marginTop: 25,
     },
   },
-  button: {
-    background: "#427aa1",
-    color: "#fff",
-  },
   formControl: {
     margin: theme.spacing(1),
     minWidth: 120,
@@ -100,9 +96,9 @@ export default function NewTransaction({ categories, addTransaction, updateActua
           </Select>
         </FormControl>
         <Button
-          className={classes.button}
           onClick={newTransaction}
           variant="contained"
+          color="secondary"
         >
           Add new transaction
         </Button>

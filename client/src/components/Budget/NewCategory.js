@@ -9,10 +9,6 @@ const useStyle = makeStyles((theme) => ({
       marginTop: 25 
     }
   },
-  button: {
-    background: '#427aa1',
-    color: '#fff'
-  },
   formControl: {
     margin: theme.spacing(1),
     minWidth: 120,
@@ -52,7 +48,14 @@ export default function NewCategory({ addCategory }) {
         <FormControl className={classes.formControl}>
           <TextField type="number" label="Budget estimate amount" value={estimate} onChange={(e) => setEstimate(e.target.value)}/>
         </FormControl>
-        <Button className={classes.button} onClick={newCategory} variant="contained">Add new category</Button>
+        
+        <Button
+          onClick={newCategory}
+          variant="contained"
+          color="secondary"
+        >
+          Add new category
+        </Button>
       </form>
     </Box>
   );
