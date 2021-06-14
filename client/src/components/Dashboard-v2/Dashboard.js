@@ -11,6 +11,7 @@ import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 import axios from "axios";
 import Donut from "./components/dashboard/Donut";
 import NumberFormat from 'react-number-format';
+import CountDown from "./components/dashboard/CountDownCard";
 
 export default function Dashboard() {
   // const classes = useStyles();
@@ -72,6 +73,8 @@ export default function Dashboard() {
         <Grid item md={12} xs={12}>
           <RecentChangeOrders data={state.changeOrderData} />
         </Grid>
+
+        <CountDown />
       </Grid>
     </Container>
   );
