@@ -1,16 +1,13 @@
-import { Box, Card, CardContent, CardHeader, Grid } from "@material-ui/core";
-import CircularProgress from "@material-ui/core/CircularProgress";
-import React, { useEffect, useState } from "react";
-import "./CountDownCard.scss";
-import {add} from'date-fns'
-import {
-  MuiPickersUtilsProvider,
-  KeyboardDatePicker,
-} from "@material-ui/pickers";
+import { useEffect, useState } from "react";
+import {add} from'date-fns';
 import DateFnsUtils from '@date-io/date-fns';
 
+// @material-ui imports
+import { Box, CardContent, Grid } from "@material-ui/core";
+import { MuiPickersUtilsProvider, KeyboardDatePicker } from "@material-ui/pickers";
+import LinearProgress from "@material-ui/core/LinearProgress";
 
-
+import "./CountDownCard.scss";
 
 export default function CountDown(props) {
   const [days, setDays] = useState(10);
@@ -18,13 +15,12 @@ export default function CountDown(props) {
   const [minutes, setMinutes] = useState(8);
   const [seconds, setSeconds] = useState(7);
   const [isLoading, setLoading] = useState(true);
-  const [selectedDate, setSelectedDate] = React.useState(add(new Date(), { months:1}) );
-
+  const [selectedDate, setSelectedDate] = useState(add(new Date(), { months:1}) );
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
   };
-  console.log('days: ',days)
+
   const countdown = () => {
     const endDate = new Date(selectedDate).getTime();
     const today = new Date().getTime();
@@ -55,11 +51,9 @@ export default function CountDown(props) {
   };
 
   useEffect(() => {
-    
     const myInterval = setInterval(countdown, 100);
 
     const cleanup = () => {
-      console.log('cleaning up ...')
       clearInterval(myInterval)
     }
     
@@ -79,8 +73,7 @@ export default function CountDown(props) {
   };
 
   return (
-    <Card style={{ backgroundColor: "rgba(255,255,255, 0.2)" }} raised >
-      <CardHeader title="Countdown to possession day" />
+    <>
       <MuiPickersUtilsProvider utils={DateFnsUtils} >
         <KeyboardDatePicker
           InputProps={{
@@ -96,7 +89,7 @@ export default function CountDown(props) {
       <CardContent>
         {isLoading ? (
           <Box className="loading">
-            <CircularProgress />
+            <LinearProgress color="secondary" />
           </Box>
         ) : (
           <Grid container justify="space-evenly">
@@ -135,6 +128,6 @@ export default function CountDown(props) {
           </Grid>
         )}
       </CardContent>
-    </Card>
+    </>
   );
 }
