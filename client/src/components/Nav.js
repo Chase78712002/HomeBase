@@ -108,7 +108,7 @@ const useStyles = makeStyles((theme) => ({
     ...theme.mixins.toolbar,
   },
   header: {
-    color: '#252218',
+    color: 'theme.palette.darkBackground.main',
     align: 'right',
   },
   sidebar: {
@@ -126,7 +126,7 @@ const useStyles = makeStyles((theme) => ({
     height: '100%'
   },
   white: {
-    color: '#fff',
+    color: theme.palette.white.main,
   }
 }));
 

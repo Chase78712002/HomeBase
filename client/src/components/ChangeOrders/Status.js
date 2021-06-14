@@ -1,28 +1,23 @@
+// @material-ui imports
 import { makeStyles, Chip } from '@material-ui/core';
 import CheckCircleTwoToneIcon from '@material-ui/icons/CheckCircleTwoTone';
 import HighlightOffTwoToneIcon from '@material-ui/icons/HighlightOffTwoTone';
 import HourglassFullTwoToneIcon from '@material-ui/icons/HourglassFullTwoTone';
 
-const useStyle = makeStyles({
+const useStyle = makeStyles((theme) => ({
   approved: {
-    borderColor: '#679436',
+    borderColor: theme.palette.secondary.main,
     '& > *': {
-      color: '#679436',
+      color: theme.palette.secondary.main,
     }
   },
   declined: {
-    borderColor: '#8D0522',
+    borderColor: theme.palette.error.main,
     '& > *': {
-      color: '#8D0522',
+      color: theme.palette.error.main,
     }
   },
-  pending: {
-    borderColor: '#777',
-    '& > *': {
-      color: '#777',
-    }
-  },
-});
+}));
 
 export default function Status( { statusId }) {
   const classes = useStyle();
@@ -33,17 +28,16 @@ export default function Status( { statusId }) {
 
   switch(statusId) {
     case 1:
-      className = classes.approved;
+      className = classes.approved
       icon = <CheckCircleTwoToneIcon/>
       statusDesc = 'APPROVED';
       break;
     case 2:
-      className = classes.declined;
+      className = classes.declined
       icon = <HighlightOffTwoToneIcon />;
       statusDesc = 'DECLINED';
       break;
     default:
-      className = classes.pending;  
       icon = <HourglassFullTwoToneIcon />;
       statusDesc = 'PENDING';
       break;
@@ -51,9 +45,9 @@ export default function Status( { statusId }) {
 
   return (
     <Chip 
-      className={className}
       icon={icon}
       label={statusDesc}
+      className={className}
       variant="outlined"
     />
   )
