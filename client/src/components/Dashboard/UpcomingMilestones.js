@@ -1,8 +1,9 @@
 import "./UpcomingMilestones.scss";
 
 export default function UpcomingMilestones({ milestone }) {
+  // Format a new date for todays date, then use in return to conditionally render upcoming milestones
   let d = new Date();
-  let datestring =
+  let dateString =
     d.getFullYear() +
     "-" +
     ("0" + (d.getMonth() + 1)).slice(-2) +
@@ -11,7 +12,7 @@ export default function UpcomingMilestones({ milestone }) {
 
   return (
     <div className="upcoming-milestones-container">
-      {datestring < milestone.end_date && (
+      {dateString < milestone.end_date && (
         <>
           <p className="upcoming-milestones-desc">{milestone.description}</p>
           <p className="upcoming-milestones-date">{milestone.end_date}</p>
