@@ -36,7 +36,7 @@ export default function Header() {
         <AppBar position="absolute" className={classes.appBar}>
           <Toolbar>
             <Typography className={classes.title}></Typography>
-            <Button color="primary">
+            <Button>
               <AccountCircleTwoToneIcon />
               &nbsp; My Account
             </Button>
