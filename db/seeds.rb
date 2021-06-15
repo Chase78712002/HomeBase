@@ -68,7 +68,7 @@ puts 'Creating PROJECT Seed data ...'
 
 project1 = Project.create(
   name: 'Silly Beach House',
-  start_date: Date.today,
+  start_date: Date.today - 30,
   end_date: Date.today + 42, #days
   image: "https://source.unsplash.com/rChFUMwAe7E",
   address: "612 Loucks Dr Victoria BC V8P 1B7",
@@ -79,7 +79,7 @@ project1 = Project.create(
 
 project2 = Project.create(
   name: 'Mountainview',
-  start_date: Date.today,
+  start_date: Date.today - 25,
   end_date: Date.today + 60,
   image: "https://source.unsplash.com/R1uiDu8vBh0",
   avatarSrc: "https://source.unsplash.com/6anudmpILw4",
@@ -91,7 +91,7 @@ project2 = Project.create(
 
 project3 = Project.create(
   name: 'Modern farmhouse',
-  start_date: Date.today,
+  start_date: Date.today - 7,
   end_date: Date.today + 85,
   image: "https://source.unsplash.com/aren8nutd1Q",
   address: "15317 21 Ave Surrey BC V1M 6A8",
@@ -113,7 +113,7 @@ project4 = Project.create(
 
 project5 = Project.create(
   name: 'Petrazzi modern',
-  start_date: Date.today,
+  start_date: Date.today + 7,
   end_date: Date.today + 150,
   image: "https://source.unsplash.com/_TPTXZd9mOo",
   address: "7161 Ave De La Deviniere , Calgary AB, T2A 3S8",
@@ -124,7 +124,7 @@ project5 = Project.create(
 
 project6 = Project.create(
   name: 'Mead acreage',
-  start_date: Date.today,
+  start_date: Date.today + 14,
   end_date: Date.today + 180,
   image: "https://source.unsplash.com/RCF5KSWb7Ms",
   address: "1 Lomond Dr Etobicoke BC M8V 2Z3",
