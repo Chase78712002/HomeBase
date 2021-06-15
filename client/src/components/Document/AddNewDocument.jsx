@@ -29,11 +29,11 @@ export default function AddNewDocument(props) {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
 
-  const [fileName, setFileName] = useState();
-  const [category, setCategory] = useState();
+  const [fileName, setFileName] = useState("");
+  const [category, setCategory] = useState("");
   const [path, setPath] = useState();
   const [projectId, setProjectId] = useState(1);
-  const [categoryID, setCategoryID] = useState();
+  const [categoryID, setCategoryID] = useState("");
   
   const handleClickOpen = () => {
     setOpen(true);
