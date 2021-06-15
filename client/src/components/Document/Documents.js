@@ -29,10 +29,11 @@ export default function Documents() {
   // const classes = useStyles
   const [state, setState] = useState({
     documents: [],
-    categories: []
+    categories: [],
+    errorMsg: []
   })
   const [searchTerm, setSearchTerm] = useState("");
-
+  
   const deleteFile = (id) => {
     return axios.delete(`/api/documents/${id}`)
                 .then(() => {
@@ -40,7 +41,9 @@ export default function Documents() {
                   const newDoc = state.documents.filter(document => document.id !== id)
                   setState(prev => ({...prev, documents: newDoc}))
                 })
-                .catch(err => console.log(`Delete file error: ${err}`))
+                .catch(err => {
+                  console.log(`Delete file error: ${err}`)
+                })
   }
 
   const saveFile = (fileName, category, path, category_id, project_id, handleClose) => {
@@ -51,7 +54,7 @@ export default function Documents() {
       document_category_id: category_id,
       project_id: project_id
     }
-    handleClose()
+    
     return axios.post('/api/documents', file)
                 .then(res => {
                   console.log('save post res: ',res.data)
@@ -59,9 +62,14 @@ export default function Documents() {
                   setState(prev => ({
                     ...prev, documents: newDoc
                   }))
-
+                  handleClose()
                 })
-                .catch(err => console.log(`Save file post Error: ${err}`))
+                .catch(err => {
+                  console.log(`Save file create Error: ${err.response.data.error}`)
+                  setState(prev => ({
+                    ...prev, errorMsg:err.response.data.error
+                  }))
+                })
   }
 
   const editFile = (id, fileName, category, setEditMode) => {
@@ -82,7 +90,7 @@ export default function Documents() {
                   }))
 
                 })
-                .catch(err => console.log(`Save file post Error: ${err}`))
+                .catch(err => console.log(`Save file Edit Error: ${err}`))
   }
 
   useEffect(()=> {
@@ -94,8 +102,9 @@ export default function Documents() {
         ...prev,
         documents: all[0].data,
         categories: all[1].data
-      }))  
+      }))
     })
+    .catch(err => console.log(`Axios get request error: ${err.message}`))
   },[]);
 
   const filteredDoc = state.documents.filter(docObj => {
@@ -113,7 +122,7 @@ export default function Documents() {
       <ThemeProvider theme={theme}>
         <Container disableGutters={true}>
           <SearchBar setSearchTerm={setSearchTerm} />
-          <AddNewDocument categories={state.categories} onSave={saveFile} />
+          <AddNewDocument categories={state.categories} onSave={saveFile} errorMsg={state.errorMsg}/>
         </Container>
       </ThemeProvider>
       <DocumentList data={filteredDoc} categories={state.categories} onEdit={editFile} onDelete={deleteFile} />

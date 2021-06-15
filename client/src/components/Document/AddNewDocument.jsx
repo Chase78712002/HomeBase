@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
@@ -35,6 +35,7 @@ export default function AddNewDocument(props) {
   const [projectId, setProjectId] = useState(1);
   const [categoryID, setCategoryID] = useState();
   
+  console.log(`error message in addnewDoc: ${JSON.stringify(props.errorMsg)}`)
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -77,7 +78,8 @@ export default function AddNewDocument(props) {
         <DialogContent>
           <form className={classes.container}>
             <FormControl className={classes.formControl}>
-              <InputLabel id="file-name">Document title</InputLabel>
+              <InputLabel id="file-name" >Document title</InputLabel>
+              <InputLabel id="file-name-error" error={true} >title is required</InputLabel>
               <Input value={fileName} onChange={event => setFileName(event.target.value)} />
             </FormControl>
 
