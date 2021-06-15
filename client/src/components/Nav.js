@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {
   BrowserRouter as Router,
   Switch,
@@ -95,12 +95,8 @@ export default function Nav({menuItems}) {
 
   const [open, setOpen] = useState(false);
   const [activeButton, setActiveButton] = useState();
-  const [hideNav, setHideNav] = useState(false);
 
   let location = useLocation();
-  useEffect(() => {
-    console.log("We are at:", location.pathname);
-  }, [location]);
 
   const onSideBtnClick = (id) => {
     setActiveButton(id);
