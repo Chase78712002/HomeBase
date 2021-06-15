@@ -4,7 +4,7 @@ import { useState } from "react";
 import NumberFormat from 'react-number-format';
 
 // @material-ui imports
-import { makeStyles, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, LinearProgress, Button, Menu, MenuItem } from '@material-ui/core';
+import { makeStyles, withStyles, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, LinearProgress, Button, Menu, MenuItem } from '@material-ui/core';
 import ExpandMoreTwoToneIcon from '@material-ui/icons/ExpandMoreTwoTone';
 
 // app imports
@@ -14,12 +14,20 @@ import Status from './Status';
 const useStyle = makeStyles((theme) => ({
   table: {
     minWidth: 650,
-    marginTop: '20px'
   },
   footer: {
     backgroundColor: theme.palette.background.main,
   }
 }));
+
+const StyledTableCell = withStyles((theme) => ({
+  head: {
+    fontSize: 16,
+  },
+  body: {
+    fontSize: 16,
+  },
+}))(TableCell);
 
 export default function ChangeOrdersTable({ changeOrders, status, projects }) {
   const classes = useStyle();
@@ -111,23 +119,23 @@ export default function ChangeOrdersTable({ changeOrders, status, projects }) {
         <TableBody>
           {filteredCOs.map(changeOrder => (
             <TableRow key={changeOrder.id}>
-              <TableCell component="th" scope="row" >
+              <StyledTableCell component="th" scope="row" >
                 <Button variant="contained" onClick={() => handleClickOpen(changeOrder)}>
                   View CO_{changeOrder.id}
                 </Button>
                 <ChangeOrderDetails currentCO={currentCO} client={currentProject.client} open={open} onClose={handleClose} />
-              </TableCell>
-              <TableCell>{changeOrder.description}</TableCell>
-              <TableCell align="center">
+              </StyledTableCell>
+              <StyledTableCell>{changeOrder.description}</StyledTableCell>
+              <StyledTableCell align="center">
                 <Status statusId={changeOrder.change_order_status_id}/>
-              </TableCell>
-              <TableCell align="right"><NumberFormat value={changeOrder.change_order_status_id === 2 ? 0 : changeOrder.cost} displayType={'text'} thousandSeparator={true} prefix={'$'} /></TableCell>
+              </StyledTableCell>
+              <StyledTableCell align="right"><NumberFormat value={changeOrder.change_order_status_id === 2 ? 0 : changeOrder.cost} displayType={'text'} thousandSeparator={true} prefix={'$'} /></StyledTableCell>
             </TableRow>
           ))}
           <TableRow>
-            <TableCell colSpan={2} className={classes.footer} />
-            <TableCell align="center" className={classes.footer}><strong>TOTAL:</strong></TableCell>
-            <TableCell align="right" className={classes.footer}><strong><NumberFormat value={totalCosts()} displayType={'text'} thousandSeparator={true} prefix={'$'} /></strong></TableCell>
+            <StyledTableCell colSpan={2} className={classes.footer} />
+            <StyledTableCell align="center" className={classes.footer}><strong>TOTAL:</strong></StyledTableCell>
+            <StyledTableCell align="right" className={classes.footer}><strong><NumberFormat value={totalCosts()} displayType={'text'} thousandSeparator={true} prefix={'$'} /></strong></StyledTableCell>
           </TableRow>
         </TableBody>
       </Table>

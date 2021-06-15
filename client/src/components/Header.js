@@ -1,10 +1,4 @@
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  useLocation,
-} from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 
 // @material-ui imports
 import {
@@ -15,10 +9,6 @@ import {
   Button,
 } from "@material-ui/core";
 import AccountCircleTwoToneIcon from "@material-ui/icons/AccountCircleTwoTone";
-import HomeTwoToneIcon from "@material-ui/icons/HomeTwoTone";
-
-// app imports
-// import Home from "./Home/index";
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -46,27 +36,12 @@ export default function Header() {
         <AppBar position="absolute" className={classes.appBar}>
           <Toolbar>
             <Typography className={classes.title}></Typography>
-{/* 
-            <Button size="small" color="primary">
-              <HomeTwoToneIcon />
-              &nbsp;
-              <Link to="/projects" className={classes.link}> */}
-              {/* All Projects */}
-              {/* </Link>
-            </Button> */}
-
-            {/* <Typography color="primary">&nbsp;|&nbsp;</Typography> */}
-
             <Button color="primary">
               <AccountCircleTwoToneIcon />
               &nbsp; My Account
             </Button>
           </Toolbar>
         </AppBar>
-
-        {/* <Switch>
-          <Route path="/projects" component={Home} />
-        </Switch> */}
       </Router>
     </div>
   );
