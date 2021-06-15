@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import NumberFormat from 'react-number-format';
 
 // @material-ui imports
-import { makeStyles, Collapse, Box, Table, TableHead, TableCell, TableRow, TableBody } from '@material-ui/core';
+import { makeStyles, withStyles, Collapse, Box, Table, TableHead, TableCell, TableRow, TableBody } from '@material-ui/core';
 import IconButton from '@material-ui/core/IconButton';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
@@ -18,6 +18,15 @@ const useStyle = makeStyles((theme) => ({
     color: theme.palette.primary.main,
   }
 }));
+
+const StyledTableCell = withStyles((theme) => ({
+  head: {
+    fontSize: 16,
+  },
+  body: {
+    fontSize: 16,
+  },
+}))(TableCell);
 
 export default function BudgetListItem( { category, transactions }) {
   const classes = useStyle();
@@ -35,15 +44,15 @@ export default function BudgetListItem( { category, transactions }) {
   return (
     <>
      <TableRow onClick={() => { setCurrentCategoryId(category.id); setOpen(!open);}}>
-        <TableCell component="th" scope="row">
+        <StyledTableCell component="th" scope="row">
           <IconButton aria-label="expand row" size="small">
             {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
           </IconButton>
           {category.description}
-        </TableCell>
-        <TableCell align="right"><NumberFormat value={category.estimate_amount} displayType={'text'} thousandSeparator={true} prefix={'$'} /></TableCell>
-        <TableCell align="right"><NumberFormat value={category.actual_amount} displayType={'text'} thousandSeparator={true} prefix={'$'} /></TableCell>
-        <TableCell align="right"><NumberFormat value={category.estimate_amount - category.actual_amount} displayType={'text'} thousandSeparator={true} prefix={'$'} /></TableCell>
+        </StyledTableCell>
+        <StyledTableCell align="right"><NumberFormat value={category.estimate_amount} displayType={'text'} thousandSeparator={true} prefix={'$'} /></StyledTableCell>
+        <StyledTableCell align="right"><NumberFormat value={category.actual_amount} displayType={'text'} thousandSeparator={true} prefix={'$'} /></StyledTableCell>
+        <StyledTableCell align="right"><NumberFormat value={category.estimate_amount - category.actual_amount} displayType={'text'} thousandSeparator={true} prefix={'$'} /></StyledTableCell>
     </TableRow>
     <TableRow>
       <TableCell className={classes.transactions} colSpan={6}>
@@ -52,17 +61,17 @@ export default function BudgetListItem( { category, transactions }) {
             <Table size="small" aria-label="transactions">
               <TableHead>
                 <TableRow>
-                  <TableCell className={classes.header}>TRANSACTION DETAILS</TableCell>
-                  <TableCell className={classes.header}>DATE</TableCell>
-                  <TableCell className={classes.header} align="right">AMOUNT</TableCell>
+                  <StyledTableCell className={classes.header}>TRANSACTION DETAILS</StyledTableCell>
+                  <StyledTableCell className={classes.header}>DATE</StyledTableCell>
+                  <StyledTableCell className={classes.header} align="right">AMOUNT</StyledTableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
                 {currentCategoryTransactions.map((transaction) => (
                   <TableRow key={transaction.id}>
-                    <TableCell>{transaction.description}</TableCell>
-                    <TableCell>{transaction.date}</TableCell>
-                    <TableCell align="right"><NumberFormat value={transaction.amount} displayType={'text'} thousandSeparator={true} prefix={'$'} /></TableCell>
+                    <StyledTableCell>{transaction.description}</StyledTableCell>
+                    <StyledTableCell>{transaction.date}</StyledTableCell>
+                    <StyledTableCell align="right"><NumberFormat value={transaction.amount} displayType={'text'} thousandSeparator={true} prefix={'$'} /></StyledTableCell>
                   </TableRow>
                 ))}
               </TableBody>

@@ -3,7 +3,7 @@ import NumberFormat from 'react-number-format';
 
 // @material-ui imports
 import { 
-  makeStyles, LinearProgress, Paper,
+  makeStyles, withStyles, LinearProgress, Paper,
   TableContainer, Table, TableHead, TableBody, TableRow, TableCell,
 } from '@material-ui/core';
 
@@ -13,12 +13,20 @@ import BudgetListItem from './BudgetListItem';
 const useStyle = makeStyles((theme) => ({
   table: {
     minWidth: 650,
-    marginTop: '20px'
   },
   footer: {
     backgroundColor: theme.palette.background.main,
-  }
+  },
 }));
+
+const StyledTableCell = withStyles((theme) => ({
+  head: {
+    fontSize: 16,
+  },
+  body: {
+    fontSize: 16,
+  },
+}))(TableCell);
 
 export default function BudgetList({ categories, transactions }) {
   const classes = useStyle();
@@ -41,14 +49,14 @@ export default function BudgetList({ categories, transactions }) {
   const totalVariance = totalEstimate - totalActual;
 
   return (
-    <TableContainer component={Paper}>
+    <TableContainer component={Paper} className={classes.root} >
       <Table className={classes.table} aria-label="budget table">
         <TableHead>
           <TableRow>
-            <TableCell>CATEGORY</TableCell>
-            <TableCell align="right">ESTIMATE</TableCell>
-            <TableCell align="right">ACTUAL</TableCell>
-            <TableCell align="right">VARIANCE</TableCell>
+            <StyledTableCell>CATEGORY</StyledTableCell>
+            <StyledTableCell align="right">ESTIMATE</StyledTableCell>
+            <StyledTableCell align="right">ACTUAL</StyledTableCell>
+            <StyledTableCell align="right">VARIANCE</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -56,10 +64,10 @@ export default function BudgetList({ categories, transactions }) {
           <BudgetListItem key={category.id} category={category} transactions={transactions}/>
           ))}
           <TableRow>
-            <TableCell className={classes.footer} ><strong>TOTAL:</strong></TableCell>
-            <TableCell className={classes.footer} align="right"><strong><NumberFormat value={totalEstimate} displayType={'text'} thousandSeparator={true} prefix={'$'} /></strong></TableCell>
-            <TableCell className={classes.footer} align="right"><strong><NumberFormat value={totalActual} displayType={'text'} thousandSeparator={true} prefix={'$'} /></strong></TableCell>
-            <TableCell className={classes.footer} align="right"><strong><NumberFormat value={totalVariance} displayType={'text'} thousandSeparator={true} prefix={'$'} /></strong></TableCell>
+            <StyledTableCell className={classes.footer} ><strong>TOTAL:</strong></StyledTableCell>
+            <StyledTableCell className={classes.footer} align="right"><strong><NumberFormat value={totalEstimate} displayType={'text'} thousandSeparator={true} prefix={'$'} /></strong></StyledTableCell>
+            <StyledTableCell className={classes.footer} align="right"><strong><NumberFormat value={totalActual} displayType={'text'} thousandSeparator={true} prefix={'$'} /></strong></StyledTableCell>
+            <StyledTableCell className={classes.footer} align="right"><strong><NumberFormat value={totalVariance} displayType={'text'} thousandSeparator={true} prefix={'$'} /></strong></StyledTableCell>
           </TableRow>
         </TableBody>
       </Table>
