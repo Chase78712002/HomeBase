@@ -6,6 +6,7 @@ import DateFnsUtils from '@date-io/date-fns';
 import { Box, CardContent, Grid } from "@material-ui/core";
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from "@material-ui/pickers";
 import LinearProgress from "@material-ui/core/LinearProgress";
+import EventTwoToneIcon from '@material-ui/icons/EventTwoTone';
 
 import "./CountDownCard.scss";
 
@@ -74,18 +75,6 @@ export default function CountDown(props) {
 
   return (
     <>
-      <MuiPickersUtilsProvider utils={DateFnsUtils} >
-        <KeyboardDatePicker
-          InputProps={{
-            disableUnderline: true,
-           }}
-          margin="dense"
-          id="date-picker-dialog"
-          format="MMM dd yyyy"
-          value={selectedDate}
-          onChange={handleDateChange}
-        />
-      </MuiPickersUtilsProvider>
       <CardContent>
         {isLoading ? (
           <Box className="loading">
@@ -128,6 +117,20 @@ export default function CountDown(props) {
           </Grid>
         )}
       </CardContent>
+      <MuiPickersUtilsProvider utils={DateFnsUtils} >
+        <KeyboardDatePicker
+          InputProps={{
+            disableUnderline: true,
+           }}
+          margin="dense"
+          id="date-picker-dialog"
+          value={selectedDate}
+          label="Change the date"
+          format="MMM dd yyyy"
+          onChange={handleDateChange}
+          keyboardIcon={<EventTwoToneIcon />}
+        />
+      </MuiPickersUtilsProvider>
     </>
   );
 }
