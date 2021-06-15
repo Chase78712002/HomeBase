@@ -7,20 +7,20 @@ export default function ProjectInfo({ projectsInfo }) {
       <Typography variant="h5" component="h2" color="secondary">
         Project:
       </Typography>
-      <Typography variant="p" component="h3" color="primary">
+      <Typography variant="body1" component="h3" color="primary">
         {projectsInfo.name}
       </Typography>
       <Typography variant="h5" component="h2" color="secondary">
         Client Name:{" "}
       </Typography>
-      <Typography variant="p" component="h3" color="primary">
+      <Typography variant="body1" component="h3" color="primary">
         {`${projectsInfo.client.first_name} ${projectsInfo.client.last_name}`}
       </Typography>
       <Typography variant="body1" component="p"></Typography>
       <Typography variant="h5" component="h2" color="secondary">
         Address:
       </Typography>
-      <Typography variant="p" component="h3" color="primary">
+      <Typography variant="body1" component="h3" color="primary">
         {projectsInfo.address}
       </Typography>
       <br />
