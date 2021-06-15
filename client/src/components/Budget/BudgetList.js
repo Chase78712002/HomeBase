@@ -3,29 +3,22 @@ import NumberFormat from 'react-number-format';
 
 // @material-ui imports
 import { 
-  makeStyles, CircularProgress, Paper,
+  makeStyles, LinearProgress, Paper,
   TableContainer, Table, TableHead, TableBody, TableRow, TableCell,
 } from '@material-ui/core';
 
 // app imports
 import BudgetListItem from './BudgetListItem';
 
-const useStyle = makeStyles({
+const useStyle = makeStyles((theme) => ({
   table: {
     minWidth: 650,
     marginTop: '20px'
   },
-  head: {
-    color: '#fff',
-    backgroundColor: '#427aa1'
-  },
-  progress: {
-    color: '#679436'
-  },
   footer: {
-    backgroundColor: '#f5f5f5',
+    backgroundColor: theme.palette.background.main,
   }
-});
+}));
 
 export default function BudgetList({ categories, transactions }) {
   const classes = useStyle();
@@ -33,7 +26,7 @@ export default function BudgetList({ categories, transactions }) {
   if (categories.length === 0 || transactions.length === 0) {
     return (
       <div>
-        <CircularProgress className={classes.progress} />
+        <LinearProgress color="secondary" />
       </div>
     )
   }

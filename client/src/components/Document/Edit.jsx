@@ -1,7 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import IconButton from "@material-ui/core/IconButton";
-import EditIcon from '@material-ui/icons/Edit';
+import EditTwoToneIcon from '@material-ui/icons/EditTwoTone';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -19,7 +19,7 @@ export default function EditButton(prop) {
 
   return (
     <IconButton onClick={prop.onClick} className={classes.icon}>
-      <EditIcon />
+      <EditTwoToneIcon color="primary"/>
     </IconButton>
   );
 }

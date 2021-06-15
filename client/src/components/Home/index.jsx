@@ -32,7 +32,7 @@ export default function Home() {
         <Grid container direction="row" spacing={4}>
           {projectData.map((projectObj) => {
             return (
-              <Grid item xs={12} sm={4} key={projectObj.id}>
+              <Grid item xs={12} sm={6} md={4} xl={3} key={projectObj.id}>
                 <ProjectItem {...projectObj} />
               </Grid>
             );

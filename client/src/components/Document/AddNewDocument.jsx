@@ -10,10 +10,8 @@ import Input from "@material-ui/core/Input";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
-import { IconButton } from "@material-ui/core";
-import PostAddRoundedIcon from "@material-ui/icons/PostAddRounded";
+import AddCircleOutlineTwoToneIcon from '@material-ui/icons/AddCircleOutlineTwoTone';
 import UploadButtons from "./Upload";
-
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -58,9 +56,16 @@ export default function AddNewDocument(props) {
 
   return (
     <div>
-      <IconButton onClick={handleClickOpen} className={classes.icon}>
+      {/* <IconButton onClick={handleClickOpen} className={classes.icon}>
         <PostAddRoundedIcon fontSize="large" />
-      </IconButton>
+      </IconButton> */}
+      <Button
+        variant="contained"
+        onClick={handleClickOpen}
+      >
+        <AddCircleOutlineTwoToneIcon />&nbsp;
+        New document
+      </Button>
 
       <Dialog
         disableBackdropClick
@@ -68,11 +73,11 @@ export default function AddNewDocument(props) {
         open={open}
         onClose={handleClose}
       >
-        <DialogTitle>Fill the form</DialogTitle>
+        <DialogTitle>Add a new document</DialogTitle>
         <DialogContent>
           <form className={classes.container}>
             <FormControl className={classes.formControl}>
-              <InputLabel id="file-name">File Name</InputLabel>
+              <InputLabel id="file-name">Document title</InputLabel>
               <Input value={fileName} onChange={event => setFileName(event.target.value)} />
             </FormControl>
 
@@ -107,10 +112,10 @@ export default function AddNewDocument(props) {
         <UploadButtons sendToParent={handlePath} />
 
         <DialogActions>
-          <Button onClick={handleClose} color="primary">
+          <Button onClick={handleClose} variant="contained">
             Cancel
           </Button>
-          <Button onClick={() => props.onSave(fileName,category, path, categoryID ,projectId, handleClose)} color="primary">
+          <Button onClick={() => props.onSave(fileName,category, path, categoryID ,projectId, handleClose)} variant="contained" color="primary">
             Save
           </Button>
         </DialogActions>

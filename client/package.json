@@ -22,6 +22,7 @@
     "react-perfect-scrollbar": "^1.5.8",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
+    "react-tilt": "^0.1.4",
     "uuid": "^8.3.0"
   },
   "scripts": {

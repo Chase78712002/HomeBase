@@ -1,20 +1,24 @@
+import axios from 'axios';
+
+// @material-ui imports
 import { Container } from "@material-ui/core";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import { useEffect, useState } from "react";
-import "./App.scss";
-import AddNewDocument from "./Document/AddNewDocument";
-import DocumentList from "./Document/DocumentList";
-import SearchBar from "./Document/Searchbar";
-import Title from "./Title";
-import axios from 'axios';
 
+// app imports
+import Title from "../Title";
+import DocumentList from "./DocumentList";
+import AddNewDocument from "./AddNewDocument";
+import SearchBar from "./Searchbar";
+
+import "../App.scss";
 
 const theme = createMuiTheme({
   overrides: {
     MuiContainer: {
       root: {
         display: "flex",
-        "justify-content": "space-between",
+        justifyContent: "space-between",
         alignItems:"center"
       },
     },
@@ -107,7 +111,7 @@ export default function Documents() {
       <Title title={"Documents"} />
 
       <ThemeProvider theme={theme}>
-        <Container maxWidth="lg" disableGutters={true}>
+        <Container disableGutters={true}>
           <SearchBar setSearchTerm={setSearchTerm} />
           <AddNewDocument categories={state.categories} onSave={saveFile} />
         </Container>

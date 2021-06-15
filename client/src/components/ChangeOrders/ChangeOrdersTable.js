@@ -4,25 +4,22 @@ import { useState } from "react";
 import NumberFormat from 'react-number-format';
 
 // @material-ui imports
-import { makeStyles, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, CircularProgress, Button, Menu, MenuItem } from '@material-ui/core';
+import { makeStyles, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, LinearProgress, Button, Menu, MenuItem } from '@material-ui/core';
 import ExpandMoreTwoToneIcon from '@material-ui/icons/ExpandMoreTwoTone';
 
 // app imports
 import ChangeOrderDetails from './ChangeOrderDetails';
 import Status from './Status';
 
-const useStyle = makeStyles({
+const useStyle = makeStyles((theme) => ({
   table: {
     minWidth: 650,
     marginTop: '20px'
   },
-  progress: {
-    color: '#679436'
-  },
   footer: {
-    backgroundColor: '#f5f5f5',
+    backgroundColor: theme.palette.background.main,
   }
-});
+}));
 
 export default function ChangeOrdersTable({ changeOrders, status, projects }) {
   const classes = useStyle();
@@ -36,7 +33,7 @@ export default function ChangeOrdersTable({ changeOrders, status, projects }) {
   if (changeOrders.length === 0 || status.length === 0 || projects.length === 0) {
     return (
       <div>
-        <CircularProgress className={classes.progress} />
+        <LinearProgress color="secondary" />
       </div>
     )
   }
@@ -88,7 +85,7 @@ export default function ChangeOrdersTable({ changeOrders, status, projects }) {
       <Table className={classes.table} aria-label="change orders table">
         <TableHead>
           <TableRow>
-            <TableCell>REFERENCE NO.</TableCell>
+            <TableCell>CHANGE ORDER NO.</TableCell>
             <TableCell>DESCRIPTION</TableCell>
             <TableCell align="center">
               STATUS
@@ -115,8 +112,8 @@ export default function ChangeOrdersTable({ changeOrders, status, projects }) {
           {filteredCOs.map(changeOrder => (
             <TableRow key={changeOrder.id}>
               <TableCell component="th" scope="row" >
-                <Button variant="outlined" onClick={() => handleClickOpen(changeOrder)}>
-                  CO_{changeOrder.id}
+                <Button variant="contained" onClick={() => handleClickOpen(changeOrder)}>
+                  View CO_{changeOrder.id}
                 </Button>
                 <ChangeOrderDetails currentCO={currentCO} client={currentProject.client} open={open} onClose={handleClose} />
               </TableCell>
