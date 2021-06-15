@@ -66,7 +66,7 @@
   align-items: flex-end;
   position: relative;
   padding: 15px;
-  width: 600px;
+  width: 350px;
   text-align: right;
 }
 
@@ -104,6 +104,7 @@
   left: 5px;
   text-transform: uppercase;
 }
+
 
 .timeline-item:nth-child(odd) .timeline-item-content .tag {
   left: auto;
@@ -150,4 +151,3 @@
   right: auto;
   left: -40px;
 }
-
