@@ -4,25 +4,13 @@ import axios from "axios";
 import NumberFormat from "react-number-format";
 
 // @material-ui imports
-import {
-  makeStyles,
-  Typography,
-  Grid,
-  Card,
-  CardContent,
-  CardActions,
-  Button,
-} from "@material-ui/core";
-
-// @material-ui imports
-// import ArrowDownwardIcon from "@material-ui/icons/ArrowDownward";
-// import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
+import { makeStyles, Typography, Grid, Card, CardContent, Button } from "@material-ui/core";
 
 // app imports
 import Title from "../Title";
 import GlassCard from "./GlassCard";
 import ProjectInfo from "./ProjectInfo";
-// import RecentChangeOrders from "./RecentChangeOrders";
+import RecentChangeOrders from "./RecentChangeOrders";
 import RecentSpending from "./RecentSpending";
 import Donut from "./Donut";
 import Countdown from "./CountDownCard";
@@ -112,7 +100,7 @@ export default function Dashboard() {
       <Title title={"Project Dashboard"} />
 
       <Grid container className={classes.root} spacing={1}>
-        <Grid item xs={12} sm={12} md={4}>
+        <Grid item xs={12} sm={6} md={4}>
           <Card className={classes.card} raised>
             <CardContent>
               <Typography
@@ -143,7 +131,7 @@ export default function Dashboard() {
           </Card>
         </Grid>
 
-        <Grid item xs={12} sm={12} md={4}>
+        <Grid item xs={12} sm={6} md={4}>
           <Card className={classes.card} raised>
             <CardContent>
               <Button size="small">
@@ -161,27 +149,6 @@ export default function Dashboard() {
             </CardContent>
           </Card>
         </Grid>
-        {/* 
-        <Grid item xs={12} sm={6} md={4}>
-          <Link to="/budget" className={classes.link}>
-          <Card className={classes.card} raised>
-            <CardContent>
-              <Typography className={classes.title} color="textSecondary" gutterBottom>
-                BUDGET
-              </Typography>
-              <Typography variant="h5" component="h2">
-                Title
-              </Typography>
-              <Typography className={classes.pos} color="textSecondary">
-                Date
-              </Typography>
-            </CardContent>
-            <CardActions className={classes.cardAction}>
-            <Button size="small"><Link to="/schedule" className={classes.link}>View budget</Link></Button>
-            </CardActions>
-          </Card>
-          </Link>
-        </Grid> */}
 
         <Grid item xs={12} sm={6} md={8}>
           <Card className={classes.card} raised>
@@ -191,17 +158,9 @@ export default function Dashboard() {
                   BUDGET
                 </Link>
               </Button>
-              {/* <GlassCard
-                amount={<NumberFormat value={totalBudget} displayType={'text'} thousandSeparator={true} prefix={'$'} />}
-                icon={<ArrowDownwardIcon />}
-                caption="12% Since last week"
-              /> */}
               <Typography variant="h5" component="h2" color="secondary">
-                Recent spending
+                Estimate vs. actual
               </Typography>
-              {/* <Typography className={classes.pos} color="textSecondary">
-                As of TODAY'S DATE
-              </Typography> */}
               <RecentSpending data={state.budgetData} />
             </CardContent>
           </Card>
@@ -216,11 +175,14 @@ export default function Dashboard() {
                 </Link>
               </Button>
               <Typography variant="h5" component="h2" color="secondary">
+                Total budget
+              </Typography>
+              <GlassCard
+                amount={<NumberFormat value={totalBudget} displayType={'text'} thousandSeparator={true} prefix={'$'} />}
+              />
+              <Typography variant="h5" component="h2" color="secondary">
                 Total actual spending
               </Typography>
-              {/* <Typography className={classes.pos} color="textSecondary">
-                As of TODAY'S DATE
-              </Typography> */}
               <GlassCard
                 amount={
                   <NumberFormat
@@ -230,7 +192,6 @@ export default function Dashboard() {
                     prefix={"$"}
                   />
                 }
-                // icon={<ArrowUpwardIcon/>}
                 graph={
                   <Donut
                     actualAmountArr={actualAmountArr}
