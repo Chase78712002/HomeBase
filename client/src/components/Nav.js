@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {
   BrowserRouter as Router,
   Switch,
@@ -55,8 +55,7 @@ const useStyles = makeStyles((theme) => ({
   },
   toolbar: {
     display: "flex",
-    alignItems: "center",
-    justifyContent: "space-between",
+    justifyContent: "flex-start",
     padding: theme.spacing(0, 1),
     // necessary for content to be below app bar
     ...theme.mixins.toolbar,
@@ -73,31 +72,36 @@ const useStyles = makeStyles((theme) => ({
   },
   overlay: {
     backgroundColor: "rgba(37, 34, 24, 1)",
+    opacity: ".6",
     top: 0,
     left: 0,
-    opacity: ".6",
     width: "100%",
     height: "100%",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-between"
   },
   white: {
     color: theme.palette.white.main,
   },
   active: {
     backgroundColor: theme.palette.secondary.main,
+    '&:hover': {
+      backgroundColor: theme.palette.secondary.main,
+    },
   },
+  logo: {
+    alignItems: "center",
+  }
 }));
 
 export default function Nav({menuItems}) {
   const classes = useStyles();
 
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
   const [activeButton, setActiveButton] = useState();
-  const [hideNav, setHideNav] = useState(false);
 
   let location = useLocation();
-  useEffect(() => {
-    console.log("We are at:", location.pathname);
-  }, [location]);
 
   const onSideBtnClick = (id) => {
     setActiveButton(id);
@@ -131,37 +135,46 @@ export default function Nav({menuItems}) {
           }}
         >
           <div className={classes.overlay}>
-            <div className={classes.toolbar}>
-              <IconButton className={classes.white} onClick={handleDrawer}>
-                {open ? <ChevronLeftIcon /> : <MenuTwoToneIcon />}
-              </IconButton>
+            <div>
+              <div className={classes.toolbar}>
+                <IconButton className={classes.white} onClick={handleDrawer}>
+                  {open ? <ChevronLeftIcon /> : <MenuTwoToneIcon />}
+                </IconButton>
+              </div>
+
+              <Divider variant="middle" />
+                <List>
+                  {menuItems.map((item) => (
+                    <Link
+                      key={item.id}
+                      to={item.path}
+                      className={classes.link}
+                      onClick={() => onSideBtnClick(item.id)}
+                    >
+                      <ListItem
+                        button
+                        className={activeButton === item.id ? classes.active : ""}
+                      >
+                      <ListItemIcon className={classes.white}>
+                        {item.icon}
+                      </ListItemIcon>
+                      <ListItemText
+                        className={classes.white}
+                        primary={item.text}
+                      />
+                    </ListItem>
+                  </Link>
+                ))}
+              </List>
             </div>
-
-            <Divider variant="middle" />
-
-            <List>
-              {menuItems.map((item) => (
-                <Link
-                  key={item.id}
-                  to={item.path}
-                  className={classes.link}
-                  onClick={() => onSideBtnClick(item.id)}
-                >
-                  <ListItem
-                    button
-                    className={activeButton === item.id ? classes.active : ""}
-                  >
-                    <ListItemIcon className={classes.white}>
-                      {item.icon}
-                    </ListItemIcon>
-                    <ListItemText
-                      className={classes.white}
-                      primary={item.text}
-                    />
-                  </ListItem>
-                </Link>
-              ))}
-            </List>
+            <div>
+              <img
+                className={classes.logo}
+                src={open ? "/Images/Logo/HB_Long_white.png" : "/Images/Logo/HB_Short_white.png"}
+                width={open ? "225px" : "75px"}
+                alt="HomeBase logo"
+              />
+            </div>
           </div>
         </Drawer>
       )}
