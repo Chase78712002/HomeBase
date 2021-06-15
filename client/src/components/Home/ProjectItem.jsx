@@ -72,10 +72,6 @@ export default function ProjectItem(props) {
         </CardContent>
 
       </CardActionArea>
-
-      <CardActions>
-        <Button size="small">COMPLETE</Button>
-      </CardActions>
     </Card>
   );
 }
