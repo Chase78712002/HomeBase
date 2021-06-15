@@ -67,42 +67,43 @@ puts "--Done Seeding Users--"
 puts 'Creating PROJECT Seed data ...'
 
 project1 = Project.create(
-  name: 'Project 1 - Kolumbeya',
+  name: 'Silly Beach House',
   start_date: Date.today,
-  end_date: Date.today + 30, #days
+  end_date: Date.today + 42, #days
   image: "https://source.unsplash.com/rChFUMwAe7E",
-  address: "612 Loucks Dr Calgary AB K4R 1B7",
-  avatarSrc: "https://source.unsplash.com/6anudmpILw4",
+  address: "612 Loucks Dr Victoria BC V8P 1B7",
+  avatarSrc: "https://source.unsplash.com/AJIqZDAUD7A",
   builder_id: 1,
   client_id: 1
 )
 
 project2 = Project.create(
-  name: 'Project 2 - Toronto',
+  name: 'Mountainview',
   start_date: Date.today,
   end_date: Date.today + 60,
   image: "https://source.unsplash.com/R1uiDu8vBh0",
-  avatarSrc: "https://source.unsplash.com/AJIqZDAUD7A",
-  address: "240 Foxhaven Dr Sherwood Park AB T8A 6L1",
+  avatarSrc: "https://source.unsplash.com/6anudmpILw4",
+  
+  address: "240 Foxhaven Dr Sherwood Park AB T8B 6L1",
   builder_id: 1,
   client_id: 2
 )
 
 project3 = Project.create(
-  name: 'Project 3 - Mumbai',
+  name: 'Modern farmhouse',
   start_date: Date.today,
-  end_date: Date.today + 90,
+  end_date: Date.today + 85,
   image: "https://source.unsplash.com/aren8nutd1Q",
-  address: "15317 21 Ave Surrey BC V4A 6A8",
+  address: "15317 21 Ave Surrey BC V1M 6A8",
   avatarSrc: "https://source.unsplash.com/rDEOVtE7vOs",
   builder_id: 1,
   client_id: 3
 )
 
 project4 = Project.create(
-  name: 'Project PlumbeousSilver',
+  name: 'Tiptaft Hideaway',
   start_date: Date.today,
-  end_date: Date.today + 90,
+  end_date: Date.today + 100,
   image: "https://source.unsplash.com/TiVPTYCG_3E",
   address: "75 John St W 504 Vancouver BC L1H 1W9",
   avatarSrc: "https://source.unsplash.com/X6Uj51n5CE8",
@@ -111,23 +112,23 @@ project4 = Project.create(
 )
 
 project5 = Project.create(
-  name: 'Project NigricantBronze',
+  name: 'Petrazzi modern',
   start_date: Date.today,
-  end_date: Date.today + 90,
+  end_date: Date.today + 150,
   image: "https://source.unsplash.com/_TPTXZd9mOo",
-  address: "7161 Ave De La Deviniere , Vancouver, BC, H1K 3S8",
-  avatarSrc: "https://source.unsplash.com/3TLl_97HNJo",
+  address: "7161 Ave De La Deviniere , Calgary AB, T2A 3S8",
+  avatarSrc: "https://source.unsplash.com/bLpMy2UDnOc",
   builder_id: 2,
   client_id: 5
 )
 
 project6 = Project.create(
-  name: 'Project NiveousZinc',
+  name: 'Mead acreage',
   start_date: Date.today,
-  end_date: Date.today + 90,
+  end_date: Date.today + 180,
   image: "https://source.unsplash.com/RCF5KSWb7Ms",
-  address: "1 Lomond Dr Etobicoke BC M8X 2Z3",
-  avatarSrc: "https://source.unsplash.com/bLpMy2UDnOc",
+  address: "1 Lomond Dr Etobicoke BC M8V 2Z3",
+  avatarSrc: "https://source.unsplash.com/3TLl_97HNJo",
   builder_id: 2,
   client_id: 6
 )
@@ -153,27 +154,59 @@ puts "--Done Seeding TransactionBill--"
 puts 'Creating DOCUMENT Seed data ...'
 
 document1 = Document.create(
-  title: 'Big Contract',
+  title: 'Final contract',
   category_type: 'Contract',
-  path: 'user/dmar/documents',
+  path: 'user/dmar/documents/contract',
   document_category_id: 1,
   project_id: 1
 )
 
 document2 = Document.create(
-  title: 'Floor Plan Option #2',
+  title: 'Floor Plan Option #1',
   category_type: 'Floor Plan',
-  path: 'user/dmar/documents/floorplans',
+  path: 'user/dmar/documents/floorplan1',
   document_category_id: 1,
   project_id: 1
 )
 
 document3 = Document.create(
-  title: 'Window Options',
+  title: 'Countertop selections',
   category_type: 'Supplementary',
-  path: 'user/dmar/documents/windows',
+  path: 'user/dmar/documents/countertops',
   document_category_id: 2,
-  project_id: 2
+  project_id: 1
+)
+
+document4 = Document.create(
+  title: 'Pricing schedule',
+  category_type: 'Supplementary',
+  path: 'user/dmar/documents/pricing',
+  document_category_id: 1,
+  project_id: 1
+)
+
+document5 = Document.create(
+  title: 'Floor Plan Option #2',
+  category_type: 'Floor Plan',
+  path: 'user/dmar/documents/floorplan2',
+  document_category_id: 1,
+  project_id: 1
+)
+
+document6 = Document.create(
+  title: 'Cabinets',
+  category_type: 'Supplementary',
+  path: 'user/dmar/documents/cabinets',
+  document_category_id: 2,
+  project_id: 1
+)
+
+document7 = Document.create(
+  title: 'Lighting selections',
+  category_type: 'Supplementary',
+  path: 'user/dmar/documents/lighting',
+  document_category_id: 2,
+  project_id: 1
 )
 
 puts "--Done Seeding Documents--"
@@ -257,7 +290,7 @@ co6 = ChangeOrder.create!(
 co7 = ChangeOrder.create!(
   description: 'Mudroom built-ins',
   cost: 4500,
-  change_order_status_id: 2,
+  change_order_status_id: 3,
   quantity: 1,
   path: 'user/dmar/change_orders/co7',
   project_id: 1,
@@ -281,7 +314,7 @@ budget1 = BudgetCategory.create(
   description: 'Base constuction fees',
   estimate_amount: 450000,
   project_id: 1,
-  actual_amount: 346500
+  actual_amount: 211500
 )
 
 budget2 = BudgetCategory.create(
@@ -365,7 +398,7 @@ mile7 = Milestone.create(
 )
 
 mile8 = Milestone.create(
-  description: 'Paiting and flooring complete',
+  description: 'Painting and flooring complete',
   start_date: Date.today + 14.days,
   end_date: Date.today + 14.days,
   status: 'Upcoming',
@@ -375,8 +408,8 @@ mile8 = Milestone.create(
 
 mile9 = Milestone.create(
   description: 'Final finishes complete',
-  start_date: Date.today - 30.days,
-  end_date: Date.today - 30.days,
+  start_date: Date.today + 30.days,
+  end_date: Date.today + 30.days,
   status: 'Upcoming',
   reminder: true,
   project_id: 1
@@ -393,8 +426,8 @@ mile10 = Milestone.create(
 
 mile11 = Milestone.create(
   description: 'Possesion day!',
-  start_date: Date.today + 45.days,
-  end_date: Date.today + 45.days,
+  start_date: Date.today + 42.days,
+  end_date: Date.today + 42.days,
   status: 'Upcoming',
   reminder: true,
   project_id: 1
@@ -446,10 +479,10 @@ trans6 = TransactionBill.create!(
 )
 
 trans7 = TransactionBill.create!(
-  description: 'Payment: Mechanical rough-in and dry wall complete',
-  amount: 135000,
+  description: 'Super fancy faucet',
+  amount: 299,
   date: Date.today - 30.days,
-  budget_category_id: 1,
+  budget_category_id: 2,
 )
 
 trans8 = TransactionBill.create!(
@@ -495,4 +528,3 @@ trans13 = TransactionBill.create!(
 )
 
 puts "--Done Seeding TransactionBill--"
-

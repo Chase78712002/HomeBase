@@ -30,9 +30,9 @@ export default function ChangeOrderDetails({ currentCO, client, open, onClose })
   return (
     <Dialog onClose={handleClose} aria-labelledby="change-order-details" open={open} fullWidth={true}>
       <div className={classes.header}>
-        <div>Logo</div>
+        <div><img src="/Images/Logo/LHLBuilders.png" height="100px" alt="Lighthouse Builders Logo" /></div>
         <div>
-          <strong>Builder Name</strong><br/>
+          <strong>Lighthouse Builders</strong><br/>
           123 Main Street<br/>
           Victoria, BC V8P 1H5<br/>
         </div>

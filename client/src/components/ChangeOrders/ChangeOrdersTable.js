@@ -113,7 +113,7 @@ export default function ChangeOrdersTable({ changeOrders, status, projects }) {
                 <MenuItem onClick={() => { setStatusFilterId(3); handleCloseMenu() }}>Pending</MenuItem>
               </Menu>
             </TableCell>
-            <TableCell align="right">PAYMENT AMOUNT</TableCell>
+            <TableCell align="right">COST</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -129,7 +129,7 @@ export default function ChangeOrdersTable({ changeOrders, status, projects }) {
               <StyledTableCell align="center">
                 <Status statusId={changeOrder.change_order_status_id}/>
               </StyledTableCell>
-              <StyledTableCell align="right"><NumberFormat value={changeOrder.change_order_status_id === 2 ? 0 : changeOrder.cost} displayType={'text'} thousandSeparator={true} prefix={'$'} /></StyledTableCell>
+              <StyledTableCell align="right"><NumberFormat value={changeOrder.cost} displayType={'text'} thousandSeparator={true} prefix={'$'} /></StyledTableCell>
             </TableRow>
           ))}
           <TableRow>

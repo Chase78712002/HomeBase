@@ -99,7 +99,7 @@ export default function Nav({menuItems}) {
   const classes = useStyles();
 
   const [open, setOpen] = useState(true);
-  const [activeButton, setActiveButton] = useState();
+  const [activeButton, setActiveButton] = useState(2);
 
   let location = useLocation();
 
