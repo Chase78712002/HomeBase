@@ -14,7 +14,7 @@ import Header from "./Header";
 import Nav from "./Nav";
 import Home from "./Home/index";
 import Dashboard from "./Dashboard/Dashboard";
-import Schedule from "./Schedule";
+import Schedule from "./Schedule/Schedule";
 import Budget from "./Budget/Budget";
 import ChangeOrders from "./ChangeOrders/ChangeOrders";
 import Documents from "./Document/Documents";
