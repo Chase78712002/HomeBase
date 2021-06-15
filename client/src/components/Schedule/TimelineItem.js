@@ -4,8 +4,6 @@ import IconButton from "@material-ui/core/IconButton";
 import CheckCircleTwoToneIcon from "@material-ui/icons/CheckCircleTwoTone";
 
 export default function TimelineItem({ data }) {
-  const editMilestone = (data) => {};
-
   return (
     <div className="timeline-item">
       <div className="timeline-item-content">
@@ -27,7 +25,7 @@ export default function TimelineItem({ data }) {
           <span className="circle" />
         )}
         <IconButton>
-          <EditTwoToneIcon onClick={editMilestone}>Edit</EditTwoToneIcon>
+          <EditTwoToneIcon>Edit</EditTwoToneIcon>
         </IconButton>
       </div>
     </div>
