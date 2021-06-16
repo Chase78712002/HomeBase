@@ -24,12 +24,32 @@ HomeBase uses ruby version `2.7.3`, rails version `6.0.3.7`, and react version `
 
 ## Screenshots
 
+#### Splash Screen
+
 ![Splash Screen](https://github.com/Chase78712002/HomeBase/blob/master/assets/Splash.png)
+
+#### Builder View
+
 ![Builder View](https://github.com/Chase78712002/HomeBase/blob/master/assets/Builder_projects.png)
+
+#### Project Overview
+
 ![Project Overview](https://github.com/Chase78712002/HomeBase/blob/master/assets/Project_overview.png)
+
+#### Schedule
+
 ![Timeline](https://github.com/Chase78712002/HomeBase/blob/master/assets/Timeline.png)
+
+#### Budget Info
+
 ![Budget](https://github.com/Chase78712002/HomeBase/blob/master/assets/Budget.png)
+
+#### Change Orders
+
 ![Change Orders](https://github.com/Chase78712002/HomeBase/blob/master/assets/Change_orders.png)
+
+#### Documents
+
 ![Documents](https://github.com/Chase78712002/HomeBase/blob/master/assets/Documents.png)
 
 ## Features To Be Added
