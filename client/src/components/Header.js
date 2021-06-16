@@ -38,7 +38,7 @@ export default function Header() {
             <Typography className={classes.title}></Typography>
             <Button>
               <AccountCircleTwoToneIcon />
-              &nbsp; My Account
+              &nbsp; Welcome Bob
             </Button>
           </Toolbar>
         </AppBar>
