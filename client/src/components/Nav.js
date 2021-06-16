@@ -1,24 +1,9 @@
 import { useState } from "react";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  useLocation
-} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link, useLocation } from "react-router-dom";
 import clsx from "clsx";
 
 // @material-ui imports
-import {
-  makeStyles,
-  Divider,
-  Drawer,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-  IconButton,
-} from "@material-ui/core";
+import { makeStyles, Divider, Drawer, List, ListItem, ListItemIcon, ListItemText, IconButton } from "@material-ui/core";
 
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import MenuTwoToneIcon from "@material-ui/icons/MenuTwoTone";
@@ -99,13 +84,9 @@ export default function Nav({menuItems}) {
   const classes = useStyles();
 
   const [open, setOpen] = useState(true);
-  const [activeButton, setActiveButton] = useState(2);
 
   let location = useLocation();
-
-  const onSideBtnClick = (id) => {
-    setActiveButton(id);
-  };
+  const { pathname } = location;
 
   const handleDrawer = () => {
     setOpen(!open);
@@ -113,7 +94,7 @@ export default function Nav({menuItems}) {
 
   return (
     <>
-      {location.pathname !== "/projects" && (
+      {pathname !== "/projects" && (
         <Drawer
           variant="permanent"
           className={clsx(
@@ -149,11 +130,10 @@ export default function Nav({menuItems}) {
                       key={item.id}
                       to={item.path}
                       className={classes.link}
-                      onClick={() => onSideBtnClick(item.id)}
                     >
                       <ListItem
                         button
-                        className={activeButton === item.id ? classes.active : ""}
+                        className={pathname === item.path ? classes.active : ""}
                       >
                       <ListItemIcon className={classes.white}>
                         {item.icon}
