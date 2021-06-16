@@ -70,8 +70,6 @@ export default function ChangeOrdersTable({ changeOrders, status, projects }) {
   // calculate total change order costs (by filtered view)
   const totalCosts = () => {    
     return filteredCOs
-      // remove any declined COs from total
-      .filter((changeOrder => changeOrder.change_order_status_id !== 2))
       .map((changeOrder => changeOrder.cost))
       .reduce((sum, i) => sum + i, 0);
   };
