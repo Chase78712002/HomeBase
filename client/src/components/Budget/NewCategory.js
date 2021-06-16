@@ -81,13 +81,13 @@ export default function NewCategory({ addCategory }) {
         </FormControl>
         <FormControl className={classes.formControl}>
           <TextField
-             required
-             error={!!errorMsg.estimate}
-             helperText={errorMsg.estimate}
-             type="number"
-             label="Budget estimate amount"
-             value={estimate}
-             onChange={(e) => setEstimate(e.target.value)}
+            required
+            error={!!errorMsg.estimate}
+            helperText={errorMsg.estimate}
+            type="number"
+            label="Budget estimate amount"
+            value={estimate}
+            onChange={(e) => setEstimate(e.target.value)}
           />
         </FormControl>
         
@@ -95,7 +95,7 @@ export default function NewCategory({ addCategory }) {
           onClick={validate}
           variant="contained"
           color="secondary"
-          type="submit"
+          // type="submit"
         >
           Add new category
         </Button>

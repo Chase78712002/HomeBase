@@ -153,7 +153,7 @@ export default function NewTransaction({ categories, addTransaction, updateActua
           onClick={validate}
           variant="contained"
           color="secondary"
-          type="submit"
+          // type="submit"
         >
           Add new transaction
         </Button>
